@@ -123,6 +123,27 @@ class Store:
         except PyMongoError:
             pass
 
+    def recent_conversation(self, session_id: str, limit: int = 6) -> list[dict]:
+        """Last `limit` turns for a session, oldest-first (Mongo only)."""
+        if self._mode != "mongo" or not session_id:
+            return []
+        try:
+            cur = (self._db["conversations"]
+                   .find({"session_id": session_id}, {"_id": 0})
+                   .sort("ts", -1).limit(limit))
+            return list(cur)[::-1]
+        except PyMongoError:
+            return []
+
+    def clear_conversation(self, session_id: str) -> None:
+        """Delete a session's chat history (Mongo only)."""
+        if self._mode != "mongo" or not session_id:
+            return
+        try:
+            self._db["conversations"].delete_many({"session_id": session_id})
+        except PyMongoError:
+            pass
+
 
 # Single shared instance for the app
 store = Store()

@@ -67,11 +67,17 @@ def _infer_layer(text: str) -> str:
 
 
 def run(text: str, lang: str = "en-IN", session_id: str | None = None) -> dict[str, Any]:
-    """Run the agent on a question; return the full contract action object."""
-    messages: list[dict[str, Any]] = [
-        {"role": "system", "content": _SYSTEM},
-        {"role": "user", "content": f"[reply in {lang}] {text}"},
-    ]
+    """Run the agent on a question; return the full contract action object.
+
+    If `session_id` is given, prior turns are loaded so follow-up questions have context
+    (conversation mode), and this turn is recorded when done.
+    """
+    import conversation
+
+    prior = conversation.history(session_id)
+    messages: list[dict[str, Any]] = [{"role": "system", "content": _SYSTEM}]
+    messages.extend(prior)
+    messages.append({"role": "user", "content": f"[reply in {lang}] {text}"})
     tool_log: list[str] = []
     collected: dict[str, Any] = {}   # tool name -> last result
     used_layer: str | None = None
@@ -114,10 +120,13 @@ def run(text: str, lang: str = "en-IN", session_id: str | None = None) -> dict[s
 
     # No tools used -> casual/conversational turn: reply without driving the dashboard.
     if not tool_log:
-        return _casual(answer, lang)
+        result = _casual(answer, lang)
+    else:
+        layer = used_layer or _infer_layer(text)
+        result = _assemble(answer, lang, layer, used_year, collected, tool_log, reasoning_trace)
 
-    layer = used_layer or _infer_layer(text)
-    return _assemble(answer, lang, layer, used_year, collected, tool_log, reasoning_trace)
+    conversation.append(session_id, text, result.get("answer_text", ""))
+    return result
 
 
 def _casual(answer: str, lang: str) -> dict[str, Any]:

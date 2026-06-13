@@ -219,11 +219,13 @@ Request: form field `audio` = WAV/MP3 blob (≤30s, 16 kHz mono preferred).
 
 ## `POST /ask`   ← **the important one**
 The agent reasons over the question and returns an **action object**. Every field maps to a visual.
-Send `text` (required) and optional `lang` (BCP-47; if omitted, auto-detected/echoed back).
+Send `text` (required), optional `lang` (BCP-47; if omitted, auto-detected/echoed back), and an
+optional `session_id` for **conversation mode** (below).
 
 Request:
 ```jsonc
-{ "text": "Which areas have the worst urban heat and what should we do?", "lang": "en-IN" }
+{ "text": "Which areas have the worst urban heat and what should we do?",
+  "lang": "en-IN", "session_id": "abc-123" }
 ```
 Response:
 ```jsonc
@@ -287,6 +289,22 @@ Response (contract-style, so the map reacts, PLUS audio to auto-play):
 }
 ```
 Frontend: flash a red banner sized by `severity`, run the highlight choreography, auto-play audio.
+
+## Conversation mode (multi-turn memory)
+Pass a stable `session_id` on every `/ask` and the agent remembers the last ~6 turns, so
+follow-ups resolve against context — *"and flooding in those same areas?"* → switches to the
+flood layer for the previously-named wards; *"will it get worse by 2028?"* → forecasts the same
+metric. Generate one `session_id` per chat thread (e.g. a UUID) and reuse it.
+
+### `GET /conversation?session_id=abc-123`
+Rehydrate the chat thread (e.g. after reload). Oldest-first.
+```jsonc
+{ "session_id": "abc-123",
+  "messages": [ { "role": "user", "content": "..." }, { "role": "assistant", "content": "..." } ] }
+```
+
+### `POST /conversation/reset`
+Start a fresh thread. Body: `{ "session_id": "abc-123" }` → `{ "status": "ok", "session_id": "abc-123" }`.
 
 ## `POST /tts`
 Text → spoken audio in the given language.
