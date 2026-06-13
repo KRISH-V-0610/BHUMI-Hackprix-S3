@@ -1,0 +1,96 @@
+[
+  {
+    "year": 2016,
+    "cards": [
+      {
+        "id": "flood",
+        "label": "Flood Risk",
+        "score": 60,
+        "level": "Moderate",
+        "delta_since_2016": 0
+      },
+      {
+        "id": "heat",
+        "label": "Heat Stress",
+        "score": 80,
+        "level": "High",
+        "delta_since_2016": 0
+      },
+      {
+        "id": "veg",
+        "label": "Vegetation",
+        "score": 58,
+        "level": "Moderate",
+        "delta_since_2016": 0
+      },
+      {
+        "id": "lake",
+        "label": "Lake Health",
+        "score": 64,
+        "level": "Moderate",
+        "delta_since_2016": 0
+      },
+      {
+        "id": "urban",
+        "label": "Urban Growth",
+        "score": 77,
+        "level": "High",
+        "delta_since_2016": 0
+      },
+      {
+        "id": "water",
+        "label": "Waterlogging",
+        "score": 56,
+        "level": "Moderate",
+        "delta_since_2016": 0
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "cards": [
+      {
+        "id": "flood",
+        "label": "Flood Risk",
+        "score": 65,
+        "level": "Moderate",
+        "delta_since_2016": 5
+      },
+      {
+        "id": "heat",
+        "label": "Heat Stress",
+        "score": 86,
+        "level": "Very High",
+        "delta_since_2016": 6
+      },
+      {
+        "id": "veg",
+        "label": "Vegetation",
+        "score": 66,
+        "level": "Moderate",
+        "delta_since_2016": 8
+      },
+      {
+        "id": "lake",
+        "label": "Lake Health",
+        "score": 69,
+        "level": "Moderate",
+        "delta_since_2016": 5
+      },
+      {
+        "id": "urban",
+        "label": "Urban Growth",
+        "score": 84,
+        "level": "High",
+        "delta_since_2016": 7
+      },
+      {
+        "id": "water",
+        "label": "Waterlogging",
+        "score": 62,
+        "level": "Moderate",
+        "delta_since_2016": 6
+      }
+    ]
+  }
+]

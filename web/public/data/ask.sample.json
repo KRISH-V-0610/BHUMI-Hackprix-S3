@@ -1,0 +1,35 @@
+{
+  "answer_text": "Charminar and Musheerabad show the highest land-surface temperature in 2026, driven by dense built-up cover and low vegetation. Malkajgiri, Secunderabad and Khairatabad follow close behind. I recommend a cool-roof subsidy for the top heat wards and a ward-level tree-cover target.",
+  "lang": "en-IN",
+  "set_layer": "heat",
+  "set_view": "2.5d",
+  "year": 2026,
+  "highlight_wards": ["Charminar", "Musheerabad", "Malkajgiri", "Secunderabad", "Khairatabad"],
+  "focus": { "center": [78.4747, 17.3616], "zoom": 11, "pitch": 50, "bearing": 20 },
+  "charts": [
+    {
+      "type": "bar",
+      "title": "Heat score — top wards (2026)",
+      "x": ["Charminar", "Musheerabad", "Malkajgiri", "Secunderabad", "Khairatabad"],
+      "y": [98, 96, 94, 93, 92]
+    },
+    {
+      "type": "radar",
+      "title": "Risk profile — Charminar (2026)",
+      "axes": ["flood", "heat", "veg", "lake", "urban", "water"],
+      "values": [69, 98, 70, 82, 98, 65]
+    }
+  ],
+  "actions": [
+    "Launch a cool-roof subsidy for the top-5 heat wards",
+    "Set a +15% ward tree-cover target by 2028",
+    "Convert 3 vacant plots per ward into micro-parks",
+    "Add misting/shade structures at high-footfall markets in Charminar"
+  ],
+  "reasoning": [
+    "Detected intent: heat hotspots + mitigation",
+    "tool get_ward_stats(heat, 2026)",
+    "tool top_risk_wards(heat, 5)",
+    "tool recommend_actions(heat, [Charminar, Musheerabad])"
+  ]
+}
