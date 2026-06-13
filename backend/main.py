@@ -167,6 +167,22 @@ def ask(body: AskBody):
         return _err(f"agent failed: {exc}", "agent_error")
 
 
+@app.get("/conversation")
+def conversation_history(session_id: str):
+    """Return the stored chat thread for a session (oldest-first) — for rehydrating the UI."""
+    import conversation
+    return {"session_id": session_id, "messages": conversation.history(session_id)}
+
+
+@app.post("/conversation/reset")
+def conversation_reset(body: dict):
+    """Clear a session's conversation memory (start a fresh thread)."""
+    import conversation
+    sid = body.get("session_id")
+    conversation.reset(sid)
+    return {"status": "ok", "session_id": sid}
+
+
 @app.post("/tts")
 def tts(body: TTSBody):
     """Text -> spoken audio in the requested language."""
