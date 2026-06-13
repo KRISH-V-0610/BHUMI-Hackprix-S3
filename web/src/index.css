@@ -3,6 +3,12 @@
 /* MapLibre base styles (the lib ships its own CSS; imported here so Vite bundles it). */
 @import "maplibre-gl/dist/maplibre-gl.css";
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+
 /* ---- Bhumi design tokens (Tailwind v4 CSS-first @theme) — warm-ivory / sage palette --------
    Mapped from the project palette. Use as utilities, e.g. bg-bg, text-ink, bg-neon-deep,
    text-cyan, hover:bg-hover, border-mist. */
@@ -30,6 +36,7 @@
   --color-hover: #dde8d8;     /* Pale Sage — hover states */
 
   --font-display: "Poppins", "Segoe UI", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif; /* elegant display serif for headings */
 
   --shadow-glow: 0 6px 20px rgba(126, 155, 115, 0.22);
   --shadow-glow-amber: 0 6px 20px rgba(176, 122, 60, 0.2);

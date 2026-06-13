@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Play, Pause } from 'lucide-react'
 import { useDashboard } from '../../store/useDashboard.js'
 
 const YEARS = [2016, 2026]
@@ -44,10 +45,11 @@ export default function TimeMachine() {
       </div>
       <button
         onClick={() => setPlaying((p) => !p)}
-        className="rounded-full bg-neon-deep px-3 py-1 text-xs font-bold text-white shadow-glow transition hover:brightness-110"
+        className="flex items-center gap-1 rounded-full bg-neon-deep px-3 py-1 text-xs font-bold text-white shadow-glow transition hover:brightness-110"
         title="Auto-tween 2016 ↔ 2026"
       >
-        {playing ? '❚❚ Pause' : '▶ Play'}
+        {playing ? <Pause size={12} fill="currentColor" /> : <Play size={12} fill="currentColor" />}
+        {playing ? 'Pause' : 'Play'}
       </button>
     </div>
   )

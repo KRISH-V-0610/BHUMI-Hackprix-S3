@@ -1,23 +1,23 @@
 {
-  "answer_text": "Charminar and Musheerabad show the highest land-surface temperature in 2026, driven by dense built-up cover and low vegetation. Malkajgiri, Secunderabad and Khairatabad follow close behind. I recommend a cool-roof subsidy for the top heat wards and a ward-level tree-cover target.",
+  "answer_text": "Charminar and Yakutpura show the most extreme land-surface temperature in 2026 — Charminar tops the city at 84, driven by dense built-up cover and very low vegetation. Musheerabad, Malakpet and LB Nagar follow close behind. I recommend a cool-roof subsidy for the top heat wards and an aggressive ward-level tree-cover target.",
   "lang": "en-IN",
   "set_layer": "heat",
   "set_view": "2.5d",
   "year": 2026,
-  "highlight_wards": ["Charminar", "Musheerabad", "Malkajgiri", "Secunderabad", "Khairatabad"],
+  "highlight_wards": ["Charminar", "Yakutpura", "Musheerabad", "Malakpet", "LB Nagar"],
   "focus": { "center": [78.4747, 17.3616], "zoom": 11, "pitch": 50, "bearing": 20 },
   "charts": [
     {
       "type": "bar",
       "title": "Heat score — top wards (2026)",
-      "x": ["Charminar", "Musheerabad", "Malkajgiri", "Secunderabad", "Khairatabad"],
-      "y": [98, 96, 94, 93, 92]
+      "x": ["Charminar", "Yakutpura", "Musheerabad", "Malakpet", "LB Nagar", "Nampally", "Khairatabad"],
+      "y": [84, 83, 82, 81, 81, 79, 78]
     },
     {
       "type": "radar",
       "title": "Risk profile — Charminar (2026)",
       "axes": ["flood", "heat", "veg", "lake", "urban", "water"],
-      "values": [69, 98, 70, 82, 98, 65]
+      "values": [75, 84, 89, 76, 87, 66]
     }
   ],
   "actions": [
@@ -30,6 +30,6 @@
     "Detected intent: heat hotspots + mitigation",
     "tool get_ward_stats(heat, 2026)",
     "tool top_risk_wards(heat, 5)",
-    "tool recommend_actions(heat, [Charminar, Musheerabad])"
+    "tool recommend_actions(heat, [Charminar, Yakutpura])"
   ]
 }

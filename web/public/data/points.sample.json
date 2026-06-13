@@ -1,0 +1,5803 @@
+{
+  "year": 2026,
+  "points": [
+    {
+      "lng": 78.47462,
+      "lat": 17.36291,
+      "ward": "Charminar",
+      "scores": {
+        "flood": 80,
+        "heat": 80,
+        "veg": 89,
+        "lake": 74,
+        "urban": 93,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.47743,
+      "lat": 17.36488,
+      "ward": "Charminar",
+      "scores": {
+        "flood": 69,
+        "heat": 78,
+        "veg": 92,
+        "lake": 77,
+        "urban": 88,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.47669,
+      "lat": 17.361,
+      "ward": "Charminar",
+      "scores": {
+        "flood": 81,
+        "heat": 85,
+        "veg": 87,
+        "lake": 76,
+        "urban": 85,
+        "water": 73
+      }
+    },
+    {
+      "lng": 78.46883,
+      "lat": 17.36261,
+      "ward": "Charminar",
+      "scores": {
+        "flood": 82,
+        "heat": 83,
+        "veg": 91,
+        "lake": 71,
+        "urban": 87,
+        "water": 69
+      }
+    },
+    {
+      "lng": 78.47383,
+      "lat": 17.35582,
+      "ward": "Charminar",
+      "scores": {
+        "flood": 76,
+        "heat": 82,
+        "veg": 83,
+        "lake": 77,
+        "urban": 87,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.47273,
+      "lat": 17.35779,
+      "ward": "Charminar",
+      "scores": {
+        "flood": 70,
+        "heat": 82,
+        "veg": 92,
+        "lake": 72,
+        "urban": 82,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.46974,
+      "lat": 17.35952,
+      "ward": "Charminar",
+      "scores": {
+        "flood": 76,
+        "heat": 83,
+        "veg": 83,
+        "lake": 70,
+        "urban": 80,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.47419,
+      "lat": 17.36746,
+      "ward": "Charminar",
+      "scores": {
+        "flood": 78,
+        "heat": 91,
+        "veg": 84,
+        "lake": 79,
+        "urban": 84,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.47502,
+      "lat": 17.35901,
+      "ward": "Charminar",
+      "scores": {
+        "flood": 81,
+        "heat": 84,
+        "veg": 94,
+        "lake": 83,
+        "urban": 81,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.47517,
+      "lat": 17.36385,
+      "ward": "Charminar",
+      "scores": {
+        "flood": 75,
+        "heat": 88,
+        "veg": 94,
+        "lake": 80,
+        "urban": 90,
+        "water": 73
+      }
+    },
+    {
+      "lng": 78.46109,
+      "lat": 17.33431,
+      "ward": "Falaknuma",
+      "scores": {
+        "flood": 69,
+        "heat": 64,
+        "veg": 96,
+        "lake": 77,
+        "urban": 93,
+        "water": 76
+      }
+    },
+    {
+      "lng": 78.46317,
+      "lat": 17.33164,
+      "ward": "Falaknuma",
+      "scores": {
+        "flood": 64,
+        "heat": 74,
+        "veg": 97,
+        "lake": 75,
+        "urban": 92,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.46943,
+      "lat": 17.33183,
+      "ward": "Falaknuma",
+      "scores": {
+        "flood": 64,
+        "heat": 67,
+        "veg": 95,
+        "lake": 74,
+        "urban": 92,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.46584,
+      "lat": 17.32683,
+      "ward": "Falaknuma",
+      "scores": {
+        "flood": 73,
+        "heat": 74,
+        "veg": 98,
+        "lake": 81,
+        "urban": 83,
+        "water": 75
+      }
+    },
+    {
+      "lng": 78.46901,
+      "lat": 17.33041,
+      "ward": "Falaknuma",
+      "scores": {
+        "flood": 70,
+        "heat": 64,
+        "veg": 96,
+        "lake": 72,
+        "urban": 91,
+        "water": 76
+      }
+    },
+    {
+      "lng": 78.47141,
+      "lat": 17.32358,
+      "ward": "Falaknuma",
+      "scores": {
+        "flood": 64,
+        "heat": 66,
+        "veg": 92,
+        "lake": 80,
+        "urban": 88,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.46711,
+      "lat": 17.33176,
+      "ward": "Falaknuma",
+      "scores": {
+        "flood": 70,
+        "heat": 69,
+        "veg": 97,
+        "lake": 78,
+        "urban": 87,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.46229,
+      "lat": 17.32484,
+      "ward": "Falaknuma",
+      "scores": {
+        "flood": 60,
+        "heat": 68,
+        "veg": 88,
+        "lake": 81,
+        "urban": 93,
+        "water": 71
+      }
+    },
+    {
+      "lng": 78.46639,
+      "lat": 17.33622,
+      "ward": "Falaknuma",
+      "scores": {
+        "flood": 65,
+        "heat": 72,
+        "veg": 91,
+        "lake": 82,
+        "urban": 84,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.48384,
+      "lat": 17.34677,
+      "ward": "Yakutpura",
+      "scores": {
+        "flood": 67,
+        "heat": 77,
+        "veg": 86,
+        "lake": 71,
+        "urban": 80,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.48687,
+      "lat": 17.34854,
+      "ward": "Yakutpura",
+      "scores": {
+        "flood": 66,
+        "heat": 90,
+        "veg": 87,
+        "lake": 75,
+        "urban": 88,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.48636,
+      "lat": 17.3549,
+      "ward": "Yakutpura",
+      "scores": {
+        "flood": 67,
+        "heat": 86,
+        "veg": 88,
+        "lake": 77,
+        "urban": 88,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.48712,
+      "lat": 17.35761,
+      "ward": "Yakutpura",
+      "scores": {
+        "flood": 64,
+        "heat": 89,
+        "veg": 91,
+        "lake": 74,
+        "urban": 84,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.48551,
+      "lat": 17.35728,
+      "ward": "Yakutpura",
+      "scores": {
+        "flood": 73,
+        "heat": 79,
+        "veg": 90,
+        "lake": 72,
+        "urban": 80,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.48243,
+      "lat": 17.35784,
+      "ward": "Yakutpura",
+      "scores": {
+        "flood": 74,
+        "heat": 90,
+        "veg": 96,
+        "lake": 67,
+        "urban": 85,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.48145,
+      "lat": 17.35322,
+      "ward": "Yakutpura",
+      "scores": {
+        "flood": 75,
+        "heat": 76,
+        "veg": 97,
+        "lake": 78,
+        "urban": 80,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.47978,
+      "lat": 17.34911,
+      "ward": "Yakutpura",
+      "scores": {
+        "flood": 77,
+        "heat": 81,
+        "veg": 98,
+        "lake": 75,
+        "urban": 88,
+        "water": 68
+      }
+    },
+    {
+      "lng": 78.48408,
+      "lat": 17.3544,
+      "ward": "Yakutpura",
+      "scores": {
+        "flood": 75,
+        "heat": 82,
+        "veg": 87,
+        "lake": 66,
+        "urban": 79,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.49924,
+      "lat": 17.37301,
+      "ward": "Malakpet",
+      "scores": {
+        "flood": 86,
+        "heat": 79,
+        "veg": 89,
+        "lake": 80,
+        "urban": 92,
+        "water": 80
+      }
+    },
+    {
+      "lng": 78.49781,
+      "lat": 17.36722,
+      "ward": "Malakpet",
+      "scores": {
+        "flood": 90,
+        "heat": 77,
+        "veg": 91,
+        "lake": 79,
+        "urban": 96,
+        "water": 78
+      }
+    },
+    {
+      "lng": 78.50116,
+      "lat": 17.36922,
+      "ward": "Malakpet",
+      "scores": {
+        "flood": 82,
+        "heat": 88,
+        "veg": 96,
+        "lake": 85,
+        "urban": 89,
+        "water": 74
+      }
+    },
+    {
+      "lng": 78.50508,
+      "lat": 17.37769,
+      "ward": "Malakpet",
+      "scores": {
+        "flood": 80,
+        "heat": 76,
+        "veg": 95,
+        "lake": 79,
+        "urban": 94,
+        "water": 74
+      }
+    },
+    {
+      "lng": 78.50743,
+      "lat": 17.37587,
+      "ward": "Malakpet",
+      "scores": {
+        "flood": 81,
+        "heat": 78,
+        "veg": 99,
+        "lake": 87,
+        "urban": 94,
+        "water": 75
+      }
+    },
+    {
+      "lng": 78.50684,
+      "lat": 17.37702,
+      "ward": "Malakpet",
+      "scores": {
+        "flood": 80,
+        "heat": 85,
+        "veg": 99,
+        "lake": 76,
+        "urban": 92,
+        "water": 80
+      }
+    },
+    {
+      "lng": 78.49634,
+      "lat": 17.37381,
+      "ward": "Malakpet",
+      "scores": {
+        "flood": 86,
+        "heat": 84,
+        "veg": 89,
+        "lake": 77,
+        "urban": 96,
+        "water": 69
+      }
+    },
+    {
+      "lng": 78.49972,
+      "lat": 17.36988,
+      "ward": "Malakpet",
+      "scores": {
+        "flood": 82,
+        "heat": 80,
+        "veg": 99,
+        "lake": 76,
+        "urban": 84,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.50004,
+      "lat": 17.37408,
+      "ward": "Malakpet",
+      "scores": {
+        "flood": 88,
+        "heat": 81,
+        "veg": 92,
+        "lake": 82,
+        "urban": 96,
+        "water": 71
+      }
+    },
+    {
+      "lng": 78.49923,
+      "lat": 17.36558,
+      "ward": "Malakpet",
+      "scores": {
+        "flood": 87,
+        "heat": 74,
+        "veg": 93,
+        "lake": 85,
+        "urban": 95,
+        "water": 79
+      }
+    },
+    {
+      "lng": 78.49526,
+      "lat": 17.33063,
+      "ward": "Chandrayangutta",
+      "scores": {
+        "flood": 59,
+        "heat": 72,
+        "veg": 99,
+        "lake": 69,
+        "urban": 74,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.49297,
+      "lat": 17.32308,
+      "ward": "Chandrayangutta",
+      "scores": {
+        "flood": 68,
+        "heat": 81,
+        "veg": 99,
+        "lake": 78,
+        "urban": 78,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.48855,
+      "lat": 17.33378,
+      "ward": "Chandrayangutta",
+      "scores": {
+        "flood": 62,
+        "heat": 69,
+        "veg": 95,
+        "lake": 70,
+        "urban": 74,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.4936,
+      "lat": 17.33368,
+      "ward": "Chandrayangutta",
+      "scores": {
+        "flood": 64,
+        "heat": 78,
+        "veg": 97,
+        "lake": 70,
+        "urban": 78,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.49052,
+      "lat": 17.32621,
+      "ward": "Chandrayangutta",
+      "scores": {
+        "flood": 57,
+        "heat": 74,
+        "veg": 99,
+        "lake": 81,
+        "urban": 75,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.49306,
+      "lat": 17.3303,
+      "ward": "Chandrayangutta",
+      "scores": {
+        "flood": 59,
+        "heat": 73,
+        "veg": 99,
+        "lake": 83,
+        "urban": 80,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.49029,
+      "lat": 17.32955,
+      "ward": "Chandrayangutta",
+      "scores": {
+        "flood": 58,
+        "heat": 73,
+        "veg": 94,
+        "lake": 76,
+        "urban": 71,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.49492,
+      "lat": 17.32778,
+      "ward": "Chandrayangutta",
+      "scores": {
+        "flood": 61,
+        "heat": 70,
+        "veg": 92,
+        "lake": 80,
+        "urban": 82,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.48382,
+      "lat": 17.33021,
+      "ward": "Chandrayangutta",
+      "scores": {
+        "flood": 67,
+        "heat": 78,
+        "veg": 99,
+        "lake": 82,
+        "urban": 77,
+        "water": 48
+      }
+    },
+    {
+      "lng": 78.44724,
+      "lat": 17.34811,
+      "ward": "Bahadurpura",
+      "scores": {
+        "flood": 68,
+        "heat": 75,
+        "veg": 85,
+        "lake": 64,
+        "urban": 87,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.46175,
+      "lat": 17.35379,
+      "ward": "Bahadurpura",
+      "scores": {
+        "flood": 66,
+        "heat": 79,
+        "veg": 77,
+        "lake": 67,
+        "urban": 78,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.46084,
+      "lat": 17.35613,
+      "ward": "Bahadurpura",
+      "scores": {
+        "flood": 66,
+        "heat": 78,
+        "veg": 83,
+        "lake": 70,
+        "urban": 87,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.45032,
+      "lat": 17.35275,
+      "ward": "Bahadurpura",
+      "scores": {
+        "flood": 69,
+        "heat": 73,
+        "veg": 85,
+        "lake": 66,
+        "urban": 88,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.44762,
+      "lat": 17.35713,
+      "ward": "Bahadurpura",
+      "scores": {
+        "flood": 62,
+        "heat": 71,
+        "veg": 84,
+        "lake": 75,
+        "urban": 80,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.44587,
+      "lat": 17.34954,
+      "ward": "Bahadurpura",
+      "scores": {
+        "flood": 60,
+        "heat": 69,
+        "veg": 88,
+        "lake": 75,
+        "urban": 76,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.45292,
+      "lat": 17.34889,
+      "ward": "Bahadurpura",
+      "scores": {
+        "flood": 67,
+        "heat": 79,
+        "veg": 78,
+        "lake": 62,
+        "urban": 88,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.46008,
+      "lat": 17.34656,
+      "ward": "Bahadurpura",
+      "scores": {
+        "flood": 62,
+        "heat": 78,
+        "veg": 80,
+        "lake": 61,
+        "urban": 84,
+        "water": 68
+      }
+    },
+    {
+      "lng": 78.45465,
+      "lat": 17.34565,
+      "ward": "Bahadurpura",
+      "scores": {
+        "flood": 69,
+        "heat": 70,
+        "veg": 79,
+        "lake": 71,
+        "urban": 84,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.50071,
+      "lat": 17.35217,
+      "ward": "Santosh Nagar",
+      "scores": {
+        "flood": 63,
+        "heat": 79,
+        "veg": 95,
+        "lake": 84,
+        "urban": 74,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.50352,
+      "lat": 17.35654,
+      "ward": "Santosh Nagar",
+      "scores": {
+        "flood": 71,
+        "heat": 70,
+        "veg": 89,
+        "lake": 73,
+        "urban": 78,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.49943,
+      "lat": 17.35723,
+      "ward": "Santosh Nagar",
+      "scores": {
+        "flood": 61,
+        "heat": 72,
+        "veg": 98,
+        "lake": 85,
+        "urban": 71,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.51054,
+      "lat": 17.35762,
+      "ward": "Santosh Nagar",
+      "scores": {
+        "flood": 70,
+        "heat": 71,
+        "veg": 85,
+        "lake": 82,
+        "urban": 84,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.508,
+      "lat": 17.35552,
+      "ward": "Santosh Nagar",
+      "scores": {
+        "flood": 62,
+        "heat": 75,
+        "veg": 98,
+        "lake": 78,
+        "urban": 74,
+        "water": 69
+      }
+    },
+    {
+      "lng": 78.51044,
+      "lat": 17.3517,
+      "ward": "Santosh Nagar",
+      "scores": {
+        "flood": 69,
+        "heat": 72,
+        "veg": 98,
+        "lake": 78,
+        "urban": 81,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.50088,
+      "lat": 17.35341,
+      "ward": "Santosh Nagar",
+      "scores": {
+        "flood": 68,
+        "heat": 69,
+        "veg": 98,
+        "lake": 78,
+        "urban": 77,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.50702,
+      "lat": 17.35783,
+      "ward": "Santosh Nagar",
+      "scores": {
+        "flood": 68,
+        "heat": 70,
+        "veg": 97,
+        "lake": 75,
+        "urban": 78,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.51002,
+      "lat": 17.35119,
+      "ward": "Santosh Nagar",
+      "scores": {
+        "flood": 68,
+        "heat": 79,
+        "veg": 85,
+        "lake": 76,
+        "urban": 79,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.51336,
+      "lat": 17.37222,
+      "ward": "Saidabad",
+      "scores": {
+        "flood": 82,
+        "heat": 83,
+        "veg": 85,
+        "lake": 79,
+        "urban": 83,
+        "water": 75
+      }
+    },
+    {
+      "lng": 78.51678,
+      "lat": 17.36473,
+      "ward": "Saidabad",
+      "scores": {
+        "flood": 73,
+        "heat": 74,
+        "veg": 81,
+        "lake": 82,
+        "urban": 85,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.51052,
+      "lat": 17.36317,
+      "ward": "Saidabad",
+      "scores": {
+        "flood": 82,
+        "heat": 72,
+        "veg": 83,
+        "lake": 82,
+        "urban": 82,
+        "water": 78
+      }
+    },
+    {
+      "lng": 78.5159,
+      "lat": 17.36332,
+      "ward": "Saidabad",
+      "scores": {
+        "flood": 72,
+        "heat": 83,
+        "veg": 88,
+        "lake": 76,
+        "urban": 92,
+        "water": 79
+      }
+    },
+    {
+      "lng": 78.51144,
+      "lat": 17.37161,
+      "ward": "Saidabad",
+      "scores": {
+        "flood": 80,
+        "heat": 83,
+        "veg": 92,
+        "lake": 74,
+        "urban": 82,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.51931,
+      "lat": 17.35938,
+      "ward": "Saidabad",
+      "scores": {
+        "flood": 79,
+        "heat": 71,
+        "veg": 90,
+        "lake": 73,
+        "urban": 85,
+        "water": 72
+      }
+    },
+    {
+      "lng": 78.51993,
+      "lat": 17.36811,
+      "ward": "Saidabad",
+      "scores": {
+        "flood": 82,
+        "heat": 79,
+        "veg": 91,
+        "lake": 86,
+        "urban": 89,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.51454,
+      "lat": 17.36734,
+      "ward": "Saidabad",
+      "scores": {
+        "flood": 71,
+        "heat": 82,
+        "veg": 81,
+        "lake": 75,
+        "urban": 95,
+        "water": 68
+      }
+    },
+    {
+      "lng": 78.51832,
+      "lat": 17.36219,
+      "ward": "Saidabad",
+      "scores": {
+        "flood": 79,
+        "heat": 80,
+        "veg": 88,
+        "lake": 79,
+        "urban": 91,
+        "water": 68
+      }
+    },
+    {
+      "lng": 78.5174,
+      "lat": 17.36899,
+      "ward": "Saidabad",
+      "scores": {
+        "flood": 78,
+        "heat": 70,
+        "veg": 82,
+        "lake": 79,
+        "urban": 91,
+        "water": 75
+      }
+    },
+    {
+      "lng": 78.52318,
+      "lat": 17.39232,
+      "ward": "Amberpet",
+      "scores": {
+        "flood": 71,
+        "heat": 83,
+        "veg": 85,
+        "lake": 95,
+        "urban": 76,
+        "water": 74
+      }
+    },
+    {
+      "lng": 78.52042,
+      "lat": 17.39089,
+      "ward": "Amberpet",
+      "scores": {
+        "flood": 65,
+        "heat": 78,
+        "veg": 88,
+        "lake": 84,
+        "urban": 88,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.51962,
+      "lat": 17.39291,
+      "ward": "Amberpet",
+      "scores": {
+        "flood": 66,
+        "heat": 72,
+        "veg": 91,
+        "lake": 95,
+        "urban": 86,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.52481,
+      "lat": 17.39606,
+      "ward": "Amberpet",
+      "scores": {
+        "flood": 71,
+        "heat": 72,
+        "veg": 87,
+        "lake": 86,
+        "urban": 83,
+        "water": 75
+      }
+    },
+    {
+      "lng": 78.52931,
+      "lat": 17.39463,
+      "ward": "Amberpet",
+      "scores": {
+        "flood": 60,
+        "heat": 74,
+        "veg": 84,
+        "lake": 94,
+        "urban": 79,
+        "water": 80
+      }
+    },
+    {
+      "lng": 78.51882,
+      "lat": 17.39291,
+      "ward": "Amberpet",
+      "scores": {
+        "flood": 70,
+        "heat": 72,
+        "veg": 93,
+        "lake": 93,
+        "urban": 77,
+        "water": 69
+      }
+    },
+    {
+      "lng": 78.52394,
+      "lat": 17.39167,
+      "ward": "Amberpet",
+      "scores": {
+        "flood": 61,
+        "heat": 78,
+        "veg": 91,
+        "lake": 94,
+        "urban": 86,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.52382,
+      "lat": 17.39006,
+      "ward": "Amberpet",
+      "scores": {
+        "flood": 63,
+        "heat": 79,
+        "veg": 92,
+        "lake": 88,
+        "urban": 76,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.52875,
+      "lat": 17.39325,
+      "ward": "Amberpet",
+      "scores": {
+        "flood": 64,
+        "heat": 71,
+        "veg": 83,
+        "lake": 94,
+        "urban": 80,
+        "water": 79
+      }
+    },
+    {
+      "lng": 78.53064,
+      "lat": 17.391,
+      "ward": "Amberpet",
+      "scores": {
+        "flood": 64,
+        "heat": 82,
+        "veg": 83,
+        "lake": 92,
+        "urban": 85,
+        "water": 74
+      }
+    },
+    {
+      "lng": 78.50253,
+      "lat": 17.41905,
+      "ward": "Musheerabad",
+      "scores": {
+        "flood": 57,
+        "heat": 85,
+        "veg": 85,
+        "lake": 73,
+        "urban": 80,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.49924,
+      "lat": 17.42579,
+      "ward": "Musheerabad",
+      "scores": {
+        "flood": 66,
+        "heat": 76,
+        "veg": 92,
+        "lake": 78,
+        "urban": 84,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.49379,
+      "lat": 17.42135,
+      "ward": "Musheerabad",
+      "scores": {
+        "flood": 61,
+        "heat": 87,
+        "veg": 84,
+        "lake": 81,
+        "urban": 78,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.49643,
+      "lat": 17.4242,
+      "ward": "Musheerabad",
+      "scores": {
+        "flood": 67,
+        "heat": 77,
+        "veg": 91,
+        "lake": 76,
+        "urban": 84,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.50469,
+      "lat": 17.41602,
+      "ward": "Musheerabad",
+      "scores": {
+        "flood": 68,
+        "heat": 83,
+        "veg": 85,
+        "lake": 82,
+        "urban": 87,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.50564,
+      "lat": 17.41763,
+      "ward": "Musheerabad",
+      "scores": {
+        "flood": 61,
+        "heat": 80,
+        "veg": 87,
+        "lake": 82,
+        "urban": 78,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.49664,
+      "lat": 17.41867,
+      "ward": "Musheerabad",
+      "scores": {
+        "flood": 63,
+        "heat": 85,
+        "veg": 87,
+        "lake": 76,
+        "urban": 75,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.49658,
+      "lat": 17.42283,
+      "ward": "Musheerabad",
+      "scores": {
+        "flood": 64,
+        "heat": 85,
+        "veg": 91,
+        "lake": 73,
+        "urban": 79,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.49328,
+      "lat": 17.41658,
+      "ward": "Musheerabad",
+      "scores": {
+        "flood": 68,
+        "heat": 77,
+        "veg": 90,
+        "lake": 80,
+        "urban": 76,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.45811,
+      "lat": 17.41494,
+      "ward": "Khairatabad",
+      "scores": {
+        "flood": 69,
+        "heat": 84,
+        "veg": 78,
+        "lake": 82,
+        "urban": 97,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.45969,
+      "lat": 17.4219,
+      "ward": "Khairatabad",
+      "scores": {
+        "flood": 73,
+        "heat": 78,
+        "veg": 88,
+        "lake": 84,
+        "urban": 87,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.46108,
+      "lat": 17.41948,
+      "ward": "Khairatabad",
+      "scores": {
+        "flood": 76,
+        "heat": 77,
+        "veg": 84,
+        "lake": 83,
+        "urban": 87,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.45697,
+      "lat": 17.41091,
+      "ward": "Khairatabad",
+      "scores": {
+        "flood": 75,
+        "heat": 81,
+        "veg": 74,
+        "lake": 95,
+        "urban": 95,
+        "water": 71
+      }
+    },
+    {
+      "lng": 78.45701,
+      "lat": 17.42141,
+      "ward": "Khairatabad",
+      "scores": {
+        "flood": 68,
+        "heat": 74,
+        "veg": 78,
+        "lake": 93,
+        "urban": 86,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.46662,
+      "lat": 17.41802,
+      "ward": "Khairatabad",
+      "scores": {
+        "flood": 67,
+        "heat": 77,
+        "veg": 80,
+        "lake": 85,
+        "urban": 89,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.46669,
+      "lat": 17.41398,
+      "ward": "Khairatabad",
+      "scores": {
+        "flood": 76,
+        "heat": 75,
+        "veg": 82,
+        "lake": 95,
+        "urban": 84,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.45664,
+      "lat": 17.41413,
+      "ward": "Khairatabad",
+      "scores": {
+        "flood": 76,
+        "heat": 78,
+        "veg": 84,
+        "lake": 93,
+        "urban": 96,
+        "water": 68
+      }
+    },
+    {
+      "lng": 78.45529,
+      "lat": 17.41235,
+      "ward": "Khairatabad",
+      "scores": {
+        "flood": 72,
+        "heat": 83,
+        "veg": 82,
+        "lake": 82,
+        "urban": 96,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.46445,
+      "lat": 17.413,
+      "ward": "Khairatabad",
+      "scores": {
+        "flood": 76,
+        "heat": 82,
+        "veg": 80,
+        "lake": 82,
+        "urban": 97,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.44691,
+      "lat": 17.43393,
+      "ward": "Ameerpet",
+      "scores": {
+        "flood": 67,
+        "heat": 75,
+        "veg": 85,
+        "lake": 74,
+        "urban": 79,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.44925,
+      "lat": 17.43999,
+      "ward": "Ameerpet",
+      "scores": {
+        "flood": 68,
+        "heat": 77,
+        "veg": 91,
+        "lake": 71,
+        "urban": 78,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.44154,
+      "lat": 17.43684,
+      "ward": "Ameerpet",
+      "scores": {
+        "flood": 57,
+        "heat": 82,
+        "veg": 88,
+        "lake": 79,
+        "urban": 85,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.44375,
+      "lat": 17.43974,
+      "ward": "Ameerpet",
+      "scores": {
+        "flood": 59,
+        "heat": 77,
+        "veg": 94,
+        "lake": 75,
+        "urban": 82,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.44321,
+      "lat": 17.43879,
+      "ward": "Ameerpet",
+      "scores": {
+        "flood": 57,
+        "heat": 78,
+        "veg": 96,
+        "lake": 77,
+        "urban": 88,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.45515,
+      "lat": 17.4347,
+      "ward": "Ameerpet",
+      "scores": {
+        "flood": 65,
+        "heat": 73,
+        "veg": 88,
+        "lake": 70,
+        "urban": 76,
+        "water": 51
+      }
+    },
+    {
+      "lng": 78.45273,
+      "lat": 17.43581,
+      "ward": "Ameerpet",
+      "scores": {
+        "flood": 62,
+        "heat": 83,
+        "veg": 84,
+        "lake": 73,
+        "urban": 81,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.45033,
+      "lat": 17.44439,
+      "ward": "Ameerpet",
+      "scores": {
+        "flood": 57,
+        "heat": 78,
+        "veg": 90,
+        "lake": 82,
+        "urban": 78,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.45286,
+      "lat": 17.43468,
+      "ward": "Ameerpet",
+      "scores": {
+        "flood": 65,
+        "heat": 74,
+        "veg": 91,
+        "lake": 79,
+        "urban": 85,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.4414,
+      "lat": 17.44498,
+      "ward": "SR Nagar",
+      "scores": {
+        "flood": 61,
+        "heat": 74,
+        "veg": 91,
+        "lake": 74,
+        "urban": 89,
+        "water": 47
+      }
+    },
+    {
+      "lng": 78.44046,
+      "lat": 17.44905,
+      "ward": "SR Nagar",
+      "scores": {
+        "flood": 60,
+        "heat": 73,
+        "veg": 97,
+        "lake": 67,
+        "urban": 79,
+        "water": 45
+      }
+    },
+    {
+      "lng": 78.44663,
+      "lat": 17.43701,
+      "ward": "SR Nagar",
+      "scores": {
+        "flood": 65,
+        "heat": 73,
+        "veg": 90,
+        "lake": 71,
+        "urban": 90,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.43943,
+      "lat": 17.43641,
+      "ward": "SR Nagar",
+      "scores": {
+        "flood": 67,
+        "heat": 71,
+        "veg": 92,
+        "lake": 73,
+        "urban": 85,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.44558,
+      "lat": 17.43919,
+      "ward": "SR Nagar",
+      "scores": {
+        "flood": 64,
+        "heat": 75,
+        "veg": 96,
+        "lake": 65,
+        "urban": 87,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.44086,
+      "lat": 17.4384,
+      "ward": "SR Nagar",
+      "scores": {
+        "flood": 62,
+        "heat": 80,
+        "veg": 87,
+        "lake": 68,
+        "urban": 81,
+        "water": 44
+      }
+    },
+    {
+      "lng": 78.43548,
+      "lat": 17.44319,
+      "ward": "SR Nagar",
+      "scores": {
+        "flood": 64,
+        "heat": 79,
+        "veg": 99,
+        "lake": 66,
+        "urban": 92,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.44682,
+      "lat": 17.44058,
+      "ward": "SR Nagar",
+      "scores": {
+        "flood": 59,
+        "heat": 70,
+        "veg": 89,
+        "lake": 73,
+        "urban": 89,
+        "water": 46
+      }
+    },
+    {
+      "lng": 78.43922,
+      "lat": 17.4397,
+      "ward": "SR Nagar",
+      "scores": {
+        "flood": 59,
+        "heat": 72,
+        "veg": 98,
+        "lake": 65,
+        "urban": 89,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.45446,
+      "lat": 17.43041,
+      "ward": "Punjagutta",
+      "scores": {
+        "flood": 49,
+        "heat": 77,
+        "veg": 80,
+        "lake": 63,
+        "urban": 82,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.46009,
+      "lat": 17.43002,
+      "ward": "Punjagutta",
+      "scores": {
+        "flood": 51,
+        "heat": 73,
+        "veg": 87,
+        "lake": 72,
+        "urban": 91,
+        "water": 51
+      }
+    },
+    {
+      "lng": 78.45508,
+      "lat": 17.43408,
+      "ward": "Punjagutta",
+      "scores": {
+        "flood": 59,
+        "heat": 72,
+        "veg": 88,
+        "lake": 68,
+        "urban": 86,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.45968,
+      "lat": 17.42808,
+      "ward": "Punjagutta",
+      "scores": {
+        "flood": 59,
+        "heat": 82,
+        "veg": 82,
+        "lake": 69,
+        "urban": 80,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.45872,
+      "lat": 17.43065,
+      "ward": "Punjagutta",
+      "scores": {
+        "flood": 58,
+        "heat": 77,
+        "veg": 88,
+        "lake": 63,
+        "urban": 83,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.44849,
+      "lat": 17.42783,
+      "ward": "Punjagutta",
+      "scores": {
+        "flood": 60,
+        "heat": 73,
+        "veg": 88,
+        "lake": 63,
+        "urban": 87,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.45632,
+      "lat": 17.42847,
+      "ward": "Punjagutta",
+      "scores": {
+        "flood": 51,
+        "heat": 75,
+        "veg": 89,
+        "lake": 73,
+        "urban": 83,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.45678,
+      "lat": 17.4234,
+      "ward": "Punjagutta",
+      "scores": {
+        "flood": 59,
+        "heat": 80,
+        "veg": 76,
+        "lake": 60,
+        "urban": 84,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.45739,
+      "lat": 17.43049,
+      "ward": "Punjagutta",
+      "scores": {
+        "flood": 56,
+        "heat": 79,
+        "veg": 82,
+        "lake": 62,
+        "urban": 80,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.45845,
+      "lat": 17.42363,
+      "ward": "Somajiguda",
+      "scores": {
+        "flood": 61,
+        "heat": 77,
+        "veg": 80,
+        "lake": 88,
+        "urban": 99,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.46051,
+      "lat": 17.42058,
+      "ward": "Somajiguda",
+      "scores": {
+        "flood": 55,
+        "heat": 76,
+        "veg": 79,
+        "lake": 93,
+        "urban": 87,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.45858,
+      "lat": 17.42868,
+      "ward": "Somajiguda",
+      "scores": {
+        "flood": 56,
+        "heat": 68,
+        "veg": 71,
+        "lake": 85,
+        "urban": 87,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.45879,
+      "lat": 17.42732,
+      "ward": "Somajiguda",
+      "scores": {
+        "flood": 60,
+        "heat": 70,
+        "veg": 74,
+        "lake": 94,
+        "urban": 91,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.45278,
+      "lat": 17.42433,
+      "ward": "Somajiguda",
+      "scores": {
+        "flood": 64,
+        "heat": 74,
+        "veg": 70,
+        "lake": 90,
+        "urban": 96,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.46439,
+      "lat": 17.42491,
+      "ward": "Somajiguda",
+      "scores": {
+        "flood": 59,
+        "heat": 77,
+        "veg": 83,
+        "lake": 89,
+        "urban": 97,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.46076,
+      "lat": 17.42947,
+      "ward": "Somajiguda",
+      "scores": {
+        "flood": 57,
+        "heat": 69,
+        "veg": 73,
+        "lake": 91,
+        "urban": 99,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.46075,
+      "lat": 17.43013,
+      "ward": "Somajiguda",
+      "scores": {
+        "flood": 60,
+        "heat": 76,
+        "veg": 74,
+        "lake": 86,
+        "urban": 87,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.46682,
+      "lat": 17.42324,
+      "ward": "Somajiguda",
+      "scores": {
+        "flood": 63,
+        "heat": 70,
+        "veg": 80,
+        "lake": 92,
+        "urban": 99,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.43688,
+      "lat": 17.41279,
+      "ward": "Banjara Hills",
+      "scores": {
+        "flood": 53,
+        "heat": 61,
+        "veg": 43,
+        "lake": 63,
+        "urban": 69,
+        "water": 46
+      }
+    },
+    {
+      "lng": 78.43053,
+      "lat": 17.40652,
+      "ward": "Banjara Hills",
+      "scores": {
+        "flood": 61,
+        "heat": 56,
+        "veg": 45,
+        "lake": 68,
+        "urban": 75,
+        "water": 39
+      }
+    },
+    {
+      "lng": 78.43521,
+      "lat": 17.41929,
+      "ward": "Banjara Hills",
+      "scores": {
+        "flood": 60,
+        "heat": 58,
+        "veg": 42,
+        "lake": 69,
+        "urban": 74,
+        "water": 45
+      }
+    },
+    {
+      "lng": 78.43029,
+      "lat": 17.41078,
+      "ward": "Banjara Hills",
+      "scores": {
+        "flood": 53,
+        "heat": 47,
+        "veg": 41,
+        "lake": 59,
+        "urban": 70,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.43056,
+      "lat": 17.41718,
+      "ward": "Banjara Hills",
+      "scores": {
+        "flood": 48,
+        "heat": 48,
+        "veg": 49,
+        "lake": 58,
+        "urban": 74,
+        "water": 43
+      }
+    },
+    {
+      "lng": 78.42977,
+      "lat": 17.40748,
+      "ward": "Banjara Hills",
+      "scores": {
+        "flood": 48,
+        "heat": 55,
+        "veg": 44,
+        "lake": 61,
+        "urban": 69,
+        "water": 39
+      }
+    },
+    {
+      "lng": 78.42809,
+      "lat": 17.41043,
+      "ward": "Banjara Hills",
+      "scores": {
+        "flood": 54,
+        "heat": 59,
+        "veg": 41,
+        "lake": 64,
+        "urban": 67,
+        "water": 43
+      }
+    },
+    {
+      "lng": 78.44044,
+      "lat": 17.40665,
+      "ward": "Banjara Hills",
+      "scores": {
+        "flood": 48,
+        "heat": 50,
+        "veg": 51,
+        "lake": 62,
+        "urban": 64,
+        "water": 51
+      }
+    },
+    {
+      "lng": 78.41142,
+      "lat": 17.42645,
+      "ward": "Jubilee Hills",
+      "scores": {
+        "flood": 49,
+        "heat": 60,
+        "veg": 38,
+        "lake": 69,
+        "urban": 52,
+        "water": 43
+      }
+    },
+    {
+      "lng": 78.40928,
+      "lat": 17.42581,
+      "ward": "Jubilee Hills",
+      "scores": {
+        "flood": 49,
+        "heat": 48,
+        "veg": 35,
+        "lake": 74,
+        "urban": 57,
+        "water": 46
+      }
+    },
+    {
+      "lng": 78.40682,
+      "lat": 17.44046,
+      "ward": "Jubilee Hills",
+      "scores": {
+        "flood": 43,
+        "heat": 54,
+        "veg": 35,
+        "lake": 64,
+        "urban": 66,
+        "water": 44
+      }
+    },
+    {
+      "lng": 78.40032,
+      "lat": 17.43193,
+      "ward": "Jubilee Hills",
+      "scores": {
+        "flood": 42,
+        "heat": 54,
+        "veg": 35,
+        "lake": 67,
+        "urban": 52,
+        "water": 47
+      }
+    },
+    {
+      "lng": 78.40745,
+      "lat": 17.4317,
+      "ward": "Jubilee Hills",
+      "scores": {
+        "flood": 47,
+        "heat": 54,
+        "veg": 29,
+        "lake": 62,
+        "urban": 61,
+        "water": 40
+      }
+    },
+    {
+      "lng": 78.40303,
+      "lat": 17.43137,
+      "ward": "Jubilee Hills",
+      "scores": {
+        "flood": 46,
+        "heat": 52,
+        "veg": 42,
+        "lake": 67,
+        "urban": 54,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.40146,
+      "lat": 17.43124,
+      "ward": "Jubilee Hills",
+      "scores": {
+        "flood": 50,
+        "heat": 58,
+        "veg": 40,
+        "lake": 65,
+        "urban": 53,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.38937,
+      "lat": 17.44887,
+      "ward": "Madhapur",
+      "scores": {
+        "flood": 57,
+        "heat": 78,
+        "veg": 75,
+        "lake": 87,
+        "urban": 81,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.39169,
+      "lat": 17.44511,
+      "ward": "Madhapur",
+      "scores": {
+        "flood": 58,
+        "heat": 66,
+        "veg": 75,
+        "lake": 86,
+        "urban": 86,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.38865,
+      "lat": 17.45533,
+      "ward": "Madhapur",
+      "scores": {
+        "flood": 60,
+        "heat": 66,
+        "veg": 75,
+        "lake": 84,
+        "urban": 92,
+        "water": 69
+      }
+    },
+    {
+      "lng": 78.39567,
+      "lat": 17.45241,
+      "ward": "Madhapur",
+      "scores": {
+        "flood": 61,
+        "heat": 64,
+        "veg": 84,
+        "lake": 85,
+        "urban": 89,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.38834,
+      "lat": 17.44064,
+      "ward": "Madhapur",
+      "scores": {
+        "flood": 57,
+        "heat": 72,
+        "veg": 80,
+        "lake": 76,
+        "urban": 86,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.39636,
+      "lat": 17.45263,
+      "ward": "Madhapur",
+      "scores": {
+        "flood": 69,
+        "heat": 70,
+        "veg": 79,
+        "lake": 80,
+        "urban": 89,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.39495,
+      "lat": 17.44891,
+      "ward": "Madhapur",
+      "scores": {
+        "flood": 63,
+        "heat": 74,
+        "veg": 72,
+        "lake": 80,
+        "urban": 84,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.39543,
+      "lat": 17.44642,
+      "ward": "Madhapur",
+      "scores": {
+        "flood": 65,
+        "heat": 65,
+        "veg": 71,
+        "lake": 84,
+        "urban": 84,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.39396,
+      "lat": 17.45342,
+      "ward": "Madhapur",
+      "scores": {
+        "flood": 69,
+        "heat": 76,
+        "veg": 81,
+        "lake": 81,
+        "urban": 81,
+        "water": 68
+      }
+    },
+    {
+      "lng": 78.38182,
+      "lat": 17.45077,
+      "ward": "HITEC City",
+      "scores": {
+        "flood": 54,
+        "heat": 63,
+        "veg": 63,
+        "lake": 82,
+        "urban": 84,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.38216,
+      "lat": 17.44853,
+      "ward": "HITEC City",
+      "scores": {
+        "flood": 58,
+        "heat": 60,
+        "veg": 63,
+        "lake": 82,
+        "urban": 77,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.37456,
+      "lat": 17.43899,
+      "ward": "HITEC City",
+      "scores": {
+        "flood": 52,
+        "heat": 74,
+        "veg": 67,
+        "lake": 77,
+        "urban": 83,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.37648,
+      "lat": 17.45043,
+      "ward": "HITEC City",
+      "scores": {
+        "flood": 55,
+        "heat": 66,
+        "veg": 67,
+        "lake": 85,
+        "urban": 80,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.38076,
+      "lat": 17.45114,
+      "ward": "HITEC City",
+      "scores": {
+        "flood": 61,
+        "heat": 61,
+        "veg": 73,
+        "lake": 76,
+        "urban": 78,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.38303,
+      "lat": 17.44103,
+      "ward": "HITEC City",
+      "scores": {
+        "flood": 58,
+        "heat": 73,
+        "veg": 68,
+        "lake": 74,
+        "urban": 84,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.37587,
+      "lat": 17.45087,
+      "ward": "HITEC City",
+      "scores": {
+        "flood": 65,
+        "heat": 69,
+        "veg": 72,
+        "lake": 85,
+        "urban": 75,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.37915,
+      "lat": 17.4502,
+      "ward": "HITEC City",
+      "scores": {
+        "flood": 58,
+        "heat": 69,
+        "veg": 69,
+        "lake": 81,
+        "urban": 77,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.37896,
+      "lat": 17.44912,
+      "ward": "HITEC City",
+      "scores": {
+        "flood": 59,
+        "heat": 65,
+        "veg": 72,
+        "lake": 78,
+        "urban": 88,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.35149,
+      "lat": 17.43829,
+      "ward": "Gachibowli",
+      "scores": {
+        "flood": 63,
+        "heat": 72,
+        "veg": 79,
+        "lake": 64,
+        "urban": 82,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.34685,
+      "lat": 17.4478,
+      "ward": "Gachibowli",
+      "scores": {
+        "flood": 69,
+        "heat": 61,
+        "veg": 68,
+        "lake": 69,
+        "urban": 74,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.35669,
+      "lat": 17.44078,
+      "ward": "Gachibowli",
+      "scores": {
+        "flood": 61,
+        "heat": 68,
+        "veg": 70,
+        "lake": 76,
+        "urban": 80,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.35195,
+      "lat": 17.43639,
+      "ward": "Gachibowli",
+      "scores": {
+        "flood": 75,
+        "heat": 70,
+        "veg": 71,
+        "lake": 66,
+        "urban": 74,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.35757,
+      "lat": 17.43922,
+      "ward": "Gachibowli",
+      "scores": {
+        "flood": 65,
+        "heat": 65,
+        "veg": 79,
+        "lake": 67,
+        "urban": 73,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.35606,
+      "lat": 17.43679,
+      "ward": "Gachibowli",
+      "scores": {
+        "flood": 73,
+        "heat": 71,
+        "veg": 68,
+        "lake": 65,
+        "urban": 72,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.34401,
+      "lat": 17.43928,
+      "ward": "Gachibowli",
+      "scores": {
+        "flood": 74,
+        "heat": 68,
+        "veg": 73,
+        "lake": 66,
+        "urban": 75,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.34575,
+      "lat": 17.43426,
+      "ward": "Gachibowli",
+      "scores": {
+        "flood": 64,
+        "heat": 60,
+        "veg": 78,
+        "lake": 63,
+        "urban": 77,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.35304,
+      "lat": 17.44227,
+      "ward": "Gachibowli",
+      "scores": {
+        "flood": 63,
+        "heat": 64,
+        "veg": 78,
+        "lake": 66,
+        "urban": 75,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.36661,
+      "lat": 17.47156,
+      "ward": "Kondapur",
+      "scores": {
+        "flood": 55,
+        "heat": 69,
+        "veg": 72,
+        "lake": 78,
+        "urban": 75,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.36144,
+      "lat": 17.47086,
+      "ward": "Kondapur",
+      "scores": {
+        "flood": 52,
+        "heat": 64,
+        "veg": 72,
+        "lake": 72,
+        "urban": 74,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.36067,
+      "lat": 17.46722,
+      "ward": "Kondapur",
+      "scores": {
+        "flood": 51,
+        "heat": 72,
+        "veg": 73,
+        "lake": 75,
+        "urban": 75,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.36591,
+      "lat": 17.4716,
+      "ward": "Kondapur",
+      "scores": {
+        "flood": 61,
+        "heat": 74,
+        "veg": 68,
+        "lake": 77,
+        "urban": 85,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.37094,
+      "lat": 17.46362,
+      "ward": "Kondapur",
+      "scores": {
+        "flood": 61,
+        "heat": 61,
+        "veg": 76,
+        "lake": 77,
+        "urban": 76,
+        "water": 69
+      }
+    },
+    {
+      "lng": 78.36528,
+      "lat": 17.46996,
+      "ward": "Kondapur",
+      "scores": {
+        "flood": 54,
+        "heat": 61,
+        "veg": 80,
+        "lake": 72,
+        "urban": 80,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.36075,
+      "lat": 17.45766,
+      "ward": "Kondapur",
+      "scores": {
+        "flood": 52,
+        "heat": 72,
+        "veg": 69,
+        "lake": 69,
+        "urban": 83,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.36044,
+      "lat": 17.45633,
+      "ward": "Kondapur",
+      "scores": {
+        "flood": 61,
+        "heat": 66,
+        "veg": 75,
+        "lake": 68,
+        "urban": 83,
+        "water": 69
+      }
+    },
+    {
+      "lng": 78.36894,
+      "lat": 17.46141,
+      "ward": "Kondapur",
+      "scores": {
+        "flood": 55,
+        "heat": 65,
+        "veg": 73,
+        "lake": 65,
+        "urban": 83,
+        "water": 71
+      }
+    },
+    {
+      "lng": 78.38964,
+      "lat": 17.39613,
+      "ward": "Manikonda",
+      "scores": {
+        "flood": 42,
+        "heat": 64,
+        "veg": 71,
+        "lake": 70,
+        "urban": 69,
+        "water": 47
+      }
+    },
+    {
+      "lng": 78.38238,
+      "lat": 17.4018,
+      "ward": "Manikonda",
+      "scores": {
+        "flood": 50,
+        "heat": 72,
+        "veg": 77,
+        "lake": 70,
+        "urban": 74,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.38429,
+      "lat": 17.40966,
+      "ward": "Manikonda",
+      "scores": {
+        "flood": 45,
+        "heat": 71,
+        "veg": 79,
+        "lake": 71,
+        "urban": 62,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.3756,
+      "lat": 17.40315,
+      "ward": "Manikonda",
+      "scores": {
+        "flood": 49,
+        "heat": 72,
+        "veg": 71,
+        "lake": 72,
+        "urban": 69,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.38823,
+      "lat": 17.3979,
+      "ward": "Manikonda",
+      "scores": {
+        "flood": 49,
+        "heat": 64,
+        "veg": 74,
+        "lake": 72,
+        "urban": 70,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.38146,
+      "lat": 17.40349,
+      "ward": "Manikonda",
+      "scores": {
+        "flood": 55,
+        "heat": 74,
+        "veg": 69,
+        "lake": 73,
+        "urban": 72,
+        "water": 45
+      }
+    },
+    {
+      "lng": 78.39052,
+      "lat": 17.39887,
+      "ward": "Manikonda",
+      "scores": {
+        "flood": 43,
+        "heat": 69,
+        "veg": 76,
+        "lake": 68,
+        "urban": 62,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.38729,
+      "lat": 17.40925,
+      "ward": "Manikonda",
+      "scores": {
+        "flood": 51,
+        "heat": 69,
+        "veg": 69,
+        "lake": 70,
+        "urban": 75,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.34178,
+      "lat": 17.42169,
+      "ward": "Nanakramguda",
+      "scores": {
+        "flood": 53,
+        "heat": 68,
+        "veg": 73,
+        "lake": 69,
+        "urban": 71,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.34969,
+      "lat": 17.42531,
+      "ward": "Nanakramguda",
+      "scores": {
+        "flood": 50,
+        "heat": 69,
+        "veg": 71,
+        "lake": 75,
+        "urban": 62,
+        "water": 41
+      }
+    },
+    {
+      "lng": 78.34508,
+      "lat": 17.41063,
+      "ward": "Nanakramguda",
+      "scores": {
+        "flood": 44,
+        "heat": 58,
+        "veg": 63,
+        "lake": 78,
+        "urban": 71,
+        "water": 44
+      }
+    },
+    {
+      "lng": 78.34387,
+      "lat": 17.42315,
+      "ward": "Nanakramguda",
+      "scores": {
+        "flood": 46,
+        "heat": 60,
+        "veg": 68,
+        "lake": 67,
+        "urban": 61,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.34114,
+      "lat": 17.41187,
+      "ward": "Nanakramguda",
+      "scores": {
+        "flood": 50,
+        "heat": 58,
+        "veg": 62,
+        "lake": 73,
+        "urban": 67,
+        "water": 46
+      }
+    },
+    {
+      "lng": 78.35076,
+      "lat": 17.41263,
+      "ward": "Nanakramguda",
+      "scores": {
+        "flood": 53,
+        "heat": 68,
+        "veg": 70,
+        "lake": 70,
+        "urban": 65,
+        "water": 41
+      }
+    },
+    {
+      "lng": 78.34055,
+      "lat": 17.42587,
+      "ward": "Nanakramguda",
+      "scores": {
+        "flood": 45,
+        "heat": 71,
+        "veg": 71,
+        "lake": 75,
+        "urban": 73,
+        "water": 39
+      }
+    },
+    {
+      "lng": 78.34356,
+      "lat": 17.42083,
+      "ward": "Nanakramguda",
+      "scores": {
+        "flood": 50,
+        "heat": 61,
+        "veg": 61,
+        "lake": 68,
+        "urban": 75,
+        "water": 40
+      }
+    },
+    {
+      "lng": 78.30564,
+      "lat": 17.48737,
+      "ward": "Serilingampally",
+      "scores": {
+        "flood": 48,
+        "heat": 69,
+        "veg": 62,
+        "lake": 68,
+        "urban": 77,
+        "water": 36
+      }
+    },
+    {
+      "lng": 78.29451,
+      "lat": 17.48125,
+      "ward": "Serilingampally",
+      "scores": {
+        "flood": 47,
+        "heat": 55,
+        "veg": 68,
+        "lake": 68,
+        "urban": 74,
+        "water": 48
+      }
+    },
+    {
+      "lng": 78.29734,
+      "lat": 17.47605,
+      "ward": "Serilingampally",
+      "scores": {
+        "flood": 46,
+        "heat": 68,
+        "veg": 61,
+        "lake": 62,
+        "urban": 77,
+        "water": 36
+      }
+    },
+    {
+      "lng": 78.29887,
+      "lat": 17.47047,
+      "ward": "Serilingampally",
+      "scores": {
+        "flood": 58,
+        "heat": 56,
+        "veg": 58,
+        "lake": 69,
+        "urban": 75,
+        "water": 40
+      }
+    },
+    {
+      "lng": 78.29245,
+      "lat": 17.48002,
+      "ward": "Serilingampally",
+      "scores": {
+        "flood": 50,
+        "heat": 57,
+        "veg": 58,
+        "lake": 58,
+        "urban": 78,
+        "water": 44
+      }
+    },
+    {
+      "lng": 78.30428,
+      "lat": 17.48522,
+      "ward": "Serilingampally",
+      "scores": {
+        "flood": 50,
+        "heat": 61,
+        "veg": 64,
+        "lake": 56,
+        "urban": 67,
+        "water": 37
+      }
+    },
+    {
+      "lng": 78.30021,
+      "lat": 17.48005,
+      "ward": "Serilingampally",
+      "scores": {
+        "flood": 51,
+        "heat": 60,
+        "veg": 61,
+        "lake": 68,
+        "urban": 71,
+        "water": 37
+      }
+    },
+    {
+      "lng": 78.30346,
+      "lat": 17.47132,
+      "ward": "Serilingampally",
+      "scores": {
+        "flood": 59,
+        "heat": 67,
+        "veg": 63,
+        "lake": 68,
+        "urban": 68,
+        "water": 45
+      }
+    },
+    {
+      "lng": 78.35883,
+      "lat": 17.49343,
+      "ward": "Miyapur",
+      "scores": {
+        "flood": 57,
+        "heat": 66,
+        "veg": 73,
+        "lake": 71,
+        "urban": 78,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.34678,
+      "lat": 17.50013,
+      "ward": "Miyapur",
+      "scores": {
+        "flood": 51,
+        "heat": 64,
+        "veg": 80,
+        "lake": 74,
+        "urban": 78,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.34721,
+      "lat": 17.49952,
+      "ward": "Miyapur",
+      "scores": {
+        "flood": 56,
+        "heat": 67,
+        "veg": 79,
+        "lake": 71,
+        "urban": 82,
+        "water": 47
+      }
+    },
+    {
+      "lng": 78.35662,
+      "lat": 17.49654,
+      "ward": "Miyapur",
+      "scores": {
+        "flood": 62,
+        "heat": 62,
+        "veg": 73,
+        "lake": 76,
+        "urban": 76,
+        "water": 47
+      }
+    },
+    {
+      "lng": 78.3471,
+      "lat": 17.496,
+      "ward": "Miyapur",
+      "scores": {
+        "flood": 50,
+        "heat": 62,
+        "veg": 74,
+        "lake": 69,
+        "urban": 73,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.35725,
+      "lat": 17.50348,
+      "ward": "Miyapur",
+      "scores": {
+        "flood": 49,
+        "heat": 61,
+        "veg": 75,
+        "lake": 70,
+        "urban": 81,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.34973,
+      "lat": 17.50306,
+      "ward": "Miyapur",
+      "scores": {
+        "flood": 55,
+        "heat": 65,
+        "veg": 82,
+        "lake": 67,
+        "urban": 71,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.34944,
+      "lat": 17.4993,
+      "ward": "Miyapur",
+      "scores": {
+        "flood": 59,
+        "heat": 63,
+        "veg": 71,
+        "lake": 71,
+        "urban": 80,
+        "water": 48
+      }
+    },
+    {
+      "lng": 78.35185,
+      "lat": 17.49973,
+      "ward": "Miyapur",
+      "scores": {
+        "flood": 54,
+        "heat": 62,
+        "veg": 79,
+        "lake": 66,
+        "urban": 76,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.40617,
+      "lat": 17.47999,
+      "ward": "Kukatpally",
+      "scores": {
+        "flood": 56,
+        "heat": 71,
+        "veg": 83,
+        "lake": 78,
+        "urban": 93,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.40081,
+      "lat": 17.47937,
+      "ward": "Kukatpally",
+      "scores": {
+        "flood": 60,
+        "heat": 74,
+        "veg": 82,
+        "lake": 78,
+        "urban": 94,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.40184,
+      "lat": 17.49214,
+      "ward": "Kukatpally",
+      "scores": {
+        "flood": 59,
+        "heat": 75,
+        "veg": 84,
+        "lake": 82,
+        "urban": 95,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.39455,
+      "lat": 17.48593,
+      "ward": "Kukatpally",
+      "scores": {
+        "flood": 55,
+        "heat": 71,
+        "veg": 94,
+        "lake": 83,
+        "urban": 99,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.39708,
+      "lat": 17.48709,
+      "ward": "Kukatpally",
+      "scores": {
+        "flood": 51,
+        "heat": 82,
+        "veg": 86,
+        "lake": 76,
+        "urban": 98,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.4024,
+      "lat": 17.48858,
+      "ward": "Kukatpally",
+      "scores": {
+        "flood": 59,
+        "heat": 81,
+        "veg": 84,
+        "lake": 85,
+        "urban": 92,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.39566,
+      "lat": 17.48919,
+      "ward": "Kukatpally",
+      "scores": {
+        "flood": 51,
+        "heat": 81,
+        "veg": 86,
+        "lake": 76,
+        "urban": 97,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.40381,
+      "lat": 17.48773,
+      "ward": "Kukatpally",
+      "scores": {
+        "flood": 59,
+        "heat": 77,
+        "veg": 82,
+        "lake": 75,
+        "urban": 95,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.39709,
+      "lat": 17.48282,
+      "ward": "Kukatpally",
+      "scores": {
+        "flood": 57,
+        "heat": 71,
+        "veg": 85,
+        "lake": 83,
+        "urban": 93,
+        "water": 68
+      }
+    },
+    {
+      "lng": 78.39097,
+      "lat": 17.5075,
+      "ward": "Nizampet",
+      "scores": {
+        "flood": 52,
+        "heat": 70,
+        "veg": 71,
+        "lake": 63,
+        "urban": 71,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.38368,
+      "lat": 17.49697,
+      "ward": "Nizampet",
+      "scores": {
+        "flood": 58,
+        "heat": 62,
+        "veg": 71,
+        "lake": 63,
+        "urban": 75,
+        "water": 45
+      }
+    },
+    {
+      "lng": 78.39526,
+      "lat": 17.50095,
+      "ward": "Nizampet",
+      "scores": {
+        "flood": 54,
+        "heat": 72,
+        "veg": 70,
+        "lake": 62,
+        "urban": 77,
+        "water": 46
+      }
+    },
+    {
+      "lng": 78.37805,
+      "lat": 17.5025,
+      "ward": "Nizampet",
+      "scores": {
+        "flood": 62,
+        "heat": 70,
+        "veg": 77,
+        "lake": 70,
+        "urban": 81,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.37899,
+      "lat": 17.50775,
+      "ward": "Nizampet",
+      "scores": {
+        "flood": 55,
+        "heat": 66,
+        "veg": 77,
+        "lake": 62,
+        "urban": 72,
+        "water": 48
+      }
+    },
+    {
+      "lng": 78.38673,
+      "lat": 17.50283,
+      "ward": "Nizampet",
+      "scores": {
+        "flood": 55,
+        "heat": 72,
+        "veg": 78,
+        "lake": 67,
+        "urban": 79,
+        "water": 45
+      }
+    },
+    {
+      "lng": 78.38371,
+      "lat": 17.50784,
+      "ward": "Nizampet",
+      "scores": {
+        "flood": 64,
+        "heat": 61,
+        "veg": 69,
+        "lake": 66,
+        "urban": 69,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.39248,
+      "lat": 17.50357,
+      "ward": "Nizampet",
+      "scores": {
+        "flood": 59,
+        "heat": 69,
+        "veg": 75,
+        "lake": 64,
+        "urban": 76,
+        "water": 51
+      }
+    },
+    {
+      "lng": 78.36402,
+      "lat": 17.53226,
+      "ward": "Bachupally",
+      "scores": {
+        "flood": 56,
+        "heat": 58,
+        "veg": 71,
+        "lake": 69,
+        "urban": 66,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.35592,
+      "lat": 17.522,
+      "ward": "Bachupally",
+      "scores": {
+        "flood": 57,
+        "heat": 62,
+        "veg": 69,
+        "lake": 58,
+        "urban": 67,
+        "water": 47
+      }
+    },
+    {
+      "lng": 78.36771,
+      "lat": 17.53032,
+      "ward": "Bachupally",
+      "scores": {
+        "flood": 52,
+        "heat": 61,
+        "veg": 75,
+        "lake": 69,
+        "urban": 71,
+        "water": 45
+      }
+    },
+    {
+      "lng": 78.36893,
+      "lat": 17.52574,
+      "ward": "Bachupally",
+      "scores": {
+        "flood": 46,
+        "heat": 57,
+        "veg": 71,
+        "lake": 62,
+        "urban": 74,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.3703,
+      "lat": 17.52224,
+      "ward": "Bachupally",
+      "scores": {
+        "flood": 55,
+        "heat": 58,
+        "veg": 72,
+        "lake": 64,
+        "urban": 77,
+        "water": 51
+      }
+    },
+    {
+      "lng": 78.35902,
+      "lat": 17.52519,
+      "ward": "Bachupally",
+      "scores": {
+        "flood": 54,
+        "heat": 58,
+        "veg": 71,
+        "lake": 70,
+        "urban": 74,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.36675,
+      "lat": 17.51906,
+      "ward": "Bachupally",
+      "scores": {
+        "flood": 50,
+        "heat": 64,
+        "veg": 69,
+        "lake": 69,
+        "urban": 66,
+        "water": 42
+      }
+    },
+    {
+      "lng": 78.36715,
+      "lat": 17.52157,
+      "ward": "Bachupally",
+      "scores": {
+        "flood": 55,
+        "heat": 57,
+        "veg": 65,
+        "lake": 64,
+        "urban": 68,
+        "water": 48
+      }
+    },
+    {
+      "lng": 78.43872,
+      "lat": 17.49992,
+      "ward": "Quthbullapur",
+      "scores": {
+        "flood": 47,
+        "heat": 67,
+        "veg": 78,
+        "lake": 60,
+        "urban": 76,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.44343,
+      "lat": 17.50596,
+      "ward": "Quthbullapur",
+      "scores": {
+        "flood": 52,
+        "heat": 72,
+        "veg": 83,
+        "lake": 65,
+        "urban": 84,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.43828,
+      "lat": 17.5067,
+      "ward": "Quthbullapur",
+      "scores": {
+        "flood": 52,
+        "heat": 69,
+        "veg": 83,
+        "lake": 70,
+        "urban": 83,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.4333,
+      "lat": 17.50938,
+      "ward": "Quthbullapur",
+      "scores": {
+        "flood": 58,
+        "heat": 73,
+        "veg": 84,
+        "lake": 58,
+        "urban": 83,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.43942,
+      "lat": 17.50474,
+      "ward": "Quthbullapur",
+      "scores": {
+        "flood": 59,
+        "heat": 64,
+        "veg": 79,
+        "lake": 69,
+        "urban": 84,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.43067,
+      "lat": 17.50432,
+      "ward": "Quthbullapur",
+      "scores": {
+        "flood": 57,
+        "heat": 70,
+        "veg": 84,
+        "lake": 63,
+        "urban": 80,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.43684,
+      "lat": 17.50256,
+      "ward": "Quthbullapur",
+      "scores": {
+        "flood": 56,
+        "heat": 69,
+        "veg": 81,
+        "lake": 64,
+        "urban": 80,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.42851,
+      "lat": 17.50805,
+      "ward": "Quthbullapur",
+      "scores": {
+        "flood": 49,
+        "heat": 66,
+        "veg": 83,
+        "lake": 64,
+        "urban": 87,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.42758,
+      "lat": 17.50389,
+      "ward": "Quthbullapur",
+      "scores": {
+        "flood": 47,
+        "heat": 68,
+        "veg": 81,
+        "lake": 65,
+        "urban": 80,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.49474,
+      "lat": 17.43884,
+      "ward": "Secunderabad",
+      "scores": {
+        "flood": 60,
+        "heat": 78,
+        "veg": 78,
+        "lake": 76,
+        "urban": 88,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.49169,
+      "lat": 17.43939,
+      "ward": "Secunderabad",
+      "scores": {
+        "flood": 57,
+        "heat": 74,
+        "veg": 91,
+        "lake": 78,
+        "urban": 86,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.50051,
+      "lat": 17.43757,
+      "ward": "Secunderabad",
+      "scores": {
+        "flood": 59,
+        "heat": 76,
+        "veg": 80,
+        "lake": 83,
+        "urban": 90,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.50064,
+      "lat": 17.44378,
+      "ward": "Secunderabad",
+      "scores": {
+        "flood": 50,
+        "heat": 76,
+        "veg": 78,
+        "lake": 74,
+        "urban": 90,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.50005,
+      "lat": 17.43671,
+      "ward": "Secunderabad",
+      "scores": {
+        "flood": 54,
+        "heat": 78,
+        "veg": 83,
+        "lake": 76,
+        "urban": 89,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.50447,
+      "lat": 17.44163,
+      "ward": "Secunderabad",
+      "scores": {
+        "flood": 50,
+        "heat": 77,
+        "veg": 78,
+        "lake": 70,
+        "urban": 88,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.49921,
+      "lat": 17.43671,
+      "ward": "Secunderabad",
+      "scores": {
+        "flood": 50,
+        "heat": 79,
+        "veg": 79,
+        "lake": 76,
+        "urban": 91,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.49139,
+      "lat": 17.43801,
+      "ward": "Secunderabad",
+      "scores": {
+        "flood": 51,
+        "heat": 78,
+        "veg": 89,
+        "lake": 83,
+        "urban": 91,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.50515,
+      "lat": 17.44351,
+      "ward": "Secunderabad",
+      "scores": {
+        "flood": 57,
+        "heat": 68,
+        "veg": 83,
+        "lake": 83,
+        "urban": 91,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.46801,
+      "lat": 17.44032,
+      "ward": "Begumpet",
+      "scores": {
+        "flood": 50,
+        "heat": 70,
+        "veg": 82,
+        "lake": 85,
+        "urban": 76,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.4561,
+      "lat": 17.44719,
+      "ward": "Begumpet",
+      "scores": {
+        "flood": 54,
+        "heat": 79,
+        "veg": 79,
+        "lake": 79,
+        "urban": 87,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.46869,
+      "lat": 17.43791,
+      "ward": "Begumpet",
+      "scores": {
+        "flood": 47,
+        "heat": 76,
+        "veg": 78,
+        "lake": 85,
+        "urban": 78,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.46512,
+      "lat": 17.4385,
+      "ward": "Begumpet",
+      "scores": {
+        "flood": 50,
+        "heat": 71,
+        "veg": 85,
+        "lake": 77,
+        "urban": 85,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.47052,
+      "lat": 17.44207,
+      "ward": "Begumpet",
+      "scores": {
+        "flood": 47,
+        "heat": 75,
+        "veg": 80,
+        "lake": 81,
+        "urban": 86,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.45936,
+      "lat": 17.43895,
+      "ward": "Begumpet",
+      "scores": {
+        "flood": 55,
+        "heat": 81,
+        "veg": 75,
+        "lake": 87,
+        "urban": 81,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.46675,
+      "lat": 17.43934,
+      "ward": "Begumpet",
+      "scores": {
+        "flood": 47,
+        "heat": 74,
+        "veg": 79,
+        "lake": 77,
+        "urban": 80,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.46163,
+      "lat": 17.44145,
+      "ward": "Begumpet",
+      "scores": {
+        "flood": 54,
+        "heat": 78,
+        "veg": 76,
+        "lake": 81,
+        "urban": 84,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.469,
+      "lat": 17.44645,
+      "ward": "Begumpet",
+      "scores": {
+        "flood": 60,
+        "heat": 78,
+        "veg": 79,
+        "lake": 77,
+        "urban": 87,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.49914,
+      "lat": 17.45176,
+      "ward": "Marredpally",
+      "scores": {
+        "flood": 58,
+        "heat": 78,
+        "veg": 74,
+        "lake": 75,
+        "urban": 80,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.50581,
+      "lat": 17.44642,
+      "ward": "Marredpally",
+      "scores": {
+        "flood": 50,
+        "heat": 79,
+        "veg": 68,
+        "lake": 77,
+        "urban": 72,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.50638,
+      "lat": 17.4426,
+      "ward": "Marredpally",
+      "scores": {
+        "flood": 50,
+        "heat": 78,
+        "veg": 76,
+        "lake": 74,
+        "urban": 78,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.50965,
+      "lat": 17.44395,
+      "ward": "Marredpally",
+      "scores": {
+        "flood": 51,
+        "heat": 76,
+        "veg": 69,
+        "lake": 82,
+        "urban": 81,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.49906,
+      "lat": 17.44556,
+      "ward": "Marredpally",
+      "scores": {
+        "flood": 52,
+        "heat": 71,
+        "veg": 78,
+        "lake": 77,
+        "urban": 81,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.50772,
+      "lat": 17.44922,
+      "ward": "Marredpally",
+      "scores": {
+        "flood": 49,
+        "heat": 70,
+        "veg": 75,
+        "lake": 77,
+        "urban": 75,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.50399,
+      "lat": 17.44316,
+      "ward": "Marredpally",
+      "scores": {
+        "flood": 61,
+        "heat": 77,
+        "veg": 68,
+        "lake": 77,
+        "urban": 75,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.50791,
+      "lat": 17.44737,
+      "ward": "Marredpally",
+      "scores": {
+        "flood": 54,
+        "heat": 68,
+        "veg": 78,
+        "lake": 80,
+        "urban": 73,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.50046,
+      "lat": 17.44512,
+      "ward": "Marredpally",
+      "scores": {
+        "flood": 57,
+        "heat": 77,
+        "veg": 78,
+        "lake": 77,
+        "urban": 72,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.5157,
+      "lat": 17.47288,
+      "ward": "Trimulgherry",
+      "scores": {
+        "flood": 52,
+        "heat": 70,
+        "veg": 85,
+        "lake": 75,
+        "urban": 77,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.51348,
+      "lat": 17.47008,
+      "ward": "Trimulgherry",
+      "scores": {
+        "flood": 56,
+        "heat": 65,
+        "veg": 84,
+        "lake": 75,
+        "urban": 73,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.51372,
+      "lat": 17.46987,
+      "ward": "Trimulgherry",
+      "scores": {
+        "flood": 58,
+        "heat": 62,
+        "veg": 81,
+        "lake": 77,
+        "urban": 68,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.52567,
+      "lat": 17.47412,
+      "ward": "Trimulgherry",
+      "scores": {
+        "flood": 58,
+        "heat": 67,
+        "veg": 83,
+        "lake": 77,
+        "urban": 74,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.51624,
+      "lat": 17.48,
+      "ward": "Trimulgherry",
+      "scores": {
+        "flood": 56,
+        "heat": 59,
+        "veg": 88,
+        "lake": 73,
+        "urban": 71,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.51872,
+      "lat": 17.47195,
+      "ward": "Trimulgherry",
+      "scores": {
+        "flood": 64,
+        "heat": 69,
+        "veg": 90,
+        "lake": 65,
+        "urban": 79,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.51706,
+      "lat": 17.47754,
+      "ward": "Trimulgherry",
+      "scores": {
+        "flood": 54,
+        "heat": 60,
+        "veg": 89,
+        "lake": 65,
+        "urban": 72,
+        "water": 51
+      }
+    },
+    {
+      "lng": 78.51565,
+      "lat": 17.47419,
+      "ward": "Trimulgherry",
+      "scores": {
+        "flood": 64,
+        "heat": 72,
+        "veg": 88,
+        "lake": 71,
+        "urban": 72,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.52016,
+      "lat": 17.47492,
+      "ward": "Trimulgherry",
+      "scores": {
+        "flood": 58,
+        "heat": 70,
+        "veg": 76,
+        "lake": 72,
+        "urban": 69,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.48372,
+      "lat": 17.47021,
+      "ward": "Bowenpally",
+      "scores": {
+        "flood": 66,
+        "heat": 69,
+        "veg": 77,
+        "lake": 79,
+        "urban": 75,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.48577,
+      "lat": 17.47491,
+      "ward": "Bowenpally",
+      "scores": {
+        "flood": 62,
+        "heat": 81,
+        "veg": 85,
+        "lake": 72,
+        "urban": 78,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.48761,
+      "lat": 17.47545,
+      "ward": "Bowenpally",
+      "scores": {
+        "flood": 56,
+        "heat": 79,
+        "veg": 74,
+        "lake": 81,
+        "urban": 78,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.48708,
+      "lat": 17.47009,
+      "ward": "Bowenpally",
+      "scores": {
+        "flood": 59,
+        "heat": 71,
+        "veg": 83,
+        "lake": 72,
+        "urban": 79,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.48798,
+      "lat": 17.46575,
+      "ward": "Bowenpally",
+      "scores": {
+        "flood": 57,
+        "heat": 71,
+        "veg": 84,
+        "lake": 75,
+        "urban": 82,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.47619,
+      "lat": 17.46601,
+      "ward": "Bowenpally",
+      "scores": {
+        "flood": 64,
+        "heat": 72,
+        "veg": 78,
+        "lake": 76,
+        "urban": 83,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.47927,
+      "lat": 17.46849,
+      "ward": "Bowenpally",
+      "scores": {
+        "flood": 57,
+        "heat": 70,
+        "veg": 81,
+        "lake": 74,
+        "urban": 77,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.47502,
+      "lat": 17.47269,
+      "ward": "Bowenpally",
+      "scores": {
+        "flood": 60,
+        "heat": 72,
+        "veg": 74,
+        "lake": 78,
+        "urban": 83,
+        "water": 51
+      }
+    },
+    {
+      "lng": 78.48526,
+      "lat": 17.47039,
+      "ward": "Bowenpally",
+      "scores": {
+        "flood": 62,
+        "heat": 69,
+        "veg": 85,
+        "lake": 82,
+        "urban": 83,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.51244,
+      "lat": 17.50336,
+      "ward": "Alwal",
+      "scores": {
+        "flood": 57,
+        "heat": 72,
+        "veg": 67,
+        "lake": 71,
+        "urban": 69,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.51037,
+      "lat": 17.49986,
+      "ward": "Alwal",
+      "scores": {
+        "flood": 52,
+        "heat": 73,
+        "veg": 67,
+        "lake": 66,
+        "urban": 75,
+        "water": 51
+      }
+    },
+    {
+      "lng": 78.50063,
+      "lat": 17.49467,
+      "ward": "Alwal",
+      "scores": {
+        "flood": 59,
+        "heat": 64,
+        "veg": 77,
+        "lake": 73,
+        "urban": 73,
+        "water": 44
+      }
+    },
+    {
+      "lng": 78.50779,
+      "lat": 17.50645,
+      "ward": "Alwal",
+      "scores": {
+        "flood": 51,
+        "heat": 69,
+        "veg": 75,
+        "lake": 80,
+        "urban": 69,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.49989,
+      "lat": 17.49528,
+      "ward": "Alwal",
+      "scores": {
+        "flood": 53,
+        "heat": 69,
+        "veg": 77,
+        "lake": 69,
+        "urban": 74,
+        "water": 44
+      }
+    },
+    {
+      "lng": 78.50212,
+      "lat": 17.50015,
+      "ward": "Alwal",
+      "scores": {
+        "flood": 55,
+        "heat": 63,
+        "veg": 70,
+        "lake": 80,
+        "urban": 73,
+        "water": 47
+      }
+    },
+    {
+      "lng": 78.50263,
+      "lat": 17.50928,
+      "ward": "Alwal",
+      "scores": {
+        "flood": 62,
+        "heat": 75,
+        "veg": 73,
+        "lake": 79,
+        "urban": 65,
+        "water": 43
+      }
+    },
+    {
+      "lng": 78.50569,
+      "lat": 17.50562,
+      "ward": "Alwal",
+      "scores": {
+        "flood": 57,
+        "heat": 69,
+        "veg": 75,
+        "lake": 72,
+        "urban": 71,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.52626,
+      "lat": 17.44943,
+      "ward": "Malkajgiri",
+      "scores": {
+        "flood": 64,
+        "heat": 75,
+        "veg": 90,
+        "lake": 66,
+        "urban": 90,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.52517,
+      "lat": 17.4458,
+      "ward": "Malkajgiri",
+      "scores": {
+        "flood": 67,
+        "heat": 72,
+        "veg": 99,
+        "lake": 64,
+        "urban": 86,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.53203,
+      "lat": 17.45034,
+      "ward": "Malkajgiri",
+      "scores": {
+        "flood": 64,
+        "heat": 65,
+        "veg": 92,
+        "lake": 76,
+        "urban": 93,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.52703,
+      "lat": 17.45274,
+      "ward": "Malkajgiri",
+      "scores": {
+        "flood": 65,
+        "heat": 65,
+        "veg": 98,
+        "lake": 72,
+        "urban": 89,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.53006,
+      "lat": 17.45289,
+      "ward": "Malkajgiri",
+      "scores": {
+        "flood": 72,
+        "heat": 76,
+        "veg": 98,
+        "lake": 78,
+        "urban": 86,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.52806,
+      "lat": 17.45004,
+      "ward": "Malkajgiri",
+      "scores": {
+        "flood": 63,
+        "heat": 74,
+        "veg": 93,
+        "lake": 72,
+        "urban": 81,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.52346,
+      "lat": 17.44596,
+      "ward": "Malkajgiri",
+      "scores": {
+        "flood": 73,
+        "heat": 64,
+        "veg": 87,
+        "lake": 65,
+        "urban": 85,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.52882,
+      "lat": 17.44986,
+      "ward": "Malkajgiri",
+      "scores": {
+        "flood": 60,
+        "heat": 76,
+        "veg": 95,
+        "lake": 74,
+        "urban": 81,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.52592,
+      "lat": 17.45007,
+      "ward": "Malkajgiri",
+      "scores": {
+        "flood": 61,
+        "heat": 70,
+        "veg": 97,
+        "lake": 68,
+        "urban": 85,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.55967,
+      "lat": 17.47799,
+      "ward": "Kapra",
+      "scores": {
+        "flood": 51,
+        "heat": 67,
+        "veg": 64,
+        "lake": 71,
+        "urban": 70,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.55862,
+      "lat": 17.48882,
+      "ward": "Kapra",
+      "scores": {
+        "flood": 47,
+        "heat": 61,
+        "veg": 72,
+        "lake": 69,
+        "urban": 60,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.56299,
+      "lat": 17.49002,
+      "ward": "Kapra",
+      "scores": {
+        "flood": 55,
+        "heat": 60,
+        "veg": 63,
+        "lake": 67,
+        "urban": 72,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.57154,
+      "lat": 17.48631,
+      "ward": "Kapra",
+      "scores": {
+        "flood": 51,
+        "heat": 64,
+        "veg": 75,
+        "lake": 69,
+        "urban": 64,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.56794,
+      "lat": 17.48019,
+      "ward": "Kapra",
+      "scores": {
+        "flood": 58,
+        "heat": 57,
+        "veg": 72,
+        "lake": 65,
+        "urban": 66,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.5594,
+      "lat": 17.47975,
+      "ward": "Kapra",
+      "scores": {
+        "flood": 47,
+        "heat": 71,
+        "veg": 70,
+        "lake": 75,
+        "urban": 71,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.57167,
+      "lat": 17.48058,
+      "ward": "Kapra",
+      "scores": {
+        "flood": 48,
+        "heat": 69,
+        "veg": 66,
+        "lake": 75,
+        "urban": 71,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.56622,
+      "lat": 17.47772,
+      "ward": "Kapra",
+      "scores": {
+        "flood": 57,
+        "heat": 61,
+        "veg": 74,
+        "lake": 66,
+        "urban": 74,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.54283,
+      "lat": 17.46547,
+      "ward": "Neredmet",
+      "scores": {
+        "flood": 69,
+        "heat": 65,
+        "veg": 77,
+        "lake": 72,
+        "urban": 73,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.53817,
+      "lat": 17.46512,
+      "ward": "Neredmet",
+      "scores": {
+        "flood": 69,
+        "heat": 62,
+        "veg": 75,
+        "lake": 69,
+        "urban": 71,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.54027,
+      "lat": 17.46973,
+      "ward": "Neredmet",
+      "scores": {
+        "flood": 64,
+        "heat": 71,
+        "veg": 68,
+        "lake": 64,
+        "urban": 78,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.53119,
+      "lat": 17.46303,
+      "ward": "Neredmet",
+      "scores": {
+        "flood": 68,
+        "heat": 68,
+        "veg": 77,
+        "lake": 72,
+        "urban": 80,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.54613,
+      "lat": 17.45959,
+      "ward": "Neredmet",
+      "scores": {
+        "flood": 61,
+        "heat": 63,
+        "veg": 71,
+        "lake": 63,
+        "urban": 79,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.53723,
+      "lat": 17.46931,
+      "ward": "Neredmet",
+      "scores": {
+        "flood": 58,
+        "heat": 70,
+        "veg": 77,
+        "lake": 71,
+        "urban": 80,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.54055,
+      "lat": 17.46863,
+      "ward": "Neredmet",
+      "scores": {
+        "flood": 63,
+        "heat": 58,
+        "veg": 68,
+        "lake": 67,
+        "urban": 76,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.53297,
+      "lat": 17.47013,
+      "ward": "Neredmet",
+      "scores": {
+        "flood": 61,
+        "heat": 65,
+        "veg": 68,
+        "lake": 75,
+        "urban": 77,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.53905,
+      "lat": 17.47227,
+      "ward": "Neredmet",
+      "scores": {
+        "flood": 65,
+        "heat": 64,
+        "veg": 72,
+        "lake": 74,
+        "urban": 79,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.56227,
+      "lat": 17.40644,
+      "ward": "Uppal",
+      "scores": {
+        "flood": 56,
+        "heat": 67,
+        "veg": 74,
+        "lake": 87,
+        "urban": 84,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.56041,
+      "lat": 17.40628,
+      "ward": "Uppal",
+      "scores": {
+        "flood": 61,
+        "heat": 65,
+        "veg": 69,
+        "lake": 91,
+        "urban": 76,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.55582,
+      "lat": 17.41114,
+      "ward": "Uppal",
+      "scores": {
+        "flood": 61,
+        "heat": 72,
+        "veg": 77,
+        "lake": 90,
+        "urban": 79,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.55448,
+      "lat": 17.40155,
+      "ward": "Uppal",
+      "scores": {
+        "flood": 65,
+        "heat": 69,
+        "veg": 74,
+        "lake": 91,
+        "urban": 84,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.56666,
+      "lat": 17.40272,
+      "ward": "Uppal",
+      "scores": {
+        "flood": 63,
+        "heat": 72,
+        "veg": 73,
+        "lake": 89,
+        "urban": 80,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.55709,
+      "lat": 17.39907,
+      "ward": "Uppal",
+      "scores": {
+        "flood": 62,
+        "heat": 68,
+        "veg": 79,
+        "lake": 89,
+        "urban": 76,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.56135,
+      "lat": 17.40087,
+      "ward": "Uppal",
+      "scores": {
+        "flood": 63,
+        "heat": 69,
+        "veg": 69,
+        "lake": 86,
+        "urban": 78,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.56186,
+      "lat": 17.40628,
+      "ward": "Uppal",
+      "scores": {
+        "flood": 62,
+        "heat": 64,
+        "veg": 81,
+        "lake": 80,
+        "urban": 73,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.55348,
+      "lat": 17.40817,
+      "ward": "Uppal",
+      "scores": {
+        "flood": 61,
+        "heat": 74,
+        "veg": 71,
+        "lake": 85,
+        "urban": 83,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.55394,
+      "lat": 17.42954,
+      "ward": "Nacharam",
+      "scores": {
+        "flood": 58,
+        "heat": 70,
+        "veg": 85,
+        "lake": 74,
+        "urban": 81,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.55287,
+      "lat": 17.43412,
+      "ward": "Nacharam",
+      "scores": {
+        "flood": 61,
+        "heat": 70,
+        "veg": 88,
+        "lake": 72,
+        "urban": 93,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.54955,
+      "lat": 17.43441,
+      "ward": "Nacharam",
+      "scores": {
+        "flood": 55,
+        "heat": 75,
+        "veg": 90,
+        "lake": 72,
+        "urban": 89,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.55187,
+      "lat": 17.42907,
+      "ward": "Nacharam",
+      "scores": {
+        "flood": 63,
+        "heat": 64,
+        "veg": 87,
+        "lake": 76,
+        "urban": 91,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.55958,
+      "lat": 17.42548,
+      "ward": "Nacharam",
+      "scores": {
+        "flood": 57,
+        "heat": 63,
+        "veg": 85,
+        "lake": 72,
+        "urban": 84,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.54624,
+      "lat": 17.42326,
+      "ward": "Nacharam",
+      "scores": {
+        "flood": 50,
+        "heat": 71,
+        "veg": 90,
+        "lake": 84,
+        "urban": 81,
+        "water": 49
+      }
+    },
+    {
+      "lng": 78.55124,
+      "lat": 17.42033,
+      "ward": "Nacharam",
+      "scores": {
+        "flood": 58,
+        "heat": 66,
+        "veg": 93,
+        "lake": 76,
+        "urban": 93,
+        "water": 48
+      }
+    },
+    {
+      "lng": 78.55336,
+      "lat": 17.42732,
+      "ward": "Nacharam",
+      "scores": {
+        "flood": 60,
+        "heat": 72,
+        "veg": 91,
+        "lake": 81,
+        "urban": 93,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.55528,
+      "lat": 17.4213,
+      "ward": "Nacharam",
+      "scores": {
+        "flood": 55,
+        "heat": 65,
+        "veg": 85,
+        "lake": 74,
+        "urban": 84,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.54106,
+      "lat": 17.40906,
+      "ward": "Habsiguda",
+      "scores": {
+        "flood": 49,
+        "heat": 65,
+        "veg": 84,
+        "lake": 79,
+        "urban": 78,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.54204,
+      "lat": 17.40359,
+      "ward": "Habsiguda",
+      "scores": {
+        "flood": 49,
+        "heat": 65,
+        "veg": 76,
+        "lake": 73,
+        "urban": 83,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.53527,
+      "lat": 17.40961,
+      "ward": "Habsiguda",
+      "scores": {
+        "flood": 49,
+        "heat": 72,
+        "veg": 82,
+        "lake": 86,
+        "urban": 82,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.53792,
+      "lat": 17.41002,
+      "ward": "Habsiguda",
+      "scores": {
+        "flood": 53,
+        "heat": 70,
+        "veg": 85,
+        "lake": 76,
+        "urban": 83,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.53761,
+      "lat": 17.40269,
+      "ward": "Habsiguda",
+      "scores": {
+        "flood": 60,
+        "heat": 65,
+        "veg": 79,
+        "lake": 73,
+        "urban": 79,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.54334,
+      "lat": 17.40071,
+      "ward": "Habsiguda",
+      "scores": {
+        "flood": 55,
+        "heat": 72,
+        "veg": 81,
+        "lake": 78,
+        "urban": 75,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.54544,
+      "lat": 17.4058,
+      "ward": "Habsiguda",
+      "scores": {
+        "flood": 49,
+        "heat": 75,
+        "veg": 81,
+        "lake": 74,
+        "urban": 81,
+        "water": 48
+      }
+    },
+    {
+      "lng": 78.53546,
+      "lat": 17.40677,
+      "ward": "Habsiguda",
+      "scores": {
+        "flood": 53,
+        "heat": 68,
+        "veg": 79,
+        "lake": 76,
+        "urban": 78,
+        "water": 51
+      }
+    },
+    {
+      "lng": 78.54612,
+      "lat": 17.41346,
+      "ward": "Habsiguda",
+      "scores": {
+        "flood": 56,
+        "heat": 64,
+        "veg": 79,
+        "lake": 80,
+        "urban": 79,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.54816,
+      "lat": 17.34305,
+      "ward": "LB Nagar",
+      "scores": {
+        "flood": 78,
+        "heat": 86,
+        "veg": 97,
+        "lake": 74,
+        "urban": 85,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.55508,
+      "lat": 17.34251,
+      "ward": "LB Nagar",
+      "scores": {
+        "flood": 81,
+        "heat": 78,
+        "veg": 96,
+        "lake": 71,
+        "urban": 84,
+        "water": 68
+      }
+    },
+    {
+      "lng": 78.55367,
+      "lat": 17.35395,
+      "ward": "LB Nagar",
+      "scores": {
+        "flood": 74,
+        "heat": 84,
+        "veg": 87,
+        "lake": 68,
+        "urban": 79,
+        "water": 69
+      }
+    },
+    {
+      "lng": 78.5546,
+      "lat": 17.34285,
+      "ward": "LB Nagar",
+      "scores": {
+        "flood": 83,
+        "heat": 84,
+        "veg": 93,
+        "lake": 63,
+        "urban": 83,
+        "water": 76
+      }
+    },
+    {
+      "lng": 78.54967,
+      "lat": 17.34173,
+      "ward": "LB Nagar",
+      "scores": {
+        "flood": 72,
+        "heat": 87,
+        "veg": 87,
+        "lake": 64,
+        "urban": 87,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.55205,
+      "lat": 17.35146,
+      "ward": "LB Nagar",
+      "scores": {
+        "flood": 70,
+        "heat": 87,
+        "veg": 90,
+        "lake": 72,
+        "urban": 74,
+        "water": 72
+      }
+    },
+    {
+      "lng": 78.55588,
+      "lat": 17.34992,
+      "ward": "LB Nagar",
+      "scores": {
+        "flood": 70,
+        "heat": 75,
+        "veg": 93,
+        "lake": 68,
+        "urban": 86,
+        "water": 75
+      }
+    },
+    {
+      "lng": 78.55221,
+      "lat": 17.34369,
+      "ward": "LB Nagar",
+      "scores": {
+        "flood": 75,
+        "heat": 83,
+        "veg": 90,
+        "lake": 64,
+        "urban": 74,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.55038,
+      "lat": 17.34995,
+      "ward": "LB Nagar",
+      "scores": {
+        "flood": 72,
+        "heat": 85,
+        "veg": 92,
+        "lake": 74,
+        "urban": 83,
+        "water": 77
+      }
+    },
+    {
+      "lng": 78.56107,
+      "lat": 17.33243,
+      "ward": "Vanasthalipuram",
+      "scores": {
+        "flood": 66,
+        "heat": 69,
+        "veg": 88,
+        "lake": 82,
+        "urban": 69,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.56253,
+      "lat": 17.32613,
+      "ward": "Vanasthalipuram",
+      "scores": {
+        "flood": 62,
+        "heat": 70,
+        "veg": 81,
+        "lake": 77,
+        "urban": 79,
+        "water": 54
+      }
+    },
+    {
+      "lng": 78.56856,
+      "lat": 17.33664,
+      "ward": "Vanasthalipuram",
+      "scores": {
+        "flood": 54,
+        "heat": 71,
+        "veg": 83,
+        "lake": 79,
+        "urban": 69,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.56859,
+      "lat": 17.33758,
+      "ward": "Vanasthalipuram",
+      "scores": {
+        "flood": 54,
+        "heat": 74,
+        "veg": 90,
+        "lake": 70,
+        "urban": 70,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.55864,
+      "lat": 17.333,
+      "ward": "Vanasthalipuram",
+      "scores": {
+        "flood": 59,
+        "heat": 77,
+        "veg": 78,
+        "lake": 76,
+        "urban": 80,
+        "water": 58
+      }
+    },
+    {
+      "lng": 78.56794,
+      "lat": 17.32877,
+      "ward": "Vanasthalipuram",
+      "scores": {
+        "flood": 52,
+        "heat": 78,
+        "veg": 80,
+        "lake": 80,
+        "urban": 67,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.55692,
+      "lat": 17.32634,
+      "ward": "Vanasthalipuram",
+      "scores": {
+        "flood": 63,
+        "heat": 74,
+        "veg": 90,
+        "lake": 75,
+        "urban": 76,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.56326,
+      "lat": 17.3265,
+      "ward": "Vanasthalipuram",
+      "scores": {
+        "flood": 65,
+        "heat": 69,
+        "veg": 82,
+        "lake": 81,
+        "urban": 78,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.56419,
+      "lat": 17.3304,
+      "ward": "Vanasthalipuram",
+      "scores": {
+        "flood": 65,
+        "heat": 71,
+        "veg": 85,
+        "lake": 77,
+        "urban": 77,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.55715,
+      "lat": 17.36487,
+      "ward": "Nagole",
+      "scores": {
+        "flood": 83,
+        "heat": 77,
+        "veg": 70,
+        "lake": 83,
+        "urban": 64,
+        "water": 81
+      }
+    },
+    {
+      "lng": 78.5619,
+      "lat": 17.37566,
+      "ward": "Nagole",
+      "scores": {
+        "flood": 75,
+        "heat": 83,
+        "veg": 79,
+        "lake": 77,
+        "urban": 69,
+        "water": 80
+      }
+    },
+    {
+      "lng": 78.56513,
+      "lat": 17.37193,
+      "ward": "Nagole",
+      "scores": {
+        "flood": 72,
+        "heat": 76,
+        "veg": 80,
+        "lake": 82,
+        "urban": 63,
+        "water": 76
+      }
+    },
+    {
+      "lng": 78.55754,
+      "lat": 17.36571,
+      "ward": "Nagole",
+      "scores": {
+        "flood": 83,
+        "heat": 79,
+        "veg": 80,
+        "lake": 81,
+        "urban": 75,
+        "water": 83
+      }
+    },
+    {
+      "lng": 78.55008,
+      "lat": 17.37029,
+      "ward": "Nagole",
+      "scores": {
+        "flood": 73,
+        "heat": 75,
+        "veg": 81,
+        "lake": 84,
+        "urban": 70,
+        "water": 82
+      }
+    },
+    {
+      "lng": 78.54958,
+      "lat": 17.36993,
+      "ward": "Nagole",
+      "scores": {
+        "flood": 77,
+        "heat": 74,
+        "veg": 74,
+        "lake": 76,
+        "urban": 70,
+        "water": 86
+      }
+    },
+    {
+      "lng": 78.55045,
+      "lat": 17.3691,
+      "ward": "Nagole",
+      "scores": {
+        "flood": 77,
+        "heat": 73,
+        "veg": 80,
+        "lake": 74,
+        "urban": 71,
+        "water": 78
+      }
+    },
+    {
+      "lng": 78.5527,
+      "lat": 17.36606,
+      "ward": "Nagole",
+      "scores": {
+        "flood": 81,
+        "heat": 77,
+        "veg": 74,
+        "lake": 75,
+        "urban": 71,
+        "water": 86
+      }
+    },
+    {
+      "lng": 78.54985,
+      "lat": 17.37214,
+      "ward": "Nagole",
+      "scores": {
+        "flood": 78,
+        "heat": 72,
+        "veg": 81,
+        "lake": 84,
+        "urban": 65,
+        "water": 86
+      }
+    },
+    {
+      "lng": 78.59983,
+      "lat": 17.32356,
+      "ward": "Hayathnagar",
+      "scores": {
+        "flood": 70,
+        "heat": 69,
+        "veg": 85,
+        "lake": 66,
+        "urban": 58,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.6079,
+      "lat": 17.32487,
+      "ward": "Hayathnagar",
+      "scores": {
+        "flood": 62,
+        "heat": 69,
+        "veg": 74,
+        "lake": 65,
+        "urban": 69,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.60066,
+      "lat": 17.33496,
+      "ward": "Hayathnagar",
+      "scores": {
+        "flood": 57,
+        "heat": 76,
+        "veg": 79,
+        "lake": 64,
+        "urban": 70,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.60305,
+      "lat": 17.32563,
+      "ward": "Hayathnagar",
+      "scores": {
+        "flood": 70,
+        "heat": 74,
+        "veg": 80,
+        "lake": 71,
+        "urban": 60,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.59449,
+      "lat": 17.32279,
+      "ward": "Hayathnagar",
+      "scores": {
+        "flood": 65,
+        "heat": 67,
+        "veg": 80,
+        "lake": 77,
+        "urban": 61,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.60529,
+      "lat": 17.32112,
+      "ward": "Hayathnagar",
+      "scores": {
+        "flood": 67,
+        "heat": 68,
+        "veg": 75,
+        "lake": 77,
+        "urban": 58,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.6048,
+      "lat": 17.3318,
+      "ward": "Hayathnagar",
+      "scores": {
+        "flood": 67,
+        "heat": 68,
+        "veg": 75,
+        "lake": 72,
+        "urban": 61,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.60855,
+      "lat": 17.32886,
+      "ward": "Hayathnagar",
+      "scores": {
+        "flood": 70,
+        "heat": 65,
+        "veg": 81,
+        "lake": 71,
+        "urban": 64,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.60263,
+      "lat": 17.31823,
+      "ward": "Hayathnagar",
+      "scores": {
+        "flood": 62,
+        "heat": 70,
+        "veg": 75,
+        "lake": 64,
+        "urban": 63,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.53405,
+      "lat": 17.34418,
+      "ward": "Saroornagar",
+      "scores": {
+        "flood": 69,
+        "heat": 67,
+        "veg": 87,
+        "lake": 94,
+        "urban": 70,
+        "water": 71
+      }
+    },
+    {
+      "lng": 78.53404,
+      "lat": 17.35573,
+      "ward": "Saroornagar",
+      "scores": {
+        "flood": 72,
+        "heat": 70,
+        "veg": 87,
+        "lake": 89,
+        "urban": 64,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.53231,
+      "lat": 17.3447,
+      "ward": "Saroornagar",
+      "scores": {
+        "flood": 75,
+        "heat": 74,
+        "veg": 90,
+        "lake": 90,
+        "urban": 71,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.5319,
+      "lat": 17.35628,
+      "ward": "Saroornagar",
+      "scores": {
+        "flood": 75,
+        "heat": 71,
+        "veg": 97,
+        "lake": 90,
+        "urban": 75,
+        "water": 74
+      }
+    },
+    {
+      "lng": 78.54192,
+      "lat": 17.3528,
+      "ward": "Saroornagar",
+      "scores": {
+        "flood": 75,
+        "heat": 65,
+        "veg": 89,
+        "lake": 98,
+        "urban": 66,
+        "water": 69
+      }
+    },
+    {
+      "lng": 78.5294,
+      "lat": 17.35596,
+      "ward": "Saroornagar",
+      "scores": {
+        "flood": 75,
+        "heat": 72,
+        "veg": 91,
+        "lake": 98,
+        "urban": 77,
+        "water": 64
+      }
+    },
+    {
+      "lng": 78.53164,
+      "lat": 17.34981,
+      "ward": "Saroornagar",
+      "scores": {
+        "flood": 75,
+        "heat": 61,
+        "veg": 95,
+        "lake": 90,
+        "urban": 75,
+        "water": 63
+      }
+    },
+    {
+      "lng": 78.54204,
+      "lat": 17.34974,
+      "ward": "Saroornagar",
+      "scores": {
+        "flood": 72,
+        "heat": 65,
+        "veg": 87,
+        "lake": 91,
+        "urban": 73,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.53664,
+      "lat": 17.34866,
+      "ward": "Saroornagar",
+      "scores": {
+        "flood": 64,
+        "heat": 74,
+        "veg": 95,
+        "lake": 93,
+        "urban": 68,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.43,
+      "lat": 17.39584,
+      "ward": "Mehdipatnam",
+      "scores": {
+        "flood": 64,
+        "heat": 85,
+        "veg": 89,
+        "lake": 73,
+        "urban": 78,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.43376,
+      "lat": 17.40162,
+      "ward": "Mehdipatnam",
+      "scores": {
+        "flood": 66,
+        "heat": 74,
+        "veg": 90,
+        "lake": 74,
+        "urban": 79,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.42792,
+      "lat": 17.39657,
+      "ward": "Mehdipatnam",
+      "scores": {
+        "flood": 73,
+        "heat": 74,
+        "veg": 85,
+        "lake": 70,
+        "urban": 84,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.43403,
+      "lat": 17.39691,
+      "ward": "Mehdipatnam",
+      "scores": {
+        "flood": 68,
+        "heat": 79,
+        "veg": 83,
+        "lake": 71,
+        "urban": 86,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.4376,
+      "lat": 17.39552,
+      "ward": "Mehdipatnam",
+      "scores": {
+        "flood": 67,
+        "heat": 80,
+        "veg": 92,
+        "lake": 74,
+        "urban": 78,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.43785,
+      "lat": 17.38945,
+      "ward": "Mehdipatnam",
+      "scores": {
+        "flood": 62,
+        "heat": 79,
+        "veg": 82,
+        "lake": 72,
+        "urban": 82,
+        "water": 65
+      }
+    },
+    {
+      "lng": 78.44281,
+      "lat": 17.3943,
+      "ward": "Mehdipatnam",
+      "scores": {
+        "flood": 68,
+        "heat": 84,
+        "veg": 88,
+        "lake": 74,
+        "urban": 80,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.42915,
+      "lat": 17.39733,
+      "ward": "Mehdipatnam",
+      "scores": {
+        "flood": 61,
+        "heat": 81,
+        "veg": 87,
+        "lake": 68,
+        "urban": 86,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.4412,
+      "lat": 17.39794,
+      "ward": "Mehdipatnam",
+      "scores": {
+        "flood": 69,
+        "heat": 82,
+        "veg": 92,
+        "lake": 73,
+        "urban": 88,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.41203,
+      "lat": 17.38795,
+      "ward": "Tolichowki",
+      "scores": {
+        "flood": 58,
+        "heat": 71,
+        "veg": 95,
+        "lake": 66,
+        "urban": 71,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.40296,
+      "lat": 17.39068,
+      "ward": "Tolichowki",
+      "scores": {
+        "flood": 61,
+        "heat": 76,
+        "veg": 91,
+        "lake": 60,
+        "urban": 76,
+        "water": 55
+      }
+    },
+    {
+      "lng": 78.4026,
+      "lat": 17.39752,
+      "ward": "Tolichowki",
+      "scores": {
+        "flood": 50,
+        "heat": 71,
+        "veg": 90,
+        "lake": 63,
+        "urban": 68,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.41444,
+      "lat": 17.39065,
+      "ward": "Tolichowki",
+      "scores": {
+        "flood": 48,
+        "heat": 74,
+        "veg": 96,
+        "lake": 68,
+        "urban": 75,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.40407,
+      "lat": 17.39713,
+      "ward": "Tolichowki",
+      "scores": {
+        "flood": 55,
+        "heat": 69,
+        "veg": 98,
+        "lake": 69,
+        "urban": 79,
+        "water": 52
+      }
+    },
+    {
+      "lng": 78.41118,
+      "lat": 17.3931,
+      "ward": "Tolichowki",
+      "scores": {
+        "flood": 54,
+        "heat": 80,
+        "veg": 99,
+        "lake": 60,
+        "urban": 68,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.40939,
+      "lat": 17.39904,
+      "ward": "Tolichowki",
+      "scores": {
+        "flood": 61,
+        "heat": 78,
+        "veg": 98,
+        "lake": 62,
+        "urban": 79,
+        "water": 56
+      }
+    },
+    {
+      "lng": 78.40218,
+      "lat": 17.39694,
+      "ward": "Tolichowki",
+      "scores": {
+        "flood": 56,
+        "heat": 76,
+        "veg": 91,
+        "lake": 64,
+        "urban": 68,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.41076,
+      "lat": 17.38931,
+      "ward": "Tolichowki",
+      "scores": {
+        "flood": 52,
+        "heat": 81,
+        "veg": 99,
+        "lake": 58,
+        "urban": 67,
+        "water": 61
+      }
+    },
+    {
+      "lng": 78.43221,
+      "lat": 17.38053,
+      "ward": "Asifnagar",
+      "scores": {
+        "flood": 57,
+        "heat": 77,
+        "veg": 92,
+        "lake": 71,
+        "urban": 75,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.43295,
+      "lat": 17.38322,
+      "ward": "Asifnagar",
+      "scores": {
+        "flood": 69,
+        "heat": 66,
+        "veg": 96,
+        "lake": 67,
+        "urban": 86,
+        "water": 59
+      }
+    },
+    {
+      "lng": 78.43898,
+      "lat": 17.37328,
+      "ward": "Asifnagar",
+      "scores": {
+        "flood": 64,
+        "heat": 71,
+        "veg": 99,
+        "lake": 78,
+        "urban": 84,
+        "water": 62
+      }
+    },
+    {
+      "lng": 78.42976,
+      "lat": 17.37864,
+      "ward": "Asifnagar",
+      "scores": {
+        "flood": 57,
+        "heat": 71,
+        "veg": 94,
+        "lake": 66,
+        "urban": 80,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.4315,
+      "lat": 17.37374,
+      "ward": "Asifnagar",
+      "scores": {
+        "flood": 64,
+        "heat": 72,
+        "veg": 96,
+        "lake": 67,
+        "urban": 77,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.42859,
+      "lat": 17.37521,
+      "ward": "Asifnagar",
+      "scores": {
+        "flood": 61,
+        "heat": 75,
+        "veg": 90,
+        "lake": 70,
+        "urban": 86,
+        "water": 53
+      }
+    },
+    {
+      "lng": 78.43219,
+      "lat": 17.38422,
+      "ward": "Asifnagar",
+      "scores": {
+        "flood": 61,
+        "heat": 74,
+        "veg": 99,
+        "lake": 77,
+        "urban": 81,
+        "water": 50
+      }
+    },
+    {
+      "lng": 78.43227,
+      "lat": 17.37123,
+      "ward": "Asifnagar",
+      "scores": {
+        "flood": 63,
+        "heat": 67,
+        "veg": 90,
+        "lake": 77,
+        "urban": 80,
+        "water": 60
+      }
+    },
+    {
+      "lng": 78.43717,
+      "lat": 17.38368,
+      "ward": "Asifnagar",
+      "scores": {
+        "flood": 60,
+        "heat": 75,
+        "veg": 97,
+        "lake": 70,
+        "urban": 81,
+        "water": 57
+      }
+    },
+    {
+      "lng": 78.45904,
+      "lat": 17.39369,
+      "ward": "Nampally",
+      "scores": {
+        "flood": 71,
+        "heat": 82,
+        "veg": 99,
+        "lake": 82,
+        "urban": 82,
+        "water": 68
+      }
+    },
+    {
+      "lng": 78.47296,
+      "lat": 17.3957,
+      "ward": "Nampally",
+      "scores": {
+        "flood": 68,
+        "heat": 79,
+        "veg": 99,
+        "lake": 80,
+        "urban": 91,
+        "water": 75
+      }
+    },
+    {
+      "lng": 78.46119,
+      "lat": 17.39785,
+      "ward": "Nampally",
+      "scores": {
+        "flood": 62,
+        "heat": 78,
+        "veg": 90,
+        "lake": 80,
+        "urban": 80,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.46895,
+      "lat": 17.3967,
+      "ward": "Nampally",
+      "scores": {
+        "flood": 63,
+        "heat": 77,
+        "veg": 99,
+        "lake": 88,
+        "urban": 88,
+        "water": 70
+      }
+    },
+    {
+      "lng": 78.46784,
+      "lat": 17.38498,
+      "ward": "Nampally",
+      "scores": {
+        "flood": 75,
+        "heat": 82,
+        "veg": 89,
+        "lake": 79,
+        "urban": 92,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.46347,
+      "lat": 17.38867,
+      "ward": "Nampally",
+      "scores": {
+        "flood": 71,
+        "heat": 78,
+        "veg": 98,
+        "lake": 81,
+        "urban": 86,
+        "water": 71
+      }
+    },
+    {
+      "lng": 78.47175,
+      "lat": 17.39656,
+      "ward": "Nampally",
+      "scores": {
+        "flood": 76,
+        "heat": 74,
+        "veg": 99,
+        "lake": 74,
+        "urban": 89,
+        "water": 73
+      }
+    },
+    {
+      "lng": 78.4618,
+      "lat": 17.39391,
+      "ward": "Nampally",
+      "scores": {
+        "flood": 66,
+        "heat": 75,
+        "veg": 99,
+        "lake": 83,
+        "urban": 85,
+        "water": 67
+      }
+    },
+    {
+      "lng": 78.46482,
+      "lat": 17.3928,
+      "ward": "Nampally",
+      "scores": {
+        "flood": 74,
+        "heat": 73,
+        "veg": 99,
+        "lake": 75,
+        "urban": 90,
+        "water": 66
+      }
+    },
+    {
+      "lng": 78.46011,
+      "lat": 17.38858,
+      "ward": "Nampally",
+      "scores": {
+        "flood": 73,
+        "heat": 76,
+        "veg": 99,
+        "lake": 79,
+        "urban": 86,
+        "water": 63
+      }
+    }
+  ]
+}

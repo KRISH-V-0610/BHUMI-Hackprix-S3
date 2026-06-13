@@ -8,15 +8,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#f7f7f7",
+          "color": "#f7fbff",
           "label": "Low"
         },
         {
-          "color": "#74add1",
+          "color": "#c6dbef",
+          "label": "Mild"
+        },
+        {
+          "color": "#6baed6",
           "label": "Moderate"
         },
         {
-          "color": "#313695",
+          "color": "#2171b5",
+          "label": "High"
+        },
+        {
+          "color": "#08306b",
           "label": "Severe"
         }
       ]
@@ -29,15 +37,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#f7f7f7",
+          "color": "#f7fbff",
           "label": "Low"
         },
         {
-          "color": "#74add1",
+          "color": "#c6dbef",
+          "label": "Mild"
+        },
+        {
+          "color": "#6baed6",
           "label": "Moderate"
         },
         {
-          "color": "#313695",
+          "color": "#2171b5",
+          "label": "High"
+        },
+        {
+          "color": "#08306b",
           "label": "Severe"
         }
       ]
@@ -50,15 +66,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#2b83ba",
+          "color": "#313695",
           "label": "Low"
         },
         {
-          "color": "#ffffbf",
+          "color": "#74add1",
+          "label": "Mild"
+        },
+        {
+          "color": "#fee090",
           "label": "Moderate"
         },
         {
-          "color": "#d7191c",
+          "color": "#f46d43",
+          "label": "High"
+        },
+        {
+          "color": "#a50026",
           "label": "Severe"
         }
       ]
@@ -71,15 +95,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#2b83ba",
+          "color": "#313695",
           "label": "Low"
         },
         {
-          "color": "#ffffbf",
+          "color": "#74add1",
+          "label": "Mild"
+        },
+        {
+          "color": "#fee090",
           "label": "Moderate"
         },
         {
-          "color": "#d7191c",
+          "color": "#f46d43",
+          "label": "High"
+        },
+        {
+          "color": "#a50026",
           "label": "Severe"
         }
       ]
@@ -92,15 +124,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#d7191c",
+          "color": "#1a9850",
           "label": "Low"
         },
         {
-          "color": "#ffffbf",
+          "color": "#a6d96a",
+          "label": "Mild"
+        },
+        {
+          "color": "#fee08b",
           "label": "Moderate"
         },
         {
-          "color": "#1a9641",
+          "color": "#f46d43",
+          "label": "High"
+        },
+        {
+          "color": "#7f0000",
           "label": "Severe"
         }
       ]
@@ -113,15 +153,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#d7191c",
+          "color": "#1a9850",
           "label": "Low"
         },
         {
-          "color": "#ffffbf",
+          "color": "#a6d96a",
+          "label": "Mild"
+        },
+        {
+          "color": "#fee08b",
           "label": "Moderate"
         },
         {
-          "color": "#1a9641",
+          "color": "#f46d43",
+          "label": "High"
+        },
+        {
+          "color": "#7f0000",
           "label": "Severe"
         }
       ]
@@ -134,15 +182,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#d7191c",
+          "color": "#006837",
           "label": "Low"
         },
         {
-          "color": "#ffffbf",
+          "color": "#66bd63",
+          "label": "Mild"
+        },
+        {
+          "color": "#fee08b",
           "label": "Moderate"
         },
         {
-          "color": "#2c7bb6",
+          "color": "#f46d43",
+          "label": "High"
+        },
+        {
+          "color": "#a50026",
           "label": "Severe"
         }
       ]
@@ -155,15 +211,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#d7191c",
+          "color": "#006837",
           "label": "Low"
         },
         {
-          "color": "#ffffbf",
+          "color": "#66bd63",
+          "label": "Mild"
+        },
+        {
+          "color": "#fee08b",
           "label": "Moderate"
         },
         {
-          "color": "#2c7bb6",
+          "color": "#f46d43",
+          "label": "High"
+        },
+        {
+          "color": "#a50026",
           "label": "Severe"
         }
       ]
@@ -176,15 +240,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#1a9641",
+          "color": "#f7f4f9",
           "label": "Low"
         },
         {
-          "color": "#ffffbf",
+          "color": "#d4b9da",
+          "label": "Mild"
+        },
+        {
+          "color": "#c994c7",
           "label": "Moderate"
         },
         {
-          "color": "#7b3294",
+          "color": "#df65b0",
+          "label": "High"
+        },
+        {
+          "color": "#980043",
           "label": "Severe"
         }
       ]
@@ -197,15 +269,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#1a9641",
+          "color": "#f7f4f9",
           "label": "Low"
         },
         {
-          "color": "#ffffbf",
+          "color": "#d4b9da",
+          "label": "Mild"
+        },
+        {
+          "color": "#c994c7",
           "label": "Moderate"
         },
         {
-          "color": "#7b3294",
+          "color": "#df65b0",
+          "label": "High"
+        },
+        {
+          "color": "#980043",
           "label": "Severe"
         }
       ]
@@ -218,15 +298,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#f7f7f7",
+          "color": "#f7fcf0",
           "label": "Low"
         },
         {
-          "color": "#74add1",
+          "color": "#bae4bc",
+          "label": "Mild"
+        },
+        {
+          "color": "#7bccc4",
           "label": "Moderate"
         },
         {
-          "color": "#313695",
+          "color": "#2b8cbe",
+          "label": "High"
+        },
+        {
+          "color": "#084081",
           "label": "Severe"
         }
       ]
@@ -239,15 +327,23 @@
       "opacity": 0.75,
       "legend": [
         {
-          "color": "#f7f7f7",
+          "color": "#f7fcf0",
           "label": "Low"
         },
         {
-          "color": "#74add1",
+          "color": "#bae4bc",
+          "label": "Mild"
+        },
+        {
+          "color": "#7bccc4",
           "label": "Moderate"
         },
         {
-          "color": "#313695",
+          "color": "#2b8cbe",
+          "label": "High"
+        },
+        {
+          "color": "#084081",
           "label": "Severe"
         }
       ]

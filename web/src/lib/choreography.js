@@ -1,19 +1,26 @@
 // The immersive "query -> choreography" sequence (contracts.md). When POST /ask resolves,
-// we stagger view changes so the dashboard visibly *reacts* to the question (~2.5s total).
+// we stagger view changes so the dashboard visibly *reacts* to the question (~2.5s total),
+// while streaming the answer/reasoning/charts into one assistant message in the chat thread.
 import { useDashboard } from '../store/useDashboard.js'
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
 // Run the staggered reaction.
-//   res     : the /ask action object
-//   flyTo   : (focus) => void   — camera glide (provided by ClimateMap)
-//   speak   : (text, lang) => void — play /tts (provided by AskBhumi via useTts)
-export async function runChoreography(res, { flyTo, speak } = {}) {
+//   res       : the /ask action object
+//   flyTo     : (focus) => void           — camera glide (provided by ClimateMap)
+//   messageId : id of the assistant message to stream the answer into (chat thread)
+// Note: TTS is NOT auto-played — the user triggers it per-message via the speaker button.
+export async function runChoreography(res, { flyTo, messageId } = {}) {
   const store = useDashboard.getState()
-  if (!res) return
+  const upd = (patch) => {
+    if (messageId != null) store.updateMessage(messageId, patch)
+  }
 
-  // Reset the conversation surface for the new answer.
-  store.setData({ asking: true, answerText: '', reasoning: [], actions: [], charts: [] })
+  if (!res) {
+    upd({ status: 'done', text: 'Sorry, I could not reach the climate engine just now.' })
+    store.setData({ asking: false })
+    return
+  }
 
   // 1-3. set_view -> set_layer -> year (the map morphs: pitch, color ramp, elevations).
   store.applyAskView({
@@ -33,25 +40,27 @@ export async function runChoreography(res, { flyTo, speak } = {}) {
   }
   await sleep(300)
 
-  // 6. slide in charts (bar + radar panels).
+  // 6. slide in charts (attached to this answer bubble).
   if (res.charts?.length) {
+    upd({ charts: res.charts })
     store.setData({ charts: res.charts })
   }
   await sleep(300)
 
-  // 7. answer text + speak it. (AskBhumi types `answerText` on; we just set it + trigger tts.)
-  store.setData({ answerText: res.answer_text ?? '' })
-  if (res.answer_text && speak) speak(res.answer_text, res.lang || store.lang)
+  // 7. answer text — the bubble types it on, then renders it as markdown.
+  // The answer's language is stored so the speaker button can read it back correctly.
+  upd({ text: res.answer_text ?? '', status: 'done', lang: res.lang || store.lang })
 
-  // 8. stream the reasoning trace one line at a time.
+  // 8. stream the reasoning trace one line at a time into the bubble.
   const trace = res.reasoning ?? []
   for (let i = 0; i < trace.length; i++) {
-    store.setData({ reasoning: trace.slice(0, i + 1) })
+    upd({ reasoning: trace.slice(0, i + 1) })
     await sleep(220)
   }
 
-  // 9. actions checklist animates in.
+  // 9. actions — keep on the bubble AND mirror to the Recommendations panel.
   if (res.actions?.length) {
+    upd({ actions: res.actions })
     store.setData({ actions: res.actions })
   }
 

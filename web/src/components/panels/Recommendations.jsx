@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { CheckCircle2 } from 'lucide-react'
 import { useDashboard } from '../../store/useDashboard.js'
 import ReportButton from './ReportButton.jsx'
 
@@ -24,7 +25,7 @@ export default function Recommendations() {
             transition={{ delay: i * 0.1 }}
             className="flex items-start gap-2 text-sm text-ink"
           >
-            <span className="mt-0.5 text-neon">✓</span>
+            <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-neon" />
             <span>{a}</span>
           </motion.li>
         ))}
