@@ -1,0 +1,256 @@
+{
+  "layers": [
+    {
+      "id": "flood",
+      "year": 2016,
+      "label": "Flood Risk",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#f7f7f7",
+          "label": "Low"
+        },
+        {
+          "color": "#74add1",
+          "label": "Moderate"
+        },
+        {
+          "color": "#313695",
+          "label": "Severe"
+        }
+      ]
+    },
+    {
+      "id": "flood",
+      "year": 2026,
+      "label": "Flood Risk",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#f7f7f7",
+          "label": "Low"
+        },
+        {
+          "color": "#74add1",
+          "label": "Moderate"
+        },
+        {
+          "color": "#313695",
+          "label": "Severe"
+        }
+      ]
+    },
+    {
+      "id": "heat",
+      "year": 2016,
+      "label": "Heat Stress",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#2b83ba",
+          "label": "Low"
+        },
+        {
+          "color": "#ffffbf",
+          "label": "Moderate"
+        },
+        {
+          "color": "#d7191c",
+          "label": "Severe"
+        }
+      ]
+    },
+    {
+      "id": "heat",
+      "year": 2026,
+      "label": "Heat Stress",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#2b83ba",
+          "label": "Low"
+        },
+        {
+          "color": "#ffffbf",
+          "label": "Moderate"
+        },
+        {
+          "color": "#d7191c",
+          "label": "Severe"
+        }
+      ]
+    },
+    {
+      "id": "veg",
+      "year": 2016,
+      "label": "Vegetation",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#d7191c",
+          "label": "Low"
+        },
+        {
+          "color": "#ffffbf",
+          "label": "Moderate"
+        },
+        {
+          "color": "#1a9641",
+          "label": "Severe"
+        }
+      ]
+    },
+    {
+      "id": "veg",
+      "year": 2026,
+      "label": "Vegetation",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#d7191c",
+          "label": "Low"
+        },
+        {
+          "color": "#ffffbf",
+          "label": "Moderate"
+        },
+        {
+          "color": "#1a9641",
+          "label": "Severe"
+        }
+      ]
+    },
+    {
+      "id": "lake",
+      "year": 2016,
+      "label": "Lake Health",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#d7191c",
+          "label": "Low"
+        },
+        {
+          "color": "#ffffbf",
+          "label": "Moderate"
+        },
+        {
+          "color": "#2c7bb6",
+          "label": "Severe"
+        }
+      ]
+    },
+    {
+      "id": "lake",
+      "year": 2026,
+      "label": "Lake Health",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#d7191c",
+          "label": "Low"
+        },
+        {
+          "color": "#ffffbf",
+          "label": "Moderate"
+        },
+        {
+          "color": "#2c7bb6",
+          "label": "Severe"
+        }
+      ]
+    },
+    {
+      "id": "urban",
+      "year": 2016,
+      "label": "Urban Growth",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#1a9641",
+          "label": "Low"
+        },
+        {
+          "color": "#ffffbf",
+          "label": "Moderate"
+        },
+        {
+          "color": "#7b3294",
+          "label": "Severe"
+        }
+      ]
+    },
+    {
+      "id": "urban",
+      "year": 2026,
+      "label": "Urban Growth",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#1a9641",
+          "label": "Low"
+        },
+        {
+          "color": "#ffffbf",
+          "label": "Moderate"
+        },
+        {
+          "color": "#7b3294",
+          "label": "Severe"
+        }
+      ]
+    },
+    {
+      "id": "water",
+      "year": 2016,
+      "label": "Waterlogging",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#f7f7f7",
+          "label": "Low"
+        },
+        {
+          "color": "#74add1",
+          "label": "Moderate"
+        },
+        {
+          "color": "#313695",
+          "label": "Severe"
+        }
+      ]
+    },
+    {
+      "id": "water",
+      "year": 2026,
+      "label": "Waterlogging",
+      "tileUrl": null,
+      "opacity": 0.75,
+      "legend": [
+        {
+          "color": "#f7f7f7",
+          "label": "Low"
+        },
+        {
+          "color": "#74add1",
+          "label": "Moderate"
+        },
+        {
+          "color": "#313695",
+          "label": "Severe"
+        }
+      ]
+    }
+  ]
+}
