@@ -1,0 +1,901 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.3826,
+              17.4669
+            ],
+            [
+              78.4186,
+              17.4669
+            ],
+            [
+              78.4186,
+              17.5029
+            ],
+            [
+              78.3826,
+              17.5029
+            ],
+            [
+              78.3826,
+              17.4669
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Kukatpally",
+        "ward_no": 100,
+        "centroid": [
+          78.4006,
+          17.4849
+        ],
+        "scores": {
+          "2016": {
+            "heat": 83,
+            "flood": 53,
+            "veg": 66,
+            "urban": 82,
+            "water": 49,
+            "lake": 63
+          },
+          "2026": {
+            "heat": 89,
+            "flood": 58,
+            "veg": 74,
+            "urban": 89,
+            "water": 55,
+            "lake": 68
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.4567,
+              17.3436
+            ],
+            [
+              78.4927,
+              17.3436
+            ],
+            [
+              78.4927,
+              17.3796
+            ],
+            [
+              78.4567,
+              17.3796
+            ],
+            [
+              78.4567,
+              17.3436
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Charminar",
+        "ward_no": 101,
+        "centroid": [
+          78.4747,
+          17.3616
+        ],
+        "scores": {
+          "2016": {
+            "heat": 92,
+            "flood": 64,
+            "veg": 62,
+            "urban": 91,
+            "water": 59,
+            "lake": 77
+          },
+          "2026": {
+            "heat": 98,
+            "flood": 69,
+            "veg": 70,
+            "urban": 98,
+            "water": 65,
+            "lake": 82
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.4803,
+              17.4219
+            ],
+            [
+              78.5163,
+              17.4219
+            ],
+            [
+              78.5163,
+              17.457900000000002
+            ],
+            [
+              78.4803,
+              17.457900000000002
+            ],
+            [
+              78.4803,
+              17.4219
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Secunderabad",
+        "ward_no": 102,
+        "centroid": [
+          78.4983,
+          17.4399
+        ],
+        "scores": {
+          "2016": {
+            "heat": 87,
+            "flood": 59,
+            "veg": 63,
+            "urban": 85,
+            "water": 55,
+            "lake": 70
+          },
+          "2026": {
+            "heat": 93,
+            "flood": 64,
+            "veg": 71,
+            "urban": 92,
+            "water": 61,
+            "lake": 75
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.4456,
+              17.4259
+            ],
+            [
+              78.4816,
+              17.4259
+            ],
+            [
+              78.4816,
+              17.4619
+            ],
+            [
+              78.4456,
+              17.4619
+            ],
+            [
+              78.4456,
+              17.4259
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Begumpet",
+        "ward_no": 103,
+        "centroid": [
+          78.4636,
+          17.4439
+        ],
+        "scores": {
+          "2016": {
+            "heat": 84,
+            "flood": 60,
+            "veg": 60,
+            "urban": 81,
+            "water": 56,
+            "lake": 67
+          },
+          "2026": {
+            "heat": 90,
+            "flood": 65,
+            "veg": 68,
+            "urban": 88,
+            "water": 62,
+            "lake": 72
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.3309,
+              17.4221
+            ],
+            [
+              78.3669,
+              17.4221
+            ],
+            [
+              78.3669,
+              17.4581
+            ],
+            [
+              78.3309,
+              17.4581
+            ],
+            [
+              78.3309,
+              17.4221
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Gachibowli",
+        "ward_no": 104,
+        "centroid": [
+          78.3489,
+          17.4401
+        ],
+        "scores": {
+          "2016": {
+            "heat": 77,
+            "flood": 72,
+            "veg": 45,
+            "urban": 72,
+            "water": 68,
+            "lake": 67
+          },
+          "2026": {
+            "heat": 83,
+            "flood": 77,
+            "veg": 53,
+            "urban": 79,
+            "water": 74,
+            "lake": 72
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.37349999999999,
+              17.4303
+            ],
+            [
+              78.4095,
+              17.4303
+            ],
+            [
+              78.4095,
+              17.4663
+            ],
+            [
+              78.37349999999999,
+              17.4663
+            ],
+            [
+              78.37349999999999,
+              17.4303
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Madhapur",
+        "ward_no": 105,
+        "centroid": [
+          78.3915,
+          17.4483
+        ],
+        "scores": {
+          "2016": {
+            "heat": 76,
+            "flood": 55,
+            "veg": 61,
+            "urban": 74,
+            "water": 51,
+            "lake": 58
+          },
+          "2026": {
+            "heat": 82,
+            "flood": 60,
+            "veg": 69,
+            "urban": 81,
+            "water": 57,
+            "lake": 63
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.5346,
+              17.3283
+            ],
+            [
+              78.5706,
+              17.3283
+            ],
+            [
+              78.5706,
+              17.3643
+            ],
+            [
+              78.5346,
+              17.3643
+            ],
+            [
+              78.5346,
+              17.3283
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "LB Nagar",
+        "ward_no": 106,
+        "centroid": [
+          78.5526,
+          17.3463
+        ],
+        "scores": {
+          "2016": {
+            "heat": 78,
+            "flood": 50,
+            "veg": 66,
+            "urban": 77,
+            "water": 46,
+            "lake": 58
+          },
+          "2026": {
+            "heat": 84,
+            "flood": 56,
+            "veg": 74,
+            "urban": 84,
+            "water": 52,
+            "lake": 63
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.5411,
+              17.3878
+            ],
+            [
+              78.5771,
+              17.3878
+            ],
+            [
+              78.5771,
+              17.4238
+            ],
+            [
+              78.5411,
+              17.4238
+            ],
+            [
+              78.5411,
+              17.3878
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Uppal",
+        "ward_no": 107,
+        "centroid": [
+          78.5591,
+          17.4058
+        ],
+        "scores": {
+          "2016": {
+            "heat": 78,
+            "flood": 56,
+            "veg": 60,
+            "urban": 76,
+            "water": 52,
+            "lake": 60
+          },
+          "2026": {
+            "heat": 84,
+            "flood": 62,
+            "veg": 68,
+            "urban": 83,
+            "water": 58,
+            "lake": 65
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.282,
+              17.462
+            ],
+            [
+              78.318,
+              17.462
+            ],
+            [
+              78.318,
+              17.498
+            ],
+            [
+              78.282,
+              17.498
+            ],
+            [
+              78.282,
+              17.462
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Serilingampally",
+        "ward_no": 108,
+        "centroid": [
+          78.3,
+          17.48
+        ],
+        "scores": {
+          "2016": {
+            "heat": 68,
+            "flood": 58,
+            "veg": 54,
+            "urban": 64,
+            "water": 54,
+            "lake": 52
+          },
+          "2026": {
+            "heat": 74,
+            "flood": 62,
+            "veg": 62,
+            "urban": 72,
+            "water": 60,
+            "lake": 57
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.443,
+              17.397
+            ],
+            [
+              78.479,
+              17.397
+            ],
+            [
+              78.479,
+              17.433
+            ],
+            [
+              78.443,
+              17.433
+            ],
+            [
+              78.443,
+              17.397
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Khairatabad",
+        "ward_no": 109,
+        "centroid": [
+          78.461,
+          17.415
+        ],
+        "scores": {
+          "2016": {
+            "heat": 86,
+            "flood": 63,
+            "veg": 59,
+            "urban": 83,
+            "water": 59,
+            "lake": 70
+          },
+          "2026": {
+            "heat": 92,
+            "flood": 68,
+            "veg": 67,
+            "urban": 90,
+            "water": 65,
+            "lake": 75
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.391,
+              17.413
+            ],
+            [
+              78.427,
+              17.413
+            ],
+            [
+              78.427,
+              17.449
+            ],
+            [
+              78.391,
+              17.449
+            ],
+            [
+              78.391,
+              17.413
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Jubilee Hills",
+        "ward_no": 110,
+        "centroid": [
+          78.409,
+          17.431
+        ],
+        "scores": {
+          "2016": {
+            "heat": 68,
+            "flood": 62,
+            "veg": 49,
+            "urban": 63,
+            "water": 59,
+            "lake": 54
+          },
+          "2026": {
+            "heat": 74,
+            "flood": 67,
+            "veg": 57,
+            "urban": 70,
+            "water": 65,
+            "lake": 59
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.418,
+              17.396
+            ],
+            [
+              78.45400000000001,
+              17.396
+            ],
+            [
+              78.45400000000001,
+              17.432000000000002
+            ],
+            [
+              78.418,
+              17.432000000000002
+            ],
+            [
+              78.418,
+              17.396
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Banjara Hills",
+        "ward_no": 111,
+        "centroid": [
+          78.436,
+          17.414
+        ],
+        "scores": {
+          "2016": {
+            "heat": 69,
+            "flood": 61,
+            "veg": 50,
+            "urban": 65,
+            "water": 58,
+            "lake": 55
+          },
+          "2026": {
+            "heat": 75,
+            "flood": 66,
+            "veg": 58,
+            "urban": 72,
+            "water": 64,
+            "lake": 60
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.512,
+              17.43
+            ],
+            [
+              78.548,
+              17.43
+            ],
+            [
+              78.548,
+              17.466
+            ],
+            [
+              78.512,
+              17.466
+            ],
+            [
+              78.512,
+              17.43
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Malkajgiri",
+        "ward_no": 112,
+        "centroid": [
+          78.53,
+          17.448
+        ],
+        "scores": {
+          "2016": {
+            "heat": 88,
+            "flood": 67,
+            "veg": 56,
+            "urban": 85,
+            "water": 63,
+            "lake": 75
+          },
+          "2026": {
+            "heat": 94,
+            "flood": 72,
+            "veg": 64,
+            "urban": 92,
+            "water": 69,
+            "lake": 80
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.583,
+              17.309
+            ],
+            [
+              78.619,
+              17.309
+            ],
+            [
+              78.619,
+              17.345000000000002
+            ],
+            [
+              78.583,
+              17.345000000000002
+            ],
+            [
+              78.583,
+              17.309
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Hayathnagar",
+        "ward_no": 113,
+        "centroid": [
+          78.601,
+          17.327
+        ],
+        "scores": {
+          "2016": {
+            "heat": 75,
+            "flood": 62,
+            "veg": 54,
+            "urban": 71,
+            "water": 58,
+            "lake": 60
+          },
+          "2026": {
+            "heat": 81,
+            "flood": 67,
+            "veg": 62,
+            "urban": 78,
+            "water": 64,
+            "lake": 65
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.482,
+              17.402
+            ],
+            [
+              78.518,
+              17.402
+            ],
+            [
+              78.518,
+              17.438000000000002
+            ],
+            [
+              78.482,
+              17.438000000000002
+            ],
+            [
+              78.482,
+              17.402
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Musheerabad",
+        "ward_no": 114,
+        "centroid": [
+          78.5,
+          17.42
+        ],
+        "scores": {
+          "2016": {
+            "heat": 90,
+            "flood": 66,
+            "veg": 60,
+            "urban": 88,
+            "water": 61,
+            "lake": 76
+          },
+          "2026": {
+            "heat": 96,
+            "flood": 70,
+            "veg": 68,
+            "urban": 96,
+            "water": 67,
+            "lake": 81
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.506,
+              17.374
+            ],
+            [
+              78.542,
+              17.374
+            ],
+            [
+              78.542,
+              17.41
+            ],
+            [
+              78.506,
+              17.41
+            ],
+            [
+              78.506,
+              17.374
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Amberpet",
+        "ward_no": 115,
+        "centroid": [
+          78.524,
+          17.392
+        ],
+        "scores": {
+          "2016": {
+            "heat": 81,
+            "flood": 48,
+            "veg": 70,
+            "urban": 81,
+            "water": 44,
+            "lake": 59
+          },
+          "2026": {
+            "heat": 87,
+            "flood": 54,
+            "veg": 78,
+            "urban": 88,
+            "water": 50,
+            "lake": 64
+          }
+        }
+      }
+    }
+  ]
+}
