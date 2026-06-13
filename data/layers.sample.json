@@ -4,7 +4,7 @@
       "id": "flood",
       "year": 2016,
       "label": "Flood Risk",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/a0d71ee6ddf95eec374fd8957fd960f1-0d522b413787ff6d901ce896b44e70b5/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {
@@ -33,7 +33,7 @@
       "id": "flood",
       "year": 2026,
       "label": "Flood Risk",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/fc95310c358a93fda083f8fb579b9148-e739e7f51114fc0c26cbe49c61a69854/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {
@@ -62,7 +62,7 @@
       "id": "heat",
       "year": 2016,
       "label": "Heat Stress",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/e3400257b7011c31d51f1f2cbe124908-bc9364b1c9d2718c62eda5869a011af9/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {
@@ -91,7 +91,7 @@
       "id": "heat",
       "year": 2026,
       "label": "Heat Stress",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/84a76ae7264ae89781ed7b32216a8195-9eba06bb79fa2cef6309bcf12dd26f25/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {
@@ -120,7 +120,7 @@
       "id": "veg",
       "year": 2016,
       "label": "Vegetation",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/df1d2723976deffd844ec4f188219afc-a3d02282fb19871aa7ea59d56dc56b93/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {
@@ -149,7 +149,7 @@
       "id": "veg",
       "year": 2026,
       "label": "Vegetation",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/e3b54aa2788f6cf782d6f0fb153fa1b7-4590a96546165b8df7e52cd5dd28db47/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {
@@ -178,7 +178,7 @@
       "id": "lake",
       "year": 2016,
       "label": "Lake Health",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/e228a7998baa8557b6dcc82b3bfabc83-73f13242a224d025acaa6f6adba8783b/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {
@@ -207,7 +207,7 @@
       "id": "lake",
       "year": 2026,
       "label": "Lake Health",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/e4d0c46baafe3001c0c8d95e6b6b785f-f012fb315bb236c5196521a0d0270a7d/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {
@@ -236,7 +236,7 @@
       "id": "urban",
       "year": 2016,
       "label": "Urban Growth",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/ce249821902cf2ccdc835714c2a2586b-5abaa112ab0513a6cdbc85e4a07757d7/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {
@@ -265,7 +265,7 @@
       "id": "urban",
       "year": 2026,
       "label": "Urban Growth",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/99214b30da6800770abe0caac8708ff5-64f665ae833566570e5508252f0924e4/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {
@@ -294,7 +294,7 @@
       "id": "water",
       "year": 2016,
       "label": "Waterlogging",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/d20250dc985b015349f51fdac757a6fd-ccbca903b2321068f05540e54195a903/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {
@@ -323,7 +323,7 @@
       "id": "water",
       "year": 2026,
       "label": "Waterlogging",
-      "tileUrl": null,
+      "tileUrl": "https://earthengine.googleapis.com/v1/projects/bhumi-ee/maps/beecbecadd2aace033974a13a50184db-ebfd7eea9d2c2241d73362a00eb9a35d/tiles/{z}/{x}/{y}",
       "opacity": 0.75,
       "legend": [
         {

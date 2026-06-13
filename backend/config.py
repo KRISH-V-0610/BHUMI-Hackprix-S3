@@ -63,12 +63,19 @@ EE_PROJECT = _first("EE_PROJECT", default="nrsc-476605")
 MONGODB_URI = _first("MONGODB_URI", default="mongodb://localhost:27017")
 MONGODB_DB = _first("MONGODB_DB", default="bhumi")
 
-# ── Languages (Sarvam BCP-47 codes we officially support in the UI) ──
+# ── Languages (Sarvam BCP-47 codes) — all major Indian languages Sarvam supports (STT/chat/TTS) ──
 SUPPORTED_LANGUAGES = {
     "en-IN": "English",
     "hi-IN": "हिन्दी (Hindi)",
+    "bn-IN": "বাংলা (Bengali)",
+    "ta-IN": "தமிழ் (Tamil)",
     "te-IN": "తెలుగు (Telugu)",
+    "mr-IN": "मराठी (Marathi)",
     "gu-IN": "ગુજરાતી (Gujarati)",
+    "kn-IN": "ಕನ್ನಡ (Kannada)",
+    "ml-IN": "മലയാളം (Malayalam)",
+    "pa-IN": "ਪੰਜਾਬੀ (Punjabi)",
+    "od-IN": "ଓଡ଼ିଆ (Odia)",
 }
 DEFAULT_LANGUAGE = "en-IN"
 
@@ -99,6 +106,15 @@ SCORE_YEARS = YEARS + FORECAST_YEARS  # all years present in ward scores / score
 
 
 def ee_key_path() -> Path:
-    """Absolute path to the GEE service-account JSON key."""
+    """Absolute path to the GEE service-account JSON key.
+
+    Looks in the project root first, then backend/ (the key commonly lives next to the code).
+    """
     p = Path(EE_PRIVATE_KEY_FILE)
-    return p if p.is_absolute() else (ROOT / p)
+    if p.is_absolute():
+        return p
+    for base in (ROOT, ROOT / "backend"):
+        candidate = base / p
+        if candidate.exists():
+            return candidate
+    return ROOT / p

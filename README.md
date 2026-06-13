@@ -1,132 +1,162 @@
-# Bhumi — Agentic Climate Digital Twin (AI backend)
+# 🌍 Bhumi — Agentic Climate Digital Twin for Hyderabad
 
-A voice-first, multilingual agent that turns satellite climate data into ward-level action
-for Hyderabad. Built on **Sarvam AI** (speech + reasoning + translation + voice), **Google
-Earth Engine** (satellite layers), **MongoDB** (data store), and **MCP** (tools exposed to
-any agent). This repo is the **AI / backend half**; the dashboard half lives in `frontend/`
-and talks to this API via the frozen [`contracts.md`](contracts.md).
+> **The decision-support twin for a city's Climate Action Cell.** Bhumi turns years of satellite
+> climate data into a **budget-aware, ward-ranked intervention plan** — queryable in plain
+> Telugu / Hindi / Gujarati / English, by voice or text.
 
-```
-Voice (any Indic lang) ─▶ Sarvam STT ─▶ sarvam-30b agent ──tools──▶ climate data (Mongo/GEE)
-                                              │                        │
-                          Sarvam TTS ◀── answer + map actions ◀────────┘
-```
+Bhumi answers the question a climate officer actually has: **"I have a limited budget and 50 wards —
+where do I act to cut the most risk per rupee?"** It tells you, shows you on a live map, costs it,
+and proves it — following one arc:
 
-## Quick start
+> ### See → Ask → Plan → Justify
 
-```bash
-# 1. Python deps
-python -m pip install -r backend/requirements.txt
-
-# 2. Secrets — copy the example and fill in (NEVER commit .env)
-cp .env.example .env        # then edit values
-
-# 3. Build the climate data (uses GEE if available, else realistic synthetic fallback)
-python data_prep/build_layers.py
-
-# 4. Run the API  (either works)
-cd backend && python main.py            # simplest — reads APP_HOST/APP_PORT from .env
-#   or:  uvicorn main:app --reload --port 8000
-#   open http://localhost:8000/docs for the live Swagger UI
-```
-
-Health check: `GET http://localhost:8000/health` → shows `data_source` (`mongo`/`json`) and model.
-
-## What works (verified end-to-end)
-
-| Endpoint | Powered by | Status |
-|----------|-----------|--------|
-| `GET /layers /wards /scorecards /timeseries` | Mongo → JSON fallback | ✅ |
-| `POST /voice` | Sarvam STT (`saarika:v2.5`) | ✅ Telugu/Hindi/Gujarati/English |
-| `POST /ask` | sarvam-30b agent + tools | ✅ returns the full contract action object |
-| `POST /tts` | Sarvam TTS (`bulbul:v2`) | ✅ |
-| `POST /report` | reportlab | ✅ PDF action plan |
-| MCP server | FastMCP | ✅ `python backend/mcp_server.py` |
-
-Languages: English `en-IN`, Hindi `hi-IN`, Telugu `te-IN`, Gujarati `gu-IN`.
-
-## MCP server (the "MCP" pillar)
-
-The same climate tools the agent uses are exposed over the Model Context Protocol, so any MCP
-client (Claude Desktop, IDE agents) can drive Bhumi:
-
-```bash
-python backend/mcp_server.py        # stdio MCP server "bhumi-climate-twin"
-```
-
-Claude Desktop config:
-```json
-{ "mcpServers": { "bhumi": { "command": "python", "args": ["D:/Hackathon/ADT/backend/mcp_server.py"] } } }
-```
-
-## Data realism & forecast
-
-The synthetic Hyderabad data is **calibrated to documented reality**, so the hotspots the agent
-names match real life (good for the pitch — say "these are the actual flood wards"):
-- **Flood/waterlog** worst wards (Malakpet, Saidabad/Moosarambagh, Charminar, Nampally, Nagole,
-  Gachibowli/HITEC) ← 2020 Musi & 2025 monsoon flood reports.
-- **Urban heat** hotspots (Gachibowli, Hayathnagar, Nagole, old city) and cool green wards
-  (Jubilee/Banjara Hills near KBR, lake edges) ← GHMC/IIT urban-heat-island studies (LST +0.75 °C/decade).
-- **Lake health** worst near Hussain Sagar, Durgam Cheruvu, Saroornagar ← lake-degradation reports
-  (~90% of city lakes lost/polluted).
-- **Rainfall** real normals (~801 mm/yr, Jul–Sep wettest) with an intensifying-monsoon 2026 trend.
-
-**Forecast:** ward scores include **2027–2028 projections** (damped extrapolation of each ward's
-2016→2026 trend, with mild acceleration per LST studies). The agent's `risk_trend` tool and the
-Time-Machine slider expose them; forecast years are flagged so the UI can mark them "projected".
-
-Sources: 2020/2025 Hyderabad flood coverage (The Federal, ETV Bharat, NewsOnAir); urban-heat-island
-analyses (Siasat/GHMC, IJRIAS, ScienceDirect); lake-degradation reports (The News Minute, The Federal,
-SANDRP); rainfall normals (weather-atlas / climate-data).
-
-## Resilience (demo insurance)
-
-Two independent fallbacks keep the demo alive even on flaky conference wifi:
-- **Mongo unreachable** → API serves identical data from `data/*.json`.
-- **GEE unavailable** → `data_prep` synthesises realistic Hyderabad layers; ward choropleth /
-  2.5D extrusion (the hero visual) needs no live tiles.
+| | |
+|---|---|
+| **See** | A living map of ward-level climate risk (heat, flood, vegetation, lake, urban, waterlogging) over **2016 → 2026**, with a real NASA satellite time-lapse. |
+| **Ask** | Ask in plain language (voice or text). The agent reasons over the twin and **projects the answer onto the map** — flies the camera, highlights wards with value badges. |
+| **Plan** | Set a ₹ budget + intervention → Bhumi ranks wards by **impact-per-rupee**, paints the plan, and estimates *"~14k residents moved out of severe heat."* |
+| **Justify** | One click exports a **costed action-plan PDF** for council approval. |
 
 ---
 
-## How to get the keys
+## ✨ Key features
 
-### 1. Sarvam AI key (✅ already working)
-1. Sign up at **https://dashboard.sarvam.ai**.
-2. **API Keys** → **Create** → copy the `sk_...` string.
-3. Put it in `.env` as `SARVAM_API_KEY=...`. You get ₹100 free credits (LLM is free per token).
+- **Mode-driven workspace** — `Explore` (state today) · `Change` (what changed since 2016, diverging map) · `Plan` (the Action Planner). One question's worth of UI at a time — never cluttered.
+- **Action Planner** — budget slider + intervention → ranked, costed, mapped plan with aggregate impact (avg risk drop, people moved out of "severe"). Backend `POST /plan` + the agent both use the same logic.
+- **Ward digital twin** — click or **search any ward** → an instant briefing in the chat + a drill-down card with a 6-dimension radar, trend, drivers, and an **interactive what-if** (pick *trees / cool roofs / drains / lakes* → the radar morphs to the projected state).
+- **Agentic chat (Sarvam AI)** — multilingual voice + text; answers are grounded in real tools and **drive the map live**. Contextual sample prompts refresh on every click.
+- **Real NASA satellite time-lapse** — cached MODIS True-Color / NDVI / Land-Surface-Temperature frames play across the years (the "gif"), fully offline-safe.
+- **Real data where it counts** — **vegetation is satellite-measured (Sentinel-2 NDVI via Google Earth Engine)**; other indices use a physically-grounded model calibrated to documented Hyderabad reality. Real **OSM water bodies** (Hussain Sagar, Musi river…) bordered on the map. Everything honestly labelled *measured* vs *modeled*.
+- **Story / Present mode** — a guided, cinematic walkthrough of the See → Ask → Plan → Justify arc for the pitch.
 
-### 2. Google Earth Engine service account (⚠️ needs a permission fix)
-Both keys in this repo fail today:
-- `nrsc-476605` → *"Caller does not have permission… grant `roles/serviceusage.serviceUsageConsumer`"*
-- `autogeo-448807` → *"project is not registered to use Earth Engine"*
+---
 
-To get **real satellite tiles** (otherwise the synthetic fallback is used):
-1. Go to **https://console.cloud.google.com** and pick the project you want to use.
-2. **Register the project for Earth Engine**: visit
-   `https://code.earthengine.google.com` (sign in) and/or
-   `https://console.cloud.google.com/earth-engine` → **Register a non-commercial / commercial** project.
-3. **Enable the API**: APIs & Services → enable **"Google Earth Engine API"**.
-4. **Create / fix the service account**: IAM & Admin → Service Accounts → create one (or use existing).
-   Grant it the roles: **`Earth Engine Resource Viewer`** and **`Service Usage Consumer`**.
-5. **Create a JSON key** for that service account → download it.
-6. Point `.env` at it:
-   ```
-   EE_SERVICE_ACCOUNT=<sa-name>@<project>.iam.gserviceaccount.com
-   EE_PRIVATE_KEY_FILE=<downloaded-key>.json
-   EE_PROJECT=<project-id>
-   ```
-7. Re-run `python data_prep/build_layers.py` — it will print `Earth Engine: LIVE` and fill in
-   real `tileUrl`s + ward means. No other code changes needed.
+## 🏗️ Architecture
 
-> Tip: registration approval for a fresh EE project is sometimes instant, sometimes a few
-> minutes. The synthetic fallback means you are never blocked while you wait.
+```
+┌─────────────────────────  web/  (Vite + React + Tailwind v4)  ─────────────────────────┐
+│  MapLibre GL + deck.gl   ·   mode shell (Explore/Change/Plan)   ·   Ask Bhumi chat       │
+│  Risk Pyramid · Action Planner · Ward what-if twin · Satellite time-lapse · Story mode   │
+└───────────────────────────────────────────────┬──────────────────────────────────────────┘
+                                                 │  /layers /wards /scorecards /ask /plan /voice /tts /report
+                                                 ▼
+┌──────────────────────────  backend/  (FastAPI)  ──────────────────────────┐
+│  agent.py  sarvam-30b ReAct loop ──tools──▶ plan_interventions, top_risk,   │
+│            voice (Sarvam STT) · tts (Sarvam TTS) · report (PDF)             │
+│  gee.py    Google Earth Engine → real NDVI/NDWI/LST + zonal means           │
+│  db.py     MongoDB Atlas  ──(graceful fallback)──▶  data/*.json             │
+│  mcp_server.py  same tools exposed over the Model Context Protocol          │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
 
-### 3. MongoDB (✅ Atlas connected)
-- **Atlas (hosted):** create a free cluster at **https://cloud.mongodb.com**, add a DB user,
-  allow your IP (or `0.0.0.0/0` for the hackathon), copy the **SRV** connection string into
-  `.env` as `MONGODB_URI`.
-- **Local:** install MongoDB Community and use `mongodb://localhost:27017`.
-- Either way, the backend auto-falls back to JSON if it can't connect.
+**Token-free / demo-safe by design:** OpenFreeMap basemap (no key), NASA GIBS imagery (no key),
+MapLibre + deck.gl (no Mapbox token), and every result cached (see *Reliability*).
 
-> 🔐 **Security:** `.env`, `*.json` keys, and the Atlas string are real secrets — they're in
-> `.gitignore`. Keep them out of `.env.example` and any public repo.
+---
+
+## 🧰 Tech stack
+
+| Layer | Tech |
+|------|------|
+| Frontend | Vite · React 18 · Tailwind v4 · **MapLibre GL** + **deck.gl** · Framer Motion · Zustand · ECharts |
+| Maps / data | OpenFreeMap (basemap) · NASA GIBS (satellite imagery) · OSM (water bodies) |
+| Backend | FastAPI · Uvicorn · ReportLab (PDF) |
+| AI | **Sarvam AI** — `sarvam-30b` (agent) · `saarika:v2.5` (STT) · `bulbul:v2` (TTS) |
+| Geospatial | **Google Earth Engine** (Sentinel-2 / MODIS) |
+| Data store | MongoDB Atlas → JSON fallback |
+| Interop | **MCP** (FastMCP) — tools usable by any MCP client |
+
+---
+
+## 🚀 Quick start
+
+### 1. Backend (FastAPI · port 8000)
+```bash
+python -m pip install -r backend/requirements.txt
+python -m pip install earthengine-api          # for real satellite data (optional)
+
+cp .env.example .env                            # then fill in your keys (never commit .env)
+
+python data_prep/build_layers.py               # builds data/*.json (real GEE if available, else grounded model)
+
+cd backend && python -m uvicorn main:app --port 8000
+#   → http://localhost:8000/docs  (Swagger)   ·   GET /health shows data_source + model
+```
+
+### 2. Web dashboard (Vite · port 5173)
+```bash
+cd web
+npm install
+npm run dev                                     # → http://localhost:5173
+```
+The web app talks to the API on `:8000` and **falls back to bundled sample data** if it's down,
+so the dashboard always renders.
+
+---
+
+## 🛰️ Real satellite data (Google Earth Engine)
+
+Vegetation (NDVI) is **satellite-measured** when GEE is connected. To enable it on a fresh,
+**free (noncommercial)** account:
+
+1. Register a Cloud project for Earth Engine — **https://code.earthengine.google.com/register** → choose **Unpaid / Noncommercial** (Community tier — *no billing account required*).
+2. Enable the **Earth Engine API** for the project.
+3. Create a **service account** → grant **Earth Engine Resource Writer** + **Service Usage Consumer** → create a **JSON key** → drop it in `backend/`.
+4. Set in `.env`: `E_ACCOUNT`, `E_PRIVATE_KEY_FILE`, `EE_PROJECT`.
+5. `python data_prep/build_layers.py` → prints `Earth Engine: LIVE` and overlays real NDVI.
+
+> No GEE? No problem — the build falls back to a grounded synthetic model and the dashboard still
+> shows **real NASA GIBS imagery**. Nothing blocks the demo.
+
+---
+
+## 📊 Data & honesty
+
+- **Vegetation** → real Sentinel-2 **NDVI** zonal means per ward (when GEE is live).
+- **Heat / flood / lake / urban / waterlogging** → a **physically-grounded model** (per-ward density / green / low-lying drivers), calibrated to documented Hyderabad reality: 2020/2025 Musi & monsoon floods, GHMC urban-heat-island studies, ~90% lake degradation, real rainfall normals.
+- **Population** is *modeled* (area × density, calibrated to ~10.5M); planner outputs are labelled **"first-order estimate."**
+- Years **2018–2024** are interpolated client-side from the 2016 ↔ 2026 anchors; **2027–2028** are damped-trend forecasts, flagged as projected.
+
+We label everything **measured** vs **modeled** — credibility over false precision.
+
+---
+
+## 🔒 Reliability (demo insurance)
+
+Every result is cached so flaky conference wifi can't break the demo:
+- **GEE / climate data** → baked into static `data/*.json`.
+- **Satellite imagery** → 18 MODIS frames pre-downloaded to `web/public/satellite/`.
+- **Agent answers** → key demo prompts pre-captured in `ask_cache.json` (instant, offline).
+- **MongoDB down** → API serves identical `data/*.json`.
+- **Backend down** → web app serves bundled sample data + a client-side planner.
+
+---
+
+## 📁 Project structure
+
+```
+backend/        FastAPI app — agent.py, tools.py, gee.py, sarvam.py, report.py, mcp_server.py
+data_prep/      build_layers.py — computes climate data (GEE → grounded fallback)
+data/           generated datasets (wards, layers, scorecards, timeseries, points)
+web/            Vite + React dashboard
+  src/components/  map/ · workspace/ (modes, planner, ward twin, time-lapse) · panels/ · story/
+  src/lib/         risk.js · planner.js · wardAnalysis.js · years.js · choreography.js
+  public/satellite/  cached NASA time-lapse frames
+contracts.md    the frozen API contract (request/response shapes)
+```
+
+## 🔌 API (see [`contracts.md`](contracts.md))
+
+`GET /layers · /wards · /scorecards · /timeseries` · `POST /ask · /plan · /voice · /tts · /report` · `GET /health`
+
+The same tools power an **MCP server**: `python backend/mcp_server.py`.
+
+---
+
+## 🌐 Languages (all major Indian languages via Sarvam AI)
+English · हिन्दी Hindi · বাংলা Bengali · தமிழ் Tamil · తెలుగు Telugu · मराठी Marathi ·
+ગુજરાતી Gujarati · ಕನ್ನಡ Kannada · മലയാളം Malayalam · ਪੰਜਾਬੀ Punjabi · ଓଡ଼ିଆ Odia
+
+---
+
+*Built for Hackprix S3 — a climate digital twin that doesn't just visualise the problem, it tells a city what to do about it.*

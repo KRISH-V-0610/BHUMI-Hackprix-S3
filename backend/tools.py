@@ -10,12 +10,17 @@ the API contract object.
 """
 from __future__ import annotations
 
+import math
 from typing import Any
 
 import config
 from db import store
 
 DEFAULT_YEAR = 2026
+
+# GHMC population (~10.5M) — used to calibrate the modeled per-ward population.
+CITY_POPULATION = 10_500_000
+SEVERE_THRESHOLD = 70  # risk score at/above which a ward is "severe"
 
 # Cause explanations + action templates per layer (used by recommend_actions / explain_risk).
 _CAUSES = {
@@ -61,16 +66,17 @@ _ACTIONS = {
 
 
 # What-if interventions: effect on 0-100 risk per 1% of magnitude (negative = lowers risk).
+# `cost` = first-order ₹ to treat one ward at the default 15% magnitude (used by the planner).
 INTERVENTIONS = {
-    "tree_cover": {"label": "Increase tree / green cover",
+    "tree_cover": {"label": "Increase tree / green cover", "cost": 25_000_000,
                    "effects": {"heat": -0.45, "veg": -0.70, "water": -0.10}},
-    "cool_roof": {"label": "Cool reflective roofs",
+    "cool_roof": {"label": "Cool reflective roofs", "cost": 15_000_000,
                   "effects": {"heat": -0.55}},
-    "permeable_surface": {"label": "Permeable surfaces & green roofs",
+    "permeable_surface": {"label": "Permeable surfaces & green roofs", "cost": 30_000_000,
                           "effects": {"flood": -0.50, "water": -0.55, "urban": -0.20}},
-    "drain_desilt": {"label": "De-silt & widen storm drains",
+    "drain_desilt": {"label": "De-silt & widen storm drains", "cost": 20_000_000,
                      "effects": {"flood": -0.70, "water": -0.65}},
-    "lake_restore": {"label": "Restore lakes & wetlands",
+    "lake_restore": {"label": "Restore lakes & wetlands", "cost": 40_000_000,
                      "effects": {"lake": -0.70, "water": -0.20}},
 }
 
@@ -242,6 +248,117 @@ def simulate_intervention(
     }
 
 
+# ── Population model (modeled; swaps for WorldPop when GEE is live) ──
+
+_POP_CACHE: dict[str, int] = {}
+
+
+def _poly_area_km2(coordinates: list) -> float:
+    """Approximate polygon area (km²) via the shoelace formula on its outer ring."""
+    ring = coordinates[0] if coordinates else []
+    if len(ring) < 4:
+        return 0.0
+    s = 0.0
+    for i in range(len(ring) - 1):
+        x1, y1 = ring[i][0], ring[i][1]
+        x2, y2 = ring[i + 1][0], ring[i + 1][1]
+        s += x1 * y2 - x2 * y1
+    area_deg2 = abs(s) / 2
+    lat = ring[0][1]
+    km_per_deg_lat = 110.574
+    km_per_deg_lon = 111.320 * math.cos(math.radians(lat))
+    return area_deg2 * km_per_deg_lat * km_per_deg_lon
+
+
+def _population_index() -> dict[str, int]:
+    """Ward name -> modeled population, density-weighted by area and calibrated to ~city total."""
+    feats = _wards_features()
+    if _POP_CACHE.get("__n__") == len(feats):
+        return _POP_CACHE
+    _POP_CACHE.clear()
+    raw: dict[str, float] = {}
+    for f in feats:
+        p = f["properties"]
+        density = (p.get("drivers") or {}).get("density", 0.6)
+        area = _poly_area_km2(f.get("geometry", {}).get("coordinates", []))
+        raw[p["name"]] = area * (0.4 + density)  # density-weighted area
+    total = sum(raw.values()) or 1.0
+    for name, w in raw.items():
+        _POP_CACHE[name] = round(CITY_POPULATION * w / total)
+    _POP_CACHE["__n__"] = len(feats)
+    return _POP_CACHE
+
+
+def ward_population(name: str) -> int:
+    """Modeled population for a ward (0 if unknown)."""
+    return int(_population_index().get(name, 0))
+
+
+def plan_interventions(
+    budget: float = 50_000_000,
+    intervention: str = "tree_cover",
+    layer: str | None = None,
+    year: int = DEFAULT_YEAR,
+) -> dict:
+    """Budget-aware action planner: rank wards by climate impact-per-rupee for an intervention and
+    greedily fund them within `budget`. Returns the funded plan + aggregate benefit.
+
+    Scoring per ward = (risk_reduction × population) / cost — so a rupee goes where it removes the
+    most human risk exposure. First-order estimate (published effect sizes; modeled population).
+    """
+    spec = INTERVENTIONS.get(intervention)
+    if spec is None:
+        return {"error": f"unknown intervention {intervention!r}", "options": list(INTERVENTIONS.keys())}
+
+    effects = spec["effects"]
+    primary = layer if layer in effects else max(effects, key=lambda k: abs(effects[k]))
+    per_pct = effects[primary]
+    base_cost = spec.get("cost", 20_000_000)
+    mag = 15  # default magnitude (%)
+    pop_idx = _population_index()
+    pops = [v for k, v in pop_idx.items() if k != "__n__"]
+    avg_pop = (sum(pops) / len(pops)) if pops else 1.0
+
+    ranked = []
+    for w in get_ward_stats(primary, year):  # worst-first, has name/score/centroid
+        before = w["score"]
+        # RELATIVE effect: a % intervention cuts more where risk is higher (more headroom to fix),
+        # so the worst wards see the biggest absolute drop — and the plan prioritises them.
+        after = max(5, min(98, round(before * (1 + per_pct * mag / 100))))
+        drop = before - after  # positive = risk reduced
+        pop = int(pop_idx.get(w["name"], 0))
+        # Cost scales with the population served (more people -> more rooftops/area to treat).
+        scale = max(0.5, min(2.0, pop / avg_pop if avg_pop else 1))
+        cost = round(base_cost * scale / 100_000) * 100_000  # to nearest ₹1 lakh
+        ranked.append({
+            "ward": w["name"], "before": before, "after": after, "delta": after - before,
+            "drop": drop, "population": pop, "cost": cost, "centroid": w.get("centroid"),
+            "impact_per_rupee": (drop * pop) / cost if cost else 0,
+        })
+
+    ranked.sort(key=lambda r: r["impact_per_rupee"], reverse=True)
+
+    picked, spent, people_out = [], 0, 0
+    for r in ranked:
+        if spent + r["cost"] > budget:
+            continue
+        picked.append(r)
+        spent += r["cost"]
+        if r["before"] >= SEVERE_THRESHOLD and r["after"] < SEVERE_THRESHOLD:
+            people_out += r["population"]
+
+    avg_drop = round(sum(r["drop"] for r in picked) / len(picked), 1) if picked else 0
+    return {
+        "intervention": intervention, "label": spec["label"], "layer": primary,
+        "budget": budget, "year": year, "unit_cost": base_cost, "magnitude": mag,
+        "wards_funded": len(picked), "total_cost": spent,
+        "avg_risk_drop": avg_drop, "people_out_of_severe": people_out,
+        "picked": [{k: r[k] for k in ("ward", "cost", "before", "after", "delta", "population", "centroid")}
+                   for r in picked],
+        "note": "First-order estimate: effect sizes from literature, cost scales with ward area, population modeled.",
+    }
+
+
 # ── Registry: name -> (callable, JSON-schema for tool-calling) ─
 
 REGISTRY: dict[str, dict] = {
@@ -342,6 +459,25 @@ REGISTRY: dict[str, dict] = {
                 "year": {"type": "integer", "enum": config.SCORE_YEARS},
             },
             "required": ["ward", "intervention"],
+        },
+    },
+    "plan_interventions": {
+        "func": plan_interventions,
+        "description": "Budget-aware ACTION PLANNER: given a rupee budget and an intervention type "
+                       "(tree_cover, cool_roof, permeable_surface, drain_desilt, lake_restore), rank "
+                       "wards by climate impact-per-rupee and return the funded plan — which wards, "
+                       "cost, before/after risk, and people moved out of severe risk. Use for "
+                       "'where should I spend ₹X on <intervention>', 'best plan to cut <risk> with "
+                       "<budget>', or 'how should we prioritise our resilience budget' questions.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "budget": {"type": "number", "description": "Total budget in rupees (₹)."},
+                "intervention": {"type": "string", "enum": list(INTERVENTIONS.keys())},
+                "layer": {"type": "string", "enum": list(config.LAYERS.keys())},
+                "year": {"type": "integer", "enum": config.SCORE_YEARS},
+            },
+            "required": ["budget", "intervention"],
         },
     },
 }

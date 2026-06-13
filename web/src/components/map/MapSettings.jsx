@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Settings2, X, RotateCcw } from 'lucide-react'
-import { useMapSettings, MAP_STYLES } from '../../store/useMapSettings.js'
+import { Settings2, X, RotateCcw, Satellite } from 'lucide-react'
+import { useMapSettings, MAP_STYLES, GIBS_LAYERS } from '../../store/useMapSettings.js'
 
 // TEMPORARY map "lab" panel — explore basemaps + render knobs, then we lock in the winner.
 function Row({ label, children }) {
@@ -49,11 +49,11 @@ export default function MapSettings() {
   const s = useMapSettings()
 
   return (
-    <>
-      {/* gear button (top-right, below the view toggle) */}
+    <div className="relative">
+      {/* gear button — sits in the map's bottom-centre dock */}
       <button
         onClick={s.toggleOpen}
-        className="glass absolute right-3 top-14 z-20 flex h-9 w-9 items-center justify-center text-ink-dim transition hover:text-ink"
+        className="glass flex h-9 w-9 items-center justify-center text-ink-dim transition hover:text-ink"
         title="Map lab (temporary)"
       >
         <Settings2 size={16} />
@@ -62,17 +62,14 @@ export default function MapSettings() {
       <AnimatePresence>
         {s.open && (
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            className="glass absolute right-3 top-14 z-20 w-72 p-3"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 12 }}
+            className="glass absolute bottom-full right-0 z-20 mb-2 max-h-[70vh] w-72 overflow-y-auto p-3"
           >
             <div className="mb-2 flex items-center justify-between">
               <span className="flex items-center gap-1.5 text-xs font-bold text-ink">
                 <Settings2 size={14} /> Map Lab
-                {/* <span className="rounded bg-amber/15 px-1.5 text-[9px] font-semibold text-amber">
-                  TEMP
-                </span> */}
               </span>
               <div className="flex gap-1">
                 <button onClick={s.reset} className="text-ink-dim hover:text-ink" title="Reset">
@@ -156,9 +153,58 @@ export default function MapSettings() {
             <Row label="Hillshade relief">
               <Toggle value={s.hillshade} onChange={(v) => s.set({ hillshade: v })} />
             </Row>
+            <Row label="3D buildings">
+              <Toggle value={s.buildings3d} onChange={(v) => s.set({ buildings3d: v })} />
+            </Row>
+            <Row label="Water bodies (lakes & Musi)">
+              <Toggle value={s.waterBodies} onChange={(v) => s.set({ waterBodies: v })} />
+            </Row>
+
+            <div className="my-2 h-px bg-mist" />
+
+            {/* NASA GIBS satellite time-lapse */}
+            <Row label={
+              <span className="flex items-center gap-1">
+                <Satellite size={12} /> Satellite (NASA)
+              </span>
+            }>
+              <Toggle value={s.satellite} onChange={(v) => s.set({ satellite: v })} />
+            </Row>
+            {s.satellite && (
+              <>
+                <div className="mt-1 grid grid-cols-3 gap-1">
+                  {Object.entries(GIBS_LAYERS).map(([key, cfg]) => (
+                    <button
+                      key={key}
+                      onClick={() => s.set({ satelliteIndex: key })}
+                      className={`rounded-md px-1.5 py-1 text-[10px] font-semibold transition ${
+                        s.satelliteIndex === key
+                          ? 'bg-neon-deep text-white'
+                          : 'bg-bg-soft text-ink-dim hover:bg-hover'
+                      }`}
+                    >
+                      {cfg.label.split(' · ')[0]}
+                    </button>
+                  ))}
+                </div>
+                <Row label="Imagery opacity">
+                  <Slider
+                    value={Math.round(s.satelliteOpacity * 100)}
+                    min={20}
+                    max={100}
+                    onChange={(v) => s.set({ satelliteOpacity: v / 100 })}
+                    suffix="%"
+                  />
+                </Row>
+                <p className="mt-1 text-[10px] leading-snug text-ink-dim">
+                  Real MODIS imagery · press <span className="font-semibold text-cyan">▶ Play</span> on the
+                  Time Machine to time-lapse {GIBS_LAYERS[s.satelliteIndex]?.label} across the years.
+                </p>
+              </>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }

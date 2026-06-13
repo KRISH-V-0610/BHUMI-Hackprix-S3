@@ -414,3 +414,44 @@ highlight_wards:["Charminar","Musheerabad",…], charts:[bar,radar], actions:[�
 Dashboard: map tilts to 2.5D, heat ramp fades in, camera flies to Charminar (now a tall red block),
 Top-5 list fills, bar+radar slide in, Bhumi speaks the Telugu answer, actions check-list appears.
 That single reaction is the demo.
+
+---
+
+## Reformation additions (v1.1 — Climate Action Cell)
+
+These extend the frozen v1 contract; nothing above changed.
+
+### `POST /plan` — budget-aware Action Planner (new)
+Request: `{ budget: number(₹), intervention: "tree_cover"|"cool_roof"|"permeable_surface"|
+"drain_desilt"|"lake_restore", layer?: string, year?: int }`
+Response:
+```json
+{
+  "intervention": "tree_cover", "label": "Increase tree / green cover", "layer": "veg",
+  "budget": 50000000, "year": 2026, "unit_cost": 25000000, "magnitude": 15,
+  "wards_funded": 2, "total_cost": 50000000, "avg_risk_drop": 11.0, "people_out_of_severe": 253773,
+  "picked": [{ "ward": "...", "cost": 25000000, "before": 67, "after": 56, "delta": -11,
+              "population": 255890, "centroid": [lng, lat] }],
+  "note": "First-order estimate ..."
+}
+```
+Ranks wards by impact-per-rupee `(risk_drop × population) / cost`, greedily fills the budget.
+Also exposed to the agent as the `plan_interventions` tool — `/ask` now answers "where should I
+spend ₹X on trees?" with a funded plan (folded into `highlight_wards` + a before/after chart).
+
+### Ward `population` field (new, modeled)
+Each ward now has a modeled `population` (area × density, calibrated to ~10.5M city total). Swaps
+for WorldPop zonal stats when GEE is live. Surfaced via `get_ward_stats` / the planner.
+
+### `water_bodies` dataset (new, frontend)
+`web/public/data/water_bodies.geojson` — real OSM lakes + Musi river (186 features) bordered on the
+map. To be upgraded to GEE-NDWI per-year water extent (visible lake shrinkage) when GEE is live.
+
+### Score years
+Frontend renders 2016/2018/2020/2022/2024/2026 — 2018–2024 are interpolated client-side from
+2016↔2026 today; `backend/gee.py` has the acquisition windows ready to compute them for real.
+
+### Map / data-source notes
+- Aesthetic basemap default is OpenFreeMap "Liberty" (token-free); MapTiler "Dataviz" unlocks via
+  `VITE_MAPTILER_KEY`. Ward fills + 3D risk-spikes use a shared heat ramp; Change mode uses a
+  diverging (improved↔worsened) ramp. Real NASA GIBS imagery (NDVI/LST/true-color) is a toggle.

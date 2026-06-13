@@ -6,13 +6,13 @@ const MODES = [
   { id: '3d', label: '3D' },
 ]
 
-// Floating 2D / 2.5D / 3D switch (top-right of the map).
+// 2D / 2.5D / 3D switch — lives in the map's bottom-centre control dock.
 export default function ViewToggle() {
   const view = useDashboard((s) => s.view)
   const setView = useDashboard((s) => s.setView)
 
   return (
-    <div className="glass absolute right-3 top-3 z-10 flex gap-1 p-1">
+    <div className="glass flex gap-1 p-1">
       {MODES.map((m) => (
         <button
           key={m.id}

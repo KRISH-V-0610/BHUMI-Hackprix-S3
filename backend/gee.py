@@ -26,13 +26,26 @@ except Exception:  # pragma: no cover
 
 _INITIALISED = False
 
-# Per-year acquisition windows. 2026 is partial (today is mid-2026) so we widen it.
+# Per-year acquisition windows. 2026 is partial (today is mid-2026) so we widen it. The 2018-2024
+# windows let real satellite be computed for the Time Machine's in-between years (otherwise the
+# frontend interpolates them from 2016/2026).
 _WINDOWS = {
     2016: ("2016-01-01", "2016-12-31"),
+    2018: ("2018-01-01", "2018-12-31"),
+    2020: ("2020-01-01", "2020-12-31"),
+    2022: ("2022-01-01", "2022-12-31"),
+    2024: ("2024-01-01", "2024-12-31"),
     2026: ("2025-07-01", "2026-06-30"),
 }
 # Summer window for land-surface temperature (peak urban-heat signal).
-_SUMMER = {2016: ("2016-03-01", "2016-05-31"), 2026: ("2026-03-01", "2026-05-31")}
+_SUMMER = {
+    2016: ("2016-03-01", "2016-05-31"),
+    2018: ("2018-03-01", "2018-05-31"),
+    2020: ("2020-03-01", "2020-05-31"),
+    2022: ("2022-03-01", "2022-05-31"),
+    2024: ("2024-03-01", "2024-05-31"),
+    2026: ("2026-03-01", "2026-05-31"),
+}
 
 # Visualisation palettes per layer id — 5 stops, low -> high risk.
 # Deliberately DISTINCT per layer so toggling layers in 2D shows visibly different colours.

@@ -20,8 +20,8 @@
       {
         "id": "veg",
         "label": "Vegetation",
-        "score": 74,
-        "level": "High",
+        "score": 64,
+        "level": "Moderate",
         "delta_since_2016": 0
       },
       {
@@ -68,9 +68,9 @@
       {
         "id": "veg",
         "label": "Vegetation",
-        "score": 81,
-        "level": "High",
-        "delta_since_2016": 7
+        "score": 63,
+        "level": "Moderate",
+        "delta_since_2016": -1
       },
       {
         "id": "lake",
@@ -118,7 +118,7 @@
         "label": "Vegetation",
         "score": 81,
         "level": "High",
-        "delta_since_2016": 7
+        "delta_since_2016": 17
       },
       {
         "id": "lake",
@@ -166,7 +166,7 @@
         "label": "Vegetation",
         "score": 82,
         "level": "High",
-        "delta_since_2016": 8
+        "delta_since_2016": 18
       },
       {
         "id": "lake",

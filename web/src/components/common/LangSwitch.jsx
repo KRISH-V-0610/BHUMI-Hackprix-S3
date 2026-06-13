@@ -1,30 +1,73 @@
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Languages, Check } from 'lucide-react'
 import { useDashboard } from '../../store/useDashboard.js'
 
-// Language switch — passed as `lang` to /ask, /voice, /tts (contracts.md supported langs).
-const LANGS = [
-  { id: 'en-IN', label: 'EN' },
-  { id: 'hi-IN', label: 'हि' },
-  { id: 'te-IN', label: 'తె' },
-  { id: 'gu-IN', label: 'ગુ' },
+// All major Indian languages Sarvam AI supports (STT + chat + TTS). Passed as `lang` to
+// /ask, /voice, /tts. Compact dropdown so it scales to 11 languages in the header.
+export const LANGS = [
+  { id: 'en-IN', short: 'EN', name: 'English' },
+  { id: 'hi-IN', short: 'हि', name: 'हिन्दी · Hindi' },
+  { id: 'bn-IN', short: 'বা', name: 'বাংলা · Bengali' },
+  { id: 'ta-IN', short: 'த', name: 'தமிழ் · Tamil' },
+  { id: 'te-IN', short: 'తె', name: 'తెలుగు · Telugu' },
+  { id: 'mr-IN', short: 'म', name: 'मराठी · Marathi' },
+  { id: 'gu-IN', short: 'ગુ', name: 'ગુજરાતી · Gujarati' },
+  { id: 'kn-IN', short: 'ಕ', name: 'ಕನ್ನಡ · Kannada' },
+  { id: 'ml-IN', short: 'മ', name: 'മലയാളം · Malayalam' },
+  { id: 'pa-IN', short: 'ਪੰ', name: 'ਪੰਜਾਬੀ · Punjabi' },
+  { id: 'od-IN', short: 'ଓ', name: 'ଓଡ଼ିଆ · Odia' },
 ]
 
 export default function LangSwitch() {
   const lang = useDashboard((s) => s.lang)
   const setLang = useDashboard((s) => s.setLang)
+  const [open, setOpen] = useState(false)
+  const current = LANGS.find((l) => l.id === lang) || LANGS[0]
 
   return (
-    <div className="glass flex gap-0.5 p-1">
-      {LANGS.map((l) => (
-        <button
-          key={l.id}
-          onClick={() => setLang(l.id)}
-          className={`rounded-md px-2 py-1 text-xs font-semibold transition ${
-            lang === l.id ? 'bg-cyan/20 text-cyan' : 'text-ink-dim hover:text-ink'
-          }`}
-        >
-          {l.label}
-        </button>
-      ))}
+    <div className="relative">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        title="Language"
+        className="glass flex items-center gap-1 rounded-xl px-2 py-1.5 text-xs font-semibold text-ink-dim transition hover:text-ink"
+      >
+        <Languages size={14} />
+        <span className="text-cyan">{current.short}</span>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <>
+            <div className="fixed inset-0 z-30" onClick={() => setOpen(false)} />
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              className="glass absolute right-0 z-40 mt-1 max-h-72 w-44 overflow-y-auto p-1"
+            >
+              {LANGS.map((l) => (
+                <button
+                  key={l.id}
+                  onClick={() => {
+                    setLang(l.id)
+                    setOpen(false)
+                  }}
+                  className={`flex w-full items-center justify-between gap-2 rounded-md px-2.5 py-1.5 text-left text-xs transition ${
+                    lang === l.id ? 'bg-cyan/15 text-cyan' : 'text-ink hover:bg-hover'
+                  }`}
+                >
+                  <span>
+                    <span className="mr-1.5 font-bold">{l.short}</span>
+                    {l.name}
+                  </span>
+                  {lang === l.id && <Check size={13} className="shrink-0" />}
+                </button>
+              ))}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

@@ -222,7 +222,10 @@ def _overlay_real_ward_means(fc: dict) -> None:
                    {"name": f["properties"]["name"]})
         for f in fc["features"]
     ])
-    ranges = {"veg": (-0.1, 0.8, True), "flood": (-0.3, 0.5, False), "heat": (25, 45, False)}
+    # Overlay ONLY vegetation with real satellite NDVI — it's well-differentiated and reliable.
+    # Heat (LST) and flood (NDWI) stay on the physically-grounded model: real LST is dominated by
+    # the 2016 El-Niño heatwave (flips the "rising" story) and NDWI isn't a true flood-risk proxy.
+    ranges = {"veg": (-0.1, 0.8, True)}
     for layer, (lo, hi, invert) in ranges.items():
         for year in config.YEARS:
             try:

@@ -34,8 +34,9 @@ explore Hyderabad's climate risks if they'd like, but keep it short.
 - Only when the user actually asks about climate/risk (heat, flood, vegetation, urban growth, \
 waterlogging, lakes, a specific ward, a what-if, or a year comparison): use the tools to ground \
 your answer, name specific wards, and give 2-3 concrete actions.
-- Match the user's language (English, Hindi, Telugu or Gujarati) and stay conversational. \
-Analysis answers: 3-5 sentences. Chit-chat: shorter. No markdown.
+- Match the user's language — reply in whatever major Indian language they use (English, Hindi, \
+Bengali, Tamil, Telugu, Marathi, Gujarati, Kannada, Malayalam, Punjabi or Odia) and stay \
+conversational. Analysis answers: 3-5 sentences. Chit-chat: shorter. No markdown.
 
 Tool notes:
 - Layer ids: flood, heat, veg (vegetation), urban, water (waterlogging), lake.
@@ -200,11 +201,36 @@ def _assemble(answer, lang, layer, year, collected, tool_log, reasoning_trace) -
         if sw:
             focus = {"center": sw["properties"]["centroid"], "zoom": 13, "pitch": 55, "bearing": 20}
 
-    # Actions from recommend_actions if the agent called it, else generate now.
+    # Action planner: paint the funded wards on the map + a before/after chart + costed actions.
+    plan_actions = None
+    plan = collected.get("plan_interventions")
+    if isinstance(plan, dict) and plan.get("picked"):
+        picked = plan["picked"]
+        layer = plan.get("layer", layer)
+        highlight = [p["ward"] for p in picked[:8]] or highlight
+        charts.insert(0, {
+            "type": "bar",
+            "title": f"{plan['label']} — {plan['wards_funded']} wards funded (₹{plan['total_cost']:,})",
+            "x": [p["ward"] for p in picked],
+            "series": [
+                {"name": "Before", "data": [p["before"] for p in picked]},
+                {"name": "After", "data": [p["after"] for p in picked]},
+            ],
+        })
+        if picked and picked[0].get("centroid"):
+            focus = {"center": picked[0]["centroid"], "zoom": 11.5, "pitch": 50, "bearing": 15}
+        plan_actions = [
+            f"Fund {plan['wards_funded']} wards with {plan['label'].lower()} — ₹{plan['total_cost']:,}",
+            f"Projected impact: ~{plan['avg_risk_drop']} avg risk drop, "
+            f"~{plan['people_out_of_severe']:,} residents out of severe risk",
+            "Generate the costed action-plan report for council approval",
+        ]
+
+    # Actions: planner output wins; else recommend_actions (called or generated now).
     rec = collected.get("recommend_actions")
     if not isinstance(rec, dict) or "actions" not in rec:
         rec = toolkit.recommend_actions(layer, highlight)
-    actions = rec.get("actions", [])
+    actions = plan_actions or rec.get("actions", [])
 
     reasoning = list(tool_log)
     if reasoning_trace:

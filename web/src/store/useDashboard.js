@@ -24,6 +24,7 @@ export const useDashboard = create((set, get) => ({
   highlightWards: [], // ward names to glow + rank
   selectedWard: null, // clicked ward (locks the radar panel)
   focus: null, // camera target { center, zoom, pitch, bearing }
+  plan: null, // latest Action Planner result (drives map ₹/impact badges)
 
   // ---- Ask Bhumi conversation state ----
   asking: false,
@@ -57,6 +58,7 @@ export const useDashboard = create((set, get) => ({
   setHighlightWards: (highlightWards) => set({ highlightWards }),
   setSelectedWard: (selectedWard) => set({ selectedWard }),
   setFocus: (focus) => set({ focus }),
+  setPlan: (plan) => set({ plan }),
 
   setData: (patch) => set(patch),
 

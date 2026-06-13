@@ -40,9 +40,34 @@ export function postVoice(audioBlob, filename = 'recording.wav') {
   return postForm('/voice', fd, { mock: 'voice.sample.json' })
 }
 
-// POST /ask -> the action object (the important one)
-export function postAsk(text, lang) {
+// Demo-safe answer cache: pre-captured /ask responses for the known demo prompts, so the chat is
+// instant and works even if Sarvam is slow/down at demo time. Falls through to live for anything else.
+let _askCache = null
+async function loadAskCache() {
+  if (_askCache) return _askCache
+  try {
+    const res = await fetch('/data/ask_cache.json')
+    _askCache = res.ok ? await res.json() : {}
+  } catch {
+    _askCache = {}
+  }
+  return _askCache
+}
+const _normQ = (s) =>
+  (s || '').trim().toLowerCase().replace(/[?.!,]+$/, '').replace(/\s+/g, ' ').trim()
+
+// POST /ask -> the action object (the important one). Cache hit → instant; else live; else mock.
+export async function postAsk(text, lang) {
+  const cache = await loadAskCache()
+  const hit = cache[_normQ(text)]
+  if (hit) return hit
   return postJSON('/ask', lang ? { text, lang } : { text }, { mock: 'ask.sample.json' })
+}
+
+// POST /plan -> budget-aware action plan. No static mock fits (it's parameterized), so callers
+// fall back to the client-side planLocally() in lib/planner.js on failure / mock mode.
+export function postPlan({ budget, intervention, layer = null, year = 2026 }) {
+  return postJSON('/plan', { budget, intervention, layer, year })
 }
 
 // POST /tts -> { audio_base64, format, sample_rate }

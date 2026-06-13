@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Sprout, BrainCircuit, Mic, Square, Trash2, Volume2, Loader2 } from 'lucide-react'
+import { Sprout, BrainCircuit, Mic, Square, Trash2, Volume2, Loader2, Search, MapPin, Sparkles } from 'lucide-react'
 import { useDashboard } from '../../store/useDashboard.js'
 import { postAsk, postVoice } from '../../api/bhumi.js'
 import { runChoreography } from '../../lib/choreography.js'
@@ -8,6 +8,7 @@ import { useMicRecorder } from '../../hooks/useMicRecorder.js'
 import { useTts } from '../../hooks/useTts.js'
 import Markdown, { stripMd } from '../common/Markdown.jsx'
 import AskCharts from './AskCharts.jsx'
+import { analyzeWardMarkdown, worstLayer, suggestPrompts } from '../../lib/wardAnalysis.js'
 
 // Animated "thinking…" dots shown before the answer streams in.
 function ThinkingDots() {
@@ -132,11 +133,15 @@ function AssistantBubble({ message, isLast, onSpeak, ttsState }) {
 // reasoning trace, markdown body, and charts, and drives the full dashboard choreography.
 export default function AskBhumi() {
   const [text, setText] = useState('')
+  const [search, setSearch] = useState('')
   const lang = useDashboard((s) => s.lang)
   const asking = useDashboard((s) => s.asking)
   const messages = useDashboard((s) => s.messages)
   const addMessage = useDashboard((s) => s.addMessage)
   const clearChat = useDashboard((s) => s.clearChat)
+  const wards = useDashboard((s) => s.wards)
+  const selectedWard = useDashboard((s) => s.selectedWard)
+  const activeLayer = useDashboard((s) => s.activeLayer)
   const { recording, amplitude, start, stop } = useMicRecorder()
   const { speak, stop: stopTts } = useTts()
   const scrollRef = useRef(null)
@@ -189,6 +194,32 @@ export default function AskBhumi() {
       })
       useDashboard.getState().setData({ asking: false })
     }
+  }
+
+  // Ward search → instant, client-side analysis posted into the chat (no backend needed).
+  const wardNames = useMemo(() => (wards?.features || []).map((f) => f.properties.name), [wards])
+  const matches = useMemo(() => {
+    const q = search.trim().toLowerCase()
+    return q ? wardNames.filter((n) => n.toLowerCase().includes(q)).slice(0, 6) : []
+  }, [search, wardNames])
+
+  // Contextual sample prompts — update on every click (ward selected / layer changed).
+  const suggestions = useMemo(
+    () => suggestPrompts({ ward: selectedWard, layer: activeLayer }),
+    [selectedWard, activeLayer]
+  )
+
+  const analyzeWard = (name) => {
+    const feat = (wards?.features || []).find((f) => f.properties.name === name)
+    if (!feat) return
+    setSearch('')
+    const st = useDashboard.getState()
+    st.setSelectedWard(name)
+    st.setHighlightWards([name])
+    st.setActiveLayer(worstLayer(feat, st.year))
+    st.flyTo?.({ center: feat.properties.centroid, zoom: 12.5, pitch: 52, bearing: 18 })
+    addMessage({ role: 'user', text: `Analyse ${name}` })
+    addMessage({ role: 'assistant', status: 'done', text: analyzeWardMarkdown(feat, st.year), lang })
   }
 
   const onSubmit = (e) => {
@@ -248,6 +279,30 @@ export default function AskBhumi() {
         </div>
       </div>
 
+      {/* ward search → instant ward analysis in the chat */}
+      <div className="relative mb-2">
+        <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-dim" />
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search a ward to analyse…"
+          className="w-full rounded-lg border border-black/10 bg-bg-soft py-1.5 pl-8 pr-3 text-xs text-ink outline-none placeholder:text-ink-dim/60 focus:border-cyan/50"
+        />
+        {matches.length > 0 && (
+          <div className="absolute z-20 mt-1 max-h-52 w-full overflow-y-auto rounded-lg bg-panel py-1 shadow-lg ring-1 ring-black/10">
+            {matches.map((n) => (
+              <button
+                key={n}
+                onClick={() => analyzeWard(n)}
+                className="flex w-full items-center gap-1.5 px-3 py-1.5 text-left text-xs text-ink transition hover:bg-hover"
+              >
+                <MapPin size={12} className="shrink-0 text-neon-deep" /> {n}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
       {/* chat thread */}
       <div ref={scrollRef} className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto pr-1">
         {messages.length === 0 ? (
@@ -273,6 +328,20 @@ export default function AskBhumi() {
             )
           )
         )}
+      </div>
+
+      {/* contextual sample prompts — refresh on every ward/layer click */}
+      <div className="mt-2 flex items-center gap-1.5 overflow-x-auto pb-0.5">
+        <Sparkles size={12} className="shrink-0 text-cyan" />
+        {suggestions.map((s, i) => (
+          <button
+            key={i}
+            onClick={() => fireAsk(s)}
+            className="shrink-0 whitespace-nowrap rounded-full bg-cyan/10 px-2.5 py-1 text-[11px] font-medium text-cyan transition hover:bg-cyan/20"
+          >
+            {s}
+          </button>
+        ))}
       </div>
 
       {/* input row */}

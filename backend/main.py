@@ -69,6 +69,13 @@ class AlertBody(BaseModel):
     speak: bool = True
 
 
+class PlanBody(BaseModel):
+    budget: float = 50_000_000
+    intervention: str = "tree_cover"
+    layer: str | None = None
+    year: int = 2026
+
+
 def _err(message: str, code: str = "error", status: int = 500) -> JSONResponse:
     return JSONResponse(status_code=status, content={"error": {"code": code, "message": message}})
 
@@ -114,6 +121,17 @@ def scorecards(year: int = 2026):
 @app.get("/timeseries")
 def timeseries(metric: str = "rainfall"):
     return store.timeseries(metric)
+
+
+@app.post("/plan")
+def plan(body: PlanBody):
+    """Budget-aware action planner: rank wards by impact-per-rupee and fund within the budget."""
+    try:
+        return toolkit.plan_interventions(
+            budget=body.budget, intervention=body.intervention, layer=body.layer, year=body.year
+        )
+    except Exception as exc:
+        return _err(f"plan failed: {exc}", "plan_error")
 
 
 # ── Sarvam-powered endpoints ──────────────────────────────────
