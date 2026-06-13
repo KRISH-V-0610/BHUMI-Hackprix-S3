@@ -6,23 +6,31 @@ import { postTts } from '../api/bhumi.js'
 export function useTts() {
   const audioRef = useRef(null)
 
-  const speak = useCallback(async (text, lang = 'en-IN') => {
+  // speak(text, lang, { onEnd }) — onEnd fires when playback finishes, fails, or has no audio,
+  // so callers can reset their "playing" UI state.
+  const speak = useCallback(async (text, lang = 'en-IN', { onEnd } = {}) => {
     try {
       const res = await postTts(text, lang)
-      if (!res?.audio_base64) return // mock mode / no audio
+      if (!res?.audio_base64) {
+        onEnd?.()
+        return // mock mode / no audio
+      }
       const fmt = res.format || 'wav'
       const src = `data:audio/${fmt};base64,${res.audio_base64}`
       audioRef.current?.pause()
       const audio = new Audio(src)
       audioRef.current = audio
-      await audio.play().catch(() => {})
+      audio.onended = () => onEnd?.()
+      await audio.play().catch(() => onEnd?.())
     } catch (e) {
       console.warn('[bhumi] tts failed:', e.message)
+      onEnd?.()
     }
   }, [])
 
   const stop = useCallback(() => {
     audioRef.current?.pause()
+    audioRef.current = null
   }, [])
 
   return { speak, stop }

@@ -1,5 +1,8 @@
 import { create } from 'zustand'
 
+// Monotonic id for chat messages (module-scoped so it survives re-renders).
+let _msgSeq = 0
+
 // Single source of truth for cross-panel dashboard state. Map, tabs, time machine, scorecards,
 // top-wards and the Ask choreography all read/write here so the dashboard reacts as one piece.
 export const useDashboard = create((set, get) => ({
@@ -24,10 +27,27 @@ export const useDashboard = create((set, get) => ({
 
   // ---- Ask Bhumi conversation state ----
   asking: false,
-  answerText: '',
-  reasoning: [],
-  actions: [],
-  charts: [],
+  messages: [], // full chat thread: { id, role: 'user'|'assistant', text, reasoning[], charts[], actions[], status }
+  actions: [], // latest answer's actions — mirrored here so the Recommendations panel can read them
+  charts: [], // (legacy) latest charts; the thread now keeps charts per-message
+
+  // Append a message and return its id. Assistant turns start as a 'thinking' placeholder.
+  addMessage: (msg) => {
+    const id = ++_msgSeq
+    set((s) => ({
+      messages: [
+        ...s.messages,
+        { id, text: '', reasoning: [], charts: [], actions: [], status: 'done', ...msg },
+      ],
+    }))
+    return id
+  },
+  // Patch a single message in place (used by the choreography to stream an answer in).
+  updateMessage: (id, patch) =>
+    set((s) => ({
+      messages: s.messages.map((m) => (m.id === id ? { ...m, ...patch } : m)),
+    })),
+  clearChat: () => set({ messages: [], actions: [], charts: [] }),
 
   // ---- setters ----
   setActiveLayer: (activeLayer) => set({ activeLayer }),

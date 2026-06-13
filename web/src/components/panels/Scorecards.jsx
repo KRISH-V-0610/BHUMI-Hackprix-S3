@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { TrendingUp, TrendingDown } from 'lucide-react'
 import { useDashboard } from '../../store/useDashboard.js'
 import { levelOf } from '../../lib/risk.js'
 import NeonNumber from '../common/NeonNumber.jsx'
@@ -29,8 +30,12 @@ export default function Scorecards() {
             <div className="flex items-baseline gap-1.5">
               <NeonNumber value={c.score} color={lvl.color} className="text-2xl font-bold" />
               {delta !== 0 && (
-                <span className={`text-[11px] ${delta > 0 ? 'text-risk-high' : 'text-neon'}`}>
-                  {delta > 0 ? '▲' : '▼'}
+                <span
+                  className={`flex items-center gap-0.5 text-[11px] ${
+                    delta > 0 ? 'text-risk-high' : 'text-neon'
+                  }`}
+                >
+                  {delta > 0 ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
                   {Math.abs(delta)}
                 </span>
               )}

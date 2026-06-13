@@ -33,8 +33,8 @@ export async function getTimeseries(metric = 'rainfall') {
   return data
 }
 
-// POST /voice (multipart audio) -> { text, lang }
-export function postVoice(audioBlob, filename = 'recording.webm') {
+// POST /voice (multipart audio) -> { text, lang }. We record + upload 16 kHz mono WAV.
+export function postVoice(audioBlob, filename = 'recording.wav') {
   const fd = new FormData()
   fd.append('audio', audioBlob, filename)
   return postForm('/voice', fd, { mock: 'voice.sample.json' })

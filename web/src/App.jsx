@@ -5,7 +5,6 @@ import { USE_MOCK } from './api/client.js'
 
 import ClimateMap from './components/map/ClimateMap.jsx'
 import LayerTabs from './components/layers/LayerTabs.jsx'
-import LayerViewer from './components/layers/LayerViewer.jsx'
 import TimeMachine from './components/time/TimeMachine.jsx'
 import Scorecards from './components/panels/Scorecards.jsx'
 import TopWards from './components/panels/TopWards.jsx'
@@ -58,9 +57,9 @@ export default function App() {
       {/* Header */}
       <header className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <h1 className="text-lg font-extrabold tracking-tight">
-            <span className="text-neon">Bhumi</span>{' '}
-            <span className="text-ink-dim">· Climate Digital Twin</span>
+          <h1 className="font-serif text-2xl font-semibold tracking-tight">
+            <span className="text-neon-deep font-bold">Bhumi</span>{' '}
+            <span className="italic text-ink-dim">· Climate Digital Twin</span>
           </h1>
           {/* {USE_MOCK && (
             <span className="rounded-full bg-amber/15 px-2 py-0.5 text-[10px] font-semibold text-amber">
@@ -79,7 +78,7 @@ export default function App() {
       <div className="grid min-h-0 flex-1 grid-cols-[260px_1fr_360px] gap-2">
         {/* Left rail */}
         <aside className="flex min-h-0 flex-col gap-2 overflow-y-auto">
-          <LayerViewer />
+          <TopWards />
           <Scorecards />
           <RainfallChart />
         </aside>
@@ -95,12 +94,11 @@ export default function App() {
           )}
         </main>
 
-        {/* Right rail */}
+        {/* Right rail — full-height chatbot */}
         <aside className="flex min-h-0 flex-col gap-2 overflow-y-auto">
-          <div className="min-h-[320px] flex-1">
+          <div className="min-h-0 flex-1">
             <AskBhumi />
           </div>
-          <TopWards />
           <Recommendations />
         </aside>
       </div>

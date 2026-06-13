@@ -50,8 +50,9 @@ function toOption(c) {
   }
 }
 
-export default function AskCharts() {
-  const charts = useDashboard((s) => s.charts)
+export default function AskCharts({ charts: chartsProp }) {
+  const storeCharts = useDashboard((s) => s.charts)
+  const charts = chartsProp ?? storeCharts
   if (!charts?.length) return null
 
   return (
