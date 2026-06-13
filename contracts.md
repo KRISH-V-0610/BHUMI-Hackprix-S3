@@ -10,6 +10,87 @@ All responses are JSON unless noted. All endpoints send `Access-Control-Allow-Or
 
 ---
 
+# 👋 Frontend teammate — start here
+
+You own everything in `frontend/`. You can build the **entire UI without the backend running**
+by reading the `data/*.sample.json` fixtures, then flip a flag to use the live API later.
+
+### 1. Prerequisites
+- Node 18+ and npm. A free **Mapbox token** (https://account.mapbox.com → create token).
+
+### 2. Scaffold + install the recommended stack
+```bash
+npm create vite@latest frontend -- --template react-ts
+cd frontend
+npm install
+npm install mapbox-gl @deck.gl/core @deck.gl/layers @deck.gl/mapbox echarts echarts-for-react framer-motion
+npm run dev          # http://localhost:5173  (already allowed by backend CORS)
+```
+
+### 3. Configure environment (`frontend/.env`)
+```
+VITE_API_BASE=http://localhost:8000      # the backend
+VITE_MAPBOX_TOKEN=pk.your_mapbox_token
+VITE_OFFLINE=false                        # true = read the bundled /data snapshot instead of the API
+```
+
+### 4. One API helper (`src/api.ts`) — live API with an offline data snapshot fallback
+The live API is primary. The bundled `data/*.sample.json` snapshot lets you build/demo without
+the backend running, and is also a safety net if a request fails (set `VITE_OFFLINE=true`, or
+the helper below auto-falls-back on error). Same shapes either way.
+```ts
+const BASE = import.meta.env.VITE_API_BASE;
+const OFFLINE = import.meta.env.VITE_OFFLINE === 'true' || !BASE;
+
+const j = (r: Response) => r.json();
+const snapshot = (f: string) => fetch(`/data/${f}.sample.json`).then(j);  // bundled in public/data
+// try the live API, fall back to the bundled snapshot on any error
+const get = (path: string, file: string) =>
+  OFFLINE ? snapshot(file) : fetch(`${BASE}/${path}`).then(j).catch(() => snapshot(file));
+
+export const getWards      = () => get('wards', 'wards');
+export const getLayers     = () => get('layers', 'layers');
+export const getPoints     = () => get('points', 'points');
+export const getScorecards = (y=2026) => get(`scorecards?year=${y}`, 'scorecards');
+export const getTimeseries = (m='rainfall') => get(`timeseries?metric=${m}`, 'timeseries');
+
+export const ask = (text: string, lang='en-IN') =>
+  fetch(`${BASE}/ask`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({text, lang})}).then(j);
+
+export const tts = (text: string, lang='en-IN') =>
+  fetch(`${BASE}/tts`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({text, lang})}).then(j);
+```
+
+### 5. Voice in, voice out
+```ts
+// MIC -> /voice : record with MediaRecorder, POST as multipart, then call ask()
+const fd = new FormData();
+fd.append('audio', blob, 'q.wav');                 // blob from MediaRecorder
+const { text, lang } = await fetch(`${BASE}/voice`, {method:'POST', body: fd}).then(j);
+const result = await ask(text, lang);              // drives the map (see choreography below)
+
+// TTS base64 -> play
+const { audio_base64 } = await tts(result.answer_text, result.lang);
+new Audio(`data:audio/wav;base64,${audio_base64}`).play();
+```
+
+### 6. Bundle the offline data snapshot
+Copy `data/*.sample.json` into `frontend/public/data/` (so they're served at `/data/...`).
+They are byte-for-byte the same shape the live API returns, so they double as your offline
+fallback for development and as demo insurance.
+
+### 7. Build order (suggested)
+1. Map + ward choropleth from `getWards()` (2D) → add the 2.5D deck.gl extrusion.
+2. Scorecards + rainfall ECharts panel.
+3. Risk dots from `getPoints()`; Time-Machine slider (2016→2028).
+4. Ask Bhumi panel (mic/chat) → wire the `/ask` choreography (§ "query → choreography").
+5. Report button (`POST /report` → download blob), proactive alert banner (`POST /simulate-alert`).
+
+> Full panel-by-panel mapping, deck.gl/ECharts recipes, the query→reaction choreography, and
+> animation ideas are in the **Dashboard Visualization Guide** at the bottom of this file.
+
+---
+
 ## Layer IDs (canonical)
 
 | id      | label          | built for real? | risk = high when |
@@ -63,9 +144,12 @@ GeoJSON `FeatureCollection` of GHMC wards. **This is the heart of the dashboard*
         "name": "Kukatpally",
         "ward_no": 124,
         "centroid": [78.4006, 17.4849],     // [lng, lat] — for 3D ColumnLayer + camera
+        "forecast_years": [2027, 2028],      // which year keys below are projections
         "scores": {                          // per layer, per year, 0–100
           "2016": { "flood": 61, "heat": 79, "veg": 44, "lake": 55, "urban": 70, "water": 58 },
-          "2026": { "flood": 71, "heat": 88, "veg": 34, "lake": 58, "urban": 80, "water": 66 }
+          "2026": { "flood": 71, "heat": 88, "veg": 34, "lake": 58, "urban": 80, "water": 66 },
+          "2027": { "flood": 72, "heat": 89, "veg": 33, "lake": 59, "urban": 81, "water": 67 },
+          "2028": { "flood": 73, "heat": 90, "veg": 32, "lake": 60, "urban": 82, "water": 68 }
         }
       }
     }
@@ -74,18 +158,39 @@ GeoJSON `FeatureCollection` of GHMC wards. **This is the heart of the dashboard*
 ```
 Frontend tip: `getElevation = props.scores[year][activeLayer] * 30` for 2.5D blocks.
 
+## `GET /points`
+Geotagged **risk dots** (the glowing speckle in the concept art) — 400+ points, each carrying
+all-6-layer intensities so you colour by the active layer. Render with a deck.gl
+`ScatterplotLayer` (or a heatmap). Point density is higher in higher-risk wards.
+```jsonc
+{
+  "year": 2026,
+  "points": [
+    { "lng": 78.4746, "lat": 17.3629, "ward": "Charminar",
+      "scores": { "flood": 58, "heat": 90, "veg": 80, "lake": 66, "urban": 92, "water": 61 } }
+  ]
+}
+```
+
 ## `GET /scorecards?year=2026`
 City-wide aggregate per layer (the glowing tiles top-right of the concept art).
+`year` accepts **2016, 2026 (observed) and 2027, 2028 (forecast)**; forecast years carry
+`"forecast": true` so you can badge them "projected".
 
 ```jsonc
 {
   "year": 2026,
+  "forecast": false,                  // true for 2027 / 2028
   "cards": [
     { "id": "flood", "label": "Flood Risk",  "score": 82, "level": "Very High", "delta_since_2016": 9 },
     { "id": "heat",  "label": "Heat Stress", "score": 76, "level": "High",      "delta_since_2016": 7 }
   ]
 }
 ```
+
+> **Time Machine & forecast:** the slider runs **2016 → 2026 → 2027 → 2028**. Render 2016/2026
+> solid and 2027/2028 as a dashed/ghosted "forecast" style. A forecast `line` chart from `/ask`
+> includes `forecast_from` (first projected year) and marks forecast x-labels with a trailing `*`.
 
 ## `GET /timeseries?metric=rainfall`
 Chart-ready series. `metric` ∈ `rainfall` (more later).
@@ -148,9 +253,40 @@ Response:
 }
 ```
 Notes for frontend:
-- `charts[].type` ∈ `bar` | `line` | `radar`. `bar`/`line` use `x`/`y`; `radar` uses `axes`/`values`.
+- `charts[].type` ∈ `bar` | `line` | `radar`. Single-series `bar`/`line` use `x`/`y`; a
+  **grouped** bar (e.g. what-if before/after) uses `x` + `series:[{name,data},…]`; `radar`
+  uses `axes`/`values`.
 - Any field except `answer_text`/`lang` may be omitted/null — render defensively.
+- **Casual/greeting turns** ("hi", "thanks", off-topic) return `answer_text` only; `set_layer`,
+  `set_view`, `year`, `focus` are `null` and `highlight_wards`/`charts`/`actions` are empty —
+  meaning **don't change the map**, just show the reply (+ optional TTS). The agent decides this.
+- **What-if turns** ("what if we add 20% tree cover to Charminar?") include a before/after
+  grouped-bar chart first and focus the named ward.
 - Drive `answer_text` straight into `/tts` to speak it back.
+
+## `POST /simulate-alert`
+Proactive monitoring — Bhumi issues a spoken early-warning for the highest-risk wards (turns
+the app from reactive dashboard into an autonomous agent). Great "ambient mode" demo moment.
+Request:
+```jsonc
+{ "layer": "flood", "lang": "en-IN", "year": 2026, "n": 4, "speak": true }
+```
+Response (contract-style, so the map reacts, PLUS audio to auto-play):
+```jsonc
+{
+  "alert_text": "Urgent flood warning. Gachibowli, Malkajgiri and Musheerabad are highest-risk. Move to higher ground...",
+  "lang": "en-IN",
+  "set_layer": "flood",
+  "set_view": "2.5d",
+  "year": 2026,
+  "severity": "severe",                 // "severe" | "high" | "moderate"
+  "highlight_wards": ["Gachibowli", "Malkajgiri", "Musheerabad", "Charminar"],
+  "focus": { "center": [78.34, 17.44], "zoom": 12, "pitch": 50, "bearing": 20 },
+  "charts": [ { "type": "bar", "title": "Flood — alert wards (2026)", "x": [...], "y": [...] } ],
+  "audio_base64": "UklGRi..."           // null if speak=false or TTS fails
+}
+```
+Frontend: flash a red banner sized by `severity`, run the highlight choreography, auto-play audio.
 
 ## `POST /tts`
 Text → spoken audio in the given language.
@@ -173,14 +309,14 @@ Response headers: `Content-Type: application/pdf`, `Content-Disposition: attachm
 ```jsonc
 { "error": { "code": "string", "message": "human readable" } }
 ```
-HTTP 4xx/5xx with this body. Frontend should fall back to sample data on any error during the demo.
+HTTP 4xx/5xx with this body. Frontend should fall back to the bundled `/data` snapshot on any error during the demo.
 
 ---
 
-## Mock mode
-Until the backend is live, the frontend reads these files directly (served from `/data` or imported):
-`data/layers.sample.json`, `data/wards.sample.json`, `data/scorecards.sample.json`,
-`data/timeseries.sample.json`, `data/ask.sample.json`. They match the shapes above exactly.
+## Offline data snapshot
+The bundled `data/*.sample.json` files (`wards`, `layers`, `points`, `scorecards`, `timeseries`)
+match the live API shapes byte-for-byte. Serve them from `public/data/` so the dashboard works
+without the backend running and as a safety net if a request fails (see the `get()` helper above).
 
 ---
 

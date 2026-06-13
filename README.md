@@ -24,8 +24,9 @@ cp .env.example .env        # then edit values
 # 3. Build the climate data (uses GEE if available, else realistic synthetic fallback)
 python data_prep/build_layers.py
 
-# 4. Run the API
-cd backend && uvicorn main:app --reload --port 8000
+# 4. Run the API  (either works)
+cd backend && python main.py            # simplest — reads APP_HOST/APP_PORT from .env
+#   or:  uvicorn main:app --reload --port 8000
 #   open http://localhost:8000/docs for the live Swagger UI
 ```
 
@@ -57,6 +58,26 @@ Claude Desktop config:
 ```json
 { "mcpServers": { "bhumi": { "command": "python", "args": ["D:/Hackathon/ADT/backend/mcp_server.py"] } } }
 ```
+
+## Data realism & forecast
+
+The synthetic Hyderabad data is **calibrated to documented reality**, so the hotspots the agent
+names match real life (good for the pitch — say "these are the actual flood wards"):
+- **Flood/waterlog** worst wards (Malakpet, Saidabad/Moosarambagh, Charminar, Nampally, Nagole,
+  Gachibowli/HITEC) ← 2020 Musi & 2025 monsoon flood reports.
+- **Urban heat** hotspots (Gachibowli, Hayathnagar, Nagole, old city) and cool green wards
+  (Jubilee/Banjara Hills near KBR, lake edges) ← GHMC/IIT urban-heat-island studies (LST +0.75 °C/decade).
+- **Lake health** worst near Hussain Sagar, Durgam Cheruvu, Saroornagar ← lake-degradation reports
+  (~90% of city lakes lost/polluted).
+- **Rainfall** real normals (~801 mm/yr, Jul–Sep wettest) with an intensifying-monsoon 2026 trend.
+
+**Forecast:** ward scores include **2027–2028 projections** (damped extrapolation of each ward's
+2016→2026 trend, with mild acceleration per LST studies). The agent's `risk_trend` tool and the
+Time-Machine slider expose them; forecast years are flagged so the UI can mark them "projected".
+
+Sources: 2020/2025 Hyderabad flood coverage (The Federal, ETV Bharat, NewsOnAir); urban-heat-island
+analyses (Siasat/GHMC, IJRIAS, ScienceDirect); lake-degradation reports (The News Minute, The Federal,
+SANDRP); rainfall normals (weather-atlas / climate-data).
 
 ## Resilience (demo insurance)
 

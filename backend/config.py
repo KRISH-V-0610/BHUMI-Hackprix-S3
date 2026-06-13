@@ -73,6 +73,9 @@ SUPPORTED_LANGUAGES = {
 DEFAULT_LANGUAGE = "en-IN"
 
 # ── Backend / CORS ────────────────────────────────────────────
+APP_HOST = _first("APP_HOST", default="0.0.0.0")
+APP_PORT = int(_first("APP_PORT", default="8000"))
+APP_RELOAD = (_first("APP_RELOAD", default="0") or "0").lower() in ("1", "true", "yes")
 CORS_ORIGINS = (
     _first("CORS_ORIGINS", default="http://localhost:5173,http://localhost:3000") or ""
 ).split(",")
@@ -90,7 +93,9 @@ LAYERS = {
     "urban": {"label": "Urban Growth", "invert": False},
     "water": {"label": "Waterlogging", "invert": False},
 }
-YEARS = [2016, 2026]
+YEARS = [2016, 2026]                 # historical years with real GEE satellite tiles
+FORECAST_YEARS = [2027, 2028]        # projected (damped trend extrapolation)
+SCORE_YEARS = YEARS + FORECAST_YEARS  # all years present in ward scores / scorecards
 
 
 def ee_key_path() -> Path:

@@ -60,8 +60,35 @@ _ACTIONS = {
 }
 
 
+# What-if interventions: effect on 0-100 risk per 1% of magnitude (negative = lowers risk).
+INTERVENTIONS = {
+    "tree_cover": {"label": "Increase tree / green cover",
+                   "effects": {"heat": -0.45, "veg": -0.70, "water": -0.10}},
+    "cool_roof": {"label": "Cool reflective roofs",
+                  "effects": {"heat": -0.55}},
+    "permeable_surface": {"label": "Permeable surfaces & green roofs",
+                          "effects": {"flood": -0.50, "water": -0.55, "urban": -0.20}},
+    "drain_desilt": {"label": "De-silt & widen storm drains",
+                     "effects": {"flood": -0.70, "water": -0.65}},
+    "lake_restore": {"label": "Restore lakes & wetlands",
+                     "effects": {"lake": -0.70, "water": -0.20}},
+}
+
+
 def _wards_features() -> list[dict]:
     return store.wards().get("features", [])
+
+
+def _find_ward(name: str) -> dict | None:
+    name = (name or "").strip().lower()
+    feats = _wards_features()
+    for f in feats:
+        if f["properties"]["name"].lower() == name:
+            return f
+    for f in feats:                       # forgiving partial match
+        if name and name in f["properties"]["name"].lower():
+            return f
+    return None
 
 
 def _norm_layer(layer: str) -> str:
@@ -146,6 +173,75 @@ def get_scorecards(year: int = DEFAULT_YEAR) -> dict:
     return store.scorecards(int(year))
 
 
+def risk_trend(layer: str = "heat") -> dict:
+    """Historical + forecast trajectory of a layer's city-average risk across all years.
+
+    Years 2027-2028 are projected (forecast). Use for 'what's the trend / forecast / what will
+    X be next year' questions, and to draw the forecast line chart.
+    """
+    layer = _norm_layer(layer)
+    feats = _wards_features()
+    series = []
+    for year in config.SCORE_YEARS:
+        vals = [f["properties"]["scores"].get(str(year), {}).get(layer) for f in feats]
+        vals = [v for v in vals if v is not None]
+        if vals:
+            series.append({
+                "year": year,
+                "city_avg": round(sum(vals) / len(vals)),
+                "forecast": year in config.FORECAST_YEARS,
+            })
+    last = config.SCORE_YEARS[-1]
+    top = top_risk_wards(layer, 5, last)
+    return {"layer": layer, "label": config.LAYERS[layer]["label"],
+            "series": series, "forecast_top_wards": top, "forecast_year": last}
+
+
+def simulate_intervention(
+    ward: str,
+    intervention: str = "tree_cover",
+    magnitude: float = 15,
+    year: int = DEFAULT_YEAR,
+) -> dict:
+    """Project the climate-risk impact of an intervention in a ward (what-if simulation).
+
+    intervention: tree_cover | cool_roof | permeable_surface | drain_desilt | lake_restore.
+    magnitude: percent / intensity of the action (default 15). Returns before/after per
+    affected layer so the dashboard can show an impact bar.
+    """
+    spec = INTERVENTIONS.get(intervention)
+    if spec is None:
+        return {"error": f"unknown intervention {intervention!r}",
+                "options": list(INTERVENTIONS.keys())}
+    feat = _find_ward(ward)
+    if feat is None:
+        return {"error": f"unknown ward {ward!r}"}
+
+    name = feat["properties"]["name"]
+    scores = feat["properties"]["scores"].get(str(year), {})
+    mag = max(0.0, float(magnitude))
+    changes = []
+    for layer, per_pct in spec["effects"].items():
+        before = scores.get(layer)
+        if before is None:
+            continue
+        after = max(5, min(98, round(before + per_pct * mag)))
+        changes.append({
+            "layer": layer, "label": config.LAYERS[layer]["label"],
+            "before": before, "after": after, "delta": after - before,
+        })
+    primary = changes[0] if changes else None
+    summary = (
+        f"{spec['label']} (~{int(mag)}%) in {name} could cut "
+        f"{primary['label'].lower()} risk from {primary['before']} to {primary['after']} "
+        f"({primary['delta']:+d})." if primary else "No measurable effect."
+    )
+    return {
+        "ward": name, "intervention": intervention, "label": spec["label"],
+        "magnitude": mag, "year": year, "changes": changes, "summary": summary,
+    }
+
+
 # ── Registry: name -> (callable, JSON-schema for tool-calling) ─
 
 REGISTRY: dict[str, dict] = {
@@ -169,7 +265,7 @@ REGISTRY: dict[str, dict] = {
             "type": "object",
             "properties": {
                 "layer": {"type": "string", "enum": list(config.LAYERS.keys())},
-                "year": {"type": "integer", "enum": config.YEARS},
+                "year": {"type": "integer", "enum": config.SCORE_YEARS},
             },
             "required": ["layer"],
         },
@@ -182,7 +278,7 @@ REGISTRY: dict[str, dict] = {
             "properties": {
                 "layer": {"type": "string", "enum": list(config.LAYERS.keys())},
                 "n": {"type": "integer", "default": 5},
-                "year": {"type": "integer", "enum": config.YEARS},
+                "year": {"type": "integer", "enum": config.SCORE_YEARS},
             },
             "required": ["layer"],
         },
@@ -194,8 +290,8 @@ REGISTRY: dict[str, dict] = {
             "type": "object",
             "properties": {
                 "layer": {"type": "string", "enum": list(config.LAYERS.keys())},
-                "y1": {"type": "integer", "enum": config.YEARS},
-                "y2": {"type": "integer", "enum": config.YEARS},
+                "y1": {"type": "integer", "enum": config.SCORE_YEARS},
+                "y2": {"type": "integer", "enum": config.SCORE_YEARS},
             },
             "required": ["layer"],
         },
@@ -219,6 +315,33 @@ REGISTRY: dict[str, dict] = {
             "type": "object",
             "properties": {"layer": {"type": "string", "enum": list(config.LAYERS.keys())}},
             "required": ["layer"],
+        },
+    },
+    "risk_trend": {
+        "func": risk_trend,
+        "description": "Get a layer's city-average risk across 2016, 2026 and the 2027-2028 "
+                       "FORECAST, plus the projected worst wards. Use for trend / forecast / "
+                       "'what will it be next year' questions.",
+        "parameters": {
+            "type": "object",
+            "properties": {"layer": {"type": "string", "enum": list(config.LAYERS.keys())}},
+            "required": ["layer"],
+        },
+    },
+    "simulate_intervention": {
+        "func": simulate_intervention,
+        "description": "What-if simulation: project how a municipal intervention (more tree "
+                       "cover, cool roofs, permeable surfaces, drain de-silting, lake restoration) "
+                       "would change a ward's risk scores. Use for 'what if we...' questions.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ward": {"type": "string"},
+                "intervention": {"type": "string", "enum": list(INTERVENTIONS.keys())},
+                "magnitude": {"type": "number", "default": 15},
+                "year": {"type": "integer", "enum": config.SCORE_YEARS},
+            },
+            "required": ["ward", "intervention"],
         },
     },
 }

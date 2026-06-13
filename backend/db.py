@@ -74,6 +74,13 @@ class Store:
                 return doc
         return self._read_json("wards") or {"type": "FeatureCollection", "features": []}
 
+    def points(self) -> dict:
+        if self._mode == "mongo":
+            doc = self._db["points"].find_one({}, {"_id": 0})
+            if doc:
+                return doc
+        return self._read_json("points") or {"points": []}
+
     def timeseries(self, metric: str = "rainfall") -> dict:
         if self._mode == "mongo":
             doc = self._db["timeseries"].find_one({"metric": metric}, {"_id": 0})

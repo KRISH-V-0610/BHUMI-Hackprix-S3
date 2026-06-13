@@ -23,18 +23,28 @@ import tools as toolkit
 _MAX_ITERS = 4
 
 _SYSTEM = """You are Bhumi, an agentic climate digital twin and resilience advisor for \
-Hyderabad, India. You analyse satellite-derived climate risk (flood, heat, vegetation, \
+Hyderabad, India. You can analyse satellite-derived climate risk (flood, heat, vegetation, \
 urban growth, waterlogging, lake health) at the ward level.
 
-Rules:
-- ALWAYS use the tools to ground your answer in data. Typically: find the relevant layer, \
-get the worst wards (top_risk_wards), then recommend_actions for them.
-- Name specific wards and give 2-3 concrete municipal actions.
-- Reply in the SAME language as the user (could be English, Hindi, Telugu or Gujarati).
-- Keep the spoken answer to 3-5 sentences, clear enough for a city official. No markdown.
-- Layer ids: flood, heat, veg (vegetation), urban, water (waterlogging), lake. Years: 2016, 2026.
-- Disambiguation: "urban heat" / "heat island" / "temperature" = the `heat` layer. The `urban` \
-layer is ONLY about built-up growth/construction. "Greenery"/"trees" = `veg`.
+How to respond:
+- Greetings, thanks, small talk, or questions unrelated to Hyderabad climate: just reply \
+naturally and briefly (one or two sentences). Do NOT call any tools and do NOT recite ward \
+data. For a bare "hi", a warm one-line greeting is enough — you may add that you can help \
+explore Hyderabad's climate risks if they'd like, but keep it short.
+- Only when the user actually asks about climate/risk (heat, flood, vegetation, urban growth, \
+waterlogging, lakes, a specific ward, a what-if, or a year comparison): use the tools to ground \
+your answer, name specific wards, and give 2-3 concrete actions.
+- Match the user's language (English, Hindi, Telugu or Gujarati) and stay conversational. \
+Analysis answers: 3-5 sentences. Chit-chat: shorter. No markdown.
+
+Tool notes:
+- Layer ids: flood, heat, veg (vegetation), urban, water (waterlogging), lake.
+- Years: 2016 and 2026 are observed; 2027 and 2028 are FORECAST (projected). Treat 2027-2028 \
+as predictions and say so.
+- "urban heat" / "heat island" / "temperature" = the `heat` layer. `urban` is ONLY built-up \
+growth/construction. "Greenery"/"trees" = `veg`.
+- "What if we..." questions -> use simulate_intervention for the named ward.
+- "trend" / "forecast" / "next year" / "by 2028" / "future" -> use risk_trend.
 """
 
 # Keyword -> layer fallback if the model answers without calling a layer tool.
@@ -102,8 +112,28 @@ def run(text: str, lang: str = "en-IN", session_id: str | None = None) -> dict[s
     else:
         answer = "I analysed the available climate layers for Hyderabad."
 
+    # No tools used -> casual/conversational turn: reply without driving the dashboard.
+    if not tool_log:
+        return _casual(answer, lang)
+
     layer = used_layer or _infer_layer(text)
     return _assemble(answer, lang, layer, used_year, collected, tool_log, reasoning_trace)
+
+
+def _casual(answer: str, lang: str) -> dict[str, Any]:
+    """Lightweight response for greetings / small talk — leaves the map untouched."""
+    return {
+        "answer_text": answer or "Hello! I'm Bhumi. Ask me about Hyderabad's climate risks.",
+        "lang": lang,
+        "set_layer": None,
+        "set_view": None,
+        "year": None,
+        "highlight_wards": [],
+        "focus": None,
+        "charts": [],
+        "actions": [],
+        "reasoning": [],
+    }
 
 
 def _assemble(answer, lang, layer, year, collected, tool_log, reasoning_trace) -> dict[str, Any]:
@@ -123,18 +153,52 @@ def _assemble(answer, lang, layer, year, collected, tool_log, reasoning_trace) -
         if c:
             focus = {"center": c, "zoom": 12, "pitch": 50, "bearing": 20}
 
-    # Charts: a bar of top wards + a radar of the worst ward's 6 risk dims.
+    # Charts: a DENSE bar of the worst wards (top 15) + a radar of the worst ward's 6 dims.
     charts: list[dict] = []
     if ranked:
+        dense = toolkit.get_ward_stats(layer, year)[:15]   # full ranking, not just the 5 shown on map
         charts.append({
             "type": "bar",
-            "title": f"{config.LAYERS[layer]['label']} — top wards ({year})",
-            "x": [w["name"] for w in ranked[:5]],
-            "y": [w["score"] for w in ranked[:5]],
+            "title": f"{config.LAYERS[layer]['label']} — ward risk ranking ({year})",
+            "x": [w["name"] for w in dense],
+            "y": [w["score"] for w in dense],
         })
         radar = _radar_for(ranked[0]["name"], year)
         if radar:
             charts.append(radar)
+
+    # Forecast: surface a multi-year trend line (history solid + forecast) when asked.
+    trend = collected.get("risk_trend")
+    if isinstance(trend, dict) and trend.get("series"):
+        charts.insert(0, {
+            "type": "line",
+            "title": f"{trend['label']} — trend & forecast to {trend.get('forecast_year')}",
+            "x": [str(s["year"]) + ("*" if s.get("forecast") else "") for s in trend["series"]],
+            "y": [s["city_avg"] for s in trend["series"]],
+            "forecast_from": next((s["year"] for s in trend["series"] if s.get("forecast")), None),
+        })
+        if not collected.get("top_risk_wards") and trend.get("forecast_top_wards"):
+            highlight = [w["name"] for w in trend["forecast_top_wards"][:5]]
+            year = trend.get("forecast_year", year)
+
+    # What-if simulation: surface a before/after impact chart and focus the ward.
+    sim = collected.get("simulate_intervention")
+    if isinstance(sim, dict) and sim.get("changes"):
+        charts.insert(0, {
+            "type": "bar",
+            "title": f"{sim['label']} — {sim['ward']}: before vs after",
+            "x": [c["label"] for c in sim["changes"]],
+            "series": [
+                {"name": "Before", "data": [c["before"] for c in sim["changes"]]},
+                {"name": "After", "data": [c["after"] for c in sim["changes"]]},
+            ],
+        })
+        if sim["ward"] in highlight:
+            highlight.remove(sim["ward"])
+        highlight = [sim["ward"]] + highlight
+        sw = toolkit._find_ward(sim["ward"])
+        if sw:
+            focus = {"center": sw["properties"]["centroid"], "zoom": 13, "pitch": 55, "bearing": 20}
 
     # Actions from recommend_actions if the agent called it, else generate now.
     rec = collected.get("recommend_actions")

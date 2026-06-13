@@ -69,5 +69,13 @@ def get_scorecards(year: int = 2026) -> dict:
     return toolkit.get_scorecards(year)
 
 
+@mcp.tool()
+def simulate_intervention(ward: str, intervention: str = "tree_cover",
+                          magnitude: float = 15, year: int = 2026) -> dict:
+    """What-if: project how an intervention (tree_cover, cool_roof, permeable_surface,
+    drain_desilt, lake_restore) would change a Hyderabad ward's climate risk scores."""
+    return toolkit.simulate_intervention(ward, intervention, magnitude, year)
+
+
 if __name__ == "__main__":
     mcp.run()

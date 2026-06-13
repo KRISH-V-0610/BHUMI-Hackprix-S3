@@ -34,22 +34,20 @@ _WINDOWS = {
 # Summer window for land-surface temperature (peak urban-heat signal).
 _SUMMER = {2016: ("2016-03-01", "2016-05-31"), 2026: ("2026-03-01", "2026-05-31")}
 
-# Visualisation palettes per layer id (low -> high risk).
+# Visualisation palettes per layer id — 5 stops, low -> high risk.
+# Deliberately DISTINCT per layer so toggling layers in 2D shows visibly different colours.
 VIZ = {
-    "veg": {"min": -0.1, "max": 0.8, "palette": ["#d7191c", "#ffffbf", "#1a9641"]},
-    "flood": {"min": -0.3, "max": 0.5, "palette": ["#f7f7f7", "#74add1", "#313695"]},
-    "heat": {"min": 25, "max": 45, "palette": ["#2b83ba", "#ffffbf", "#d7191c"]},
-    "urban": {"min": -0.3, "max": 0.4, "palette": ["#1a9641", "#ffffbf", "#7b3294"]},
-    "water": {"min": -0.3, "max": 0.5, "palette": ["#f7f7f7", "#74add1", "#313695"]},
-    "lake": {"min": -0.3, "max": 0.6, "palette": ["#d7191c", "#ffffbf", "#2c7bb6"]},
+    "heat":  {"min": 25, "max": 45,   "palette": ["#313695", "#74add1", "#fee090", "#f46d43", "#a50026"]},
+    "flood": {"min": -0.3, "max": 0.5, "palette": ["#f7fbff", "#c6dbef", "#6baed6", "#2171b5", "#08306b"]},
+    "veg":   {"min": -0.1, "max": 0.8, "palette": ["#1a9850", "#a6d96a", "#fee08b", "#f46d43", "#7f0000"]},
+    "urban": {"min": -0.3, "max": 0.4, "palette": ["#f7f4f9", "#d4b9da", "#c994c7", "#df65b0", "#980043"]},
+    "water": {"min": -0.3, "max": 0.5, "palette": ["#f7fcf0", "#bae4bc", "#7bccc4", "#2b8cbe", "#084081"]},
+    "lake":  {"min": -0.3, "max": 0.6, "palette": ["#006837", "#66bd63", "#fee08b", "#f46d43", "#a50026"]},
 }
 
+_LEVELS = ["Low", "Mild", "Moderate", "High", "Severe"]
 LEGENDS = {
-    lid: [
-        {"color": v["palette"][0], "label": "Low"},
-        {"color": v["palette"][1], "label": "Moderate"},
-        {"color": v["palette"][-1], "label": "Severe"},
-    ]
+    lid: [{"color": c, "label": _LEVELS[i]} for i, c in enumerate(v["palette"])]
     for lid, v in VIZ.items()
 }
 
