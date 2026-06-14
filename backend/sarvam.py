@@ -38,14 +38,17 @@ def chat(
     reasoning_effort: str = "low",
     temperature: float = 0.3,
     timeout: float = 120.0,
+    model: str | None = None,
 ) -> dict[str, Any]:
     """Call Sarvam chat completions. Returns the raw `choices[0]` dict.
 
     The returned dict has `message.content` (final answer), `message.reasoning_content`
-    (the visible thinking trace), `message.tool_calls`, and `finish_reason`.
+    (the visible thinking trace), `message.tool_calls`, and `finish_reason`. `model` overrides
+    the default chat model (must be a valid Sarvam model id).
     """
+    chosen = model if model in config.SARVAM_MODEL_IDS else config.SARVAM_CHAT_MODEL
     body: dict[str, Any] = {
-        "model": config.SARVAM_CHAT_MODEL,
+        "model": chosen,
         "messages": messages,
         "max_tokens": max_tokens,
         "temperature": temperature,

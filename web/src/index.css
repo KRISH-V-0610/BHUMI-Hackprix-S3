@@ -13,27 +13,27 @@
    Mapped from the project palette. Use as utilities, e.g. bg-bg, text-ink, bg-neon-deep,
    text-cyan, hover:bg-hover, border-mist. */
 @theme {
-  --color-bg: #f7f8f5;        /* Warm Ivory — main background */
-  --color-bg-soft: #f1f4ef;   /* subtle inset (inputs, traces) */
+  --color-bg: #f5f1e8;        /* Warm Cream — main background */
+  --color-bg-soft: #ede7d8;   /* subtle inset (inputs, traces) */
   --color-panel: #ffffff;     /* Pure White — cards / surfaces */
 
-  --color-sage: #8aa68a;      /* Primary Sage Green */
-  --color-eucalyptus: #b8cdb5;/* Secondary Green */
-  --color-blue: #afc6d1;      /* Soft Ocean / Dusty Blue (fills) */
+  --color-sage: #2d6a4f;      /* Primary Forest Green */
+  --color-eucalyptus: #95b89e;/* Secondary Green */
+  --color-blue: #a8c5cf;      /* Soft Ocean / Dusty Blue (fills) */
 
-  --color-neon: #7e9b73;      /* Accent Green (buttons) — kept name `neon` for utilities */
-  --color-neon-deep: #6e8a63; /* darker accent (hover) */
-  --color-cyan: #5f8294;      /* readable dusty-blue accent for text + soft fills */
+  --color-neon: #1b5e3f;      /* Accent Green (active tabs) — kept name `neon` for utilities */
+  --color-neon-deep: #14432e; /* Deep Forest (primary buttons / brand) */
+  --color-cyan: #2c7a6b;      /* muted teal accent for text + soft fills */
 
-  --color-amber: #b07a3c;     /* warm accent for the report action */
-  --color-risk-low: #2b83ba;
-  --color-risk-mid: #f0a202;
-  --color-risk-high: #d7191c;
+  --color-amber: #c77d3a;     /* warm accent for the report action */
+  --color-risk-low: #7cb342;
+  --color-risk-mid: #fdd835;
+  --color-risk-high: #e53935;
 
-  --color-ink: #1f2937;       /* Charcoal — primary text */
-  --color-ink-dim: #6b7280;   /* Slate Gray — secondary text */
-  --color-mist: #e5e7eb;      /* Mist Gray — borders / dividers */
-  --color-hover: #dde8d8;     /* Pale Sage — hover states */
+  --color-ink: #1f2e25;       /* Deep green-charcoal — primary text */
+  --color-ink-dim: #5f6b62;   /* Muted sage-gray — secondary text */
+  --color-mist: #e3ddcf;      /* Warm sand — borders / dividers */
+  --color-hover: #e8e2d3;     /* Pale cream — hover states */
 
   --font-display: "Poppins", "Segoe UI", system-ui, sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif; /* elegant display serif for headings */
@@ -51,19 +51,22 @@ body,
 
 body {
   background:
-    radial-gradient(1200px 600px at 75% -10%, #ffffff 0%, transparent 55%),
+    radial-gradient(1200px 600px at 75% -10%, #fbf8f1 0%, transparent 55%),
     var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-display);
   overflow: hidden;
 }
 
-/* Glassy white card base used across the dashboard. */
+/* Apple-style frosted glass — strong blur + saturation + inner top-highlight + soft shadow. */
 .glass {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--color-mist);
-  box-shadow: 0 6px 22px rgba(31, 41, 55, 0.05);
+  background: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.50);
+  box-shadow:
+    0 8px 32px rgba(31, 41, 55, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.90);
   border-radius: 14px;
 }
 

@@ -22,6 +22,17 @@ import tools as toolkit
 
 _MAX_ITERS = 4
 
+# BCP-47 -> human language name, so the model gets an unambiguous instruction (not "gu-IN").
+_LANG_NAMES = {
+    "en-IN": "English", "hi-IN": "Hindi", "te-IN": "Telugu", "gu-IN": "Gujarati",
+    "bn-IN": "Bengali", "ta-IN": "Tamil", "mr-IN": "Marathi", "kn-IN": "Kannada",
+    "ml-IN": "Malayalam", "pa-IN": "Punjabi", "od-IN": "Odia",
+}
+
+
+def _lang_name(code: str) -> str:
+    return _LANG_NAMES.get(code, _LANG_NAMES.get((code or "").split("-")[0] + "-IN", "English"))
+
 _SYSTEM = """You are Bhumi, an agentic climate digital twin and resilience advisor for \
 Hyderabad, India. You can analyse satellite-derived climate risk (flood, heat, vegetation, \
 urban growth, waterlogging, lake health) at the ward level.
@@ -34,9 +45,10 @@ explore Hyderabad's climate risks if they'd like, but keep it short.
 - Only when the user actually asks about climate/risk (heat, flood, vegetation, urban growth, \
 waterlogging, lakes, a specific ward, a what-if, or a year comparison): use the tools to ground \
 your answer, name specific wards, and give 2-3 concrete actions.
-- Match the user's language — reply in whatever major Indian language they use (English, Hindi, \
-Bengali, Tamil, Telugu, Marathi, Gujarati, Kannada, Malayalam, Punjabi or Odia) and stay \
-conversational. Analysis answers: 3-5 sentences. Chit-chat: shorter. No markdown.
+- LANGUAGE: the user message ends with a "(Reply ONLY in <Language>.)" instruction. You MUST \
+write your entire reply in THAT language and script, regardless of what language the question \
+itself is written in. Do not switch to any other language. Stay conversational; analysis answers \
+3-5 sentences, chit-chat shorter. No markdown.
 
 Tool notes:
 - Layer ids: flood, heat, veg (vegetation), urban, water (waterlogging), lake.
@@ -45,7 +57,16 @@ as predictions and say so.
 - "urban heat" / "heat island" / "temperature" = the `heat` layer. `urban` is ONLY built-up \
 growth/construction. "Greenery"/"trees" = `veg`.
 - "What if we..." questions -> use simulate_intervention for the named ward.
+- "Why" / "what causes" / "reason" / "explain why <ward/risk> is high" -> ALWAYS call deep_search \
+(pass the ward if named). It returns ranked, CITED causal factors grounded in the ward's own data; \
+build your answer from those factors and mention they are evidence-backed. Prefer it over \
+explain_risk for any genuine "why" question.
 - "trend" / "forecast" / "next year" / "by 2028" / "future" -> use risk_trend.
+- Budget / spend / invest questions ("where should we spend ₹10 crore?", "maximum impact per \
+rupee", "where to act first", "prioritise wards") -> ALWAYS call plan_interventions. Pass budget \
+in rupees (₹1 crore = 10000000) and the most relevant intervention (drain_desilt for flood, \
+cool_roof for heat, lake_restore for lakes, tree_cover for vegetation). Then report the funded \
+wards and the expected impact.
 """
 
 # Keyword -> layer fallback if the model answers without calling a layer tool.
@@ -67,18 +88,21 @@ def _infer_layer(text: str) -> str:
     return "heat"
 
 
-def run(text: str, lang: str = "en-IN", session_id: str | None = None) -> dict[str, Any]:
+def run(text: str, lang: str = "en-IN", session_id: str | None = None,
+        model: str | None = None) -> dict[str, Any]:
     """Run the agent on a question; return the full contract action object.
 
     If `session_id` is given, prior turns are loaded so follow-up questions have context
-    (conversation mode), and this turn is recorded when done.
+    (conversation mode), and this turn is recorded when done. `model` overrides the Sarvam
+    chat model for this run.
     """
     import conversation
 
     prior = conversation.history(session_id)
+    lang_name = _lang_name(lang)
     messages: list[dict[str, Any]] = [{"role": "system", "content": _SYSTEM}]
     messages.extend(prior)
-    messages.append({"role": "user", "content": f"[reply in {lang}] {text}"})
+    messages.append({"role": "user", "content": f"{text}\n\n(Reply ONLY in {lang_name}.)"})
     tool_log: list[str] = []
     collected: dict[str, Any] = {}   # tool name -> last result
     used_layer: str | None = None
@@ -86,7 +110,7 @@ def run(text: str, lang: str = "en-IN", session_id: str | None = None) -> dict[s
     reasoning_trace = ""
 
     for _ in range(_MAX_ITERS):
-        choice = sarvam.chat(messages, tools=toolkit.openai_tools(), tool_choice="auto")
+        choice = sarvam.chat(messages, tools=toolkit.openai_tools(), tool_choice="auto", model=model)
         msg = choice["message"]
         reasoning_trace = msg.get("reasoning_content") or reasoning_trace
         calls = msg.get("tool_calls")
@@ -142,6 +166,7 @@ def _casual(answer: str, lang: str) -> dict[str, Any]:
         "focus": None,
         "charts": [],
         "actions": [],
+        "evidence": None,
         "reasoning": [],
     }
 
@@ -241,7 +266,30 @@ def _assemble(answer, lang, layer, year, collected, tool_log, reasoning_trace) -
         rec = toolkit.recommend_actions(layer, highlight)
     actions = plan_actions or rec.get("actions", [])
 
+    # Deep-search: surface the cited causal factors + a focus on the analysed ward.
+    evidence = None
+    ds = collected.get("deep_search")
+    if isinstance(ds, dict) and ds.get("factors"):
+        layer = ds.get("layer", layer)
+        evidence = {
+            "summary": ds.get("summary"),
+            "factors": ds.get("factors"),
+            "sources": ds.get("sources"),
+            "confidence": ds.get("confidence"),
+        }
+        if ds.get("ward"):
+            if ds["ward"] in highlight:
+                highlight.remove(ds["ward"])
+            highlight = [ds["ward"]] + highlight
+            sw = toolkit._find_ward(ds["ward"])
+            if sw:
+                focus = {"center": sw["properties"]["centroid"], "zoom": 12.6, "pitch": 52, "bearing": 18}
+
     reasoning = list(tool_log)
+    # Cited causal factors lead the visible reasoning trace (the "deep search" evidence).
+    if evidence:
+        for f in evidence["factors"]:
+            reasoning.insert(0, f"📌 {f['factor']} — {f['source']}")
     if reasoning_trace:
         reasoning.insert(0, "🧠 " + reasoning_trace.strip()[:160])
 
@@ -255,6 +303,7 @@ def _assemble(answer, lang, layer, year, collected, tool_log, reasoning_trace) -
         "focus": focus,
         "charts": charts,
         "actions": actions,
+        "evidence": evidence,
         "reasoning": reasoning,
     }
 

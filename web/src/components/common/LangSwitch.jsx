@@ -19,19 +19,24 @@ export const LANGS = [
   { id: 'od-IN', short: 'ଓ', name: 'ଓଡ଼ିଆ · Odia' },
 ]
 
-export default function LangSwitch() {
+export default function LangSwitch({ openUp = false, variant = 'bar' }) {
   const lang = useDashboard((s) => s.lang)
   const setLang = useDashboard((s) => s.setLang)
   const [open, setOpen] = useState(false)
   const current = LANGS.find((l) => l.id === lang) || LANGS[0]
 
+  const btnClass =
+    variant === 'chat'
+      ? 'flex items-center gap-1 rounded-full bg-bg-soft px-2.5 py-1.5 text-[11px] font-semibold text-ink-dim transition hover:bg-hover hover:text-ink'
+      : 'glass flex items-center gap-1 rounded-xl px-2 py-1.5 text-xs font-semibold text-ink-dim transition hover:text-ink'
+
+  const menuClass = openUp
+    ? 'glass absolute bottom-full right-0 z-40 mb-2 max-h-72 w-44 overflow-y-auto p-1'
+    : 'glass absolute right-0 z-40 mt-1 max-h-72 w-44 overflow-y-auto p-1'
+
   return (
     <div className="relative">
-      <button
-        onClick={() => setOpen((o) => !o)}
-        title="Language"
-        className="glass flex items-center gap-1 rounded-xl px-2 py-1.5 text-xs font-semibold text-ink-dim transition hover:text-ink"
-      >
+      <button onClick={() => setOpen((o) => !o)} title="Language" className={btnClass}>
         <Languages size={14} />
         <span className="text-cyan">{current.short}</span>
       </button>
@@ -41,10 +46,10 @@ export default function LangSwitch() {
           <>
             <div className="fixed inset-0 z-30" onClick={() => setOpen(false)} />
             <motion.div
-              initial={{ opacity: 0, y: -6 }}
+              initial={{ opacity: 0, y: openUp ? 6 : -6 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              className="glass absolute right-0 z-40 mt-1 max-h-72 w-44 overflow-y-auto p-1"
+              exit={{ opacity: 0, y: openUp ? 6 : -6 }}
+              className={menuClass}
             >
               {LANGS.map((l) => (
                 <button

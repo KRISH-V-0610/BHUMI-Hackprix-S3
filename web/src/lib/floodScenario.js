@@ -68,9 +68,10 @@ export async function buildFloodScenario(wards, year = 2026, futureYear = 2028) 
       rise: wardScore(f.properties, futureYear, 'flood') - wardScore(f.properties, year, 'flood'),
       fut: wardScore(f.properties, futureYear, 'flood'),
     }))
-    .filter((w) => w.rise >= 3 && !flooding.has(w.name))
-    .sort((a, b) => b.rise - a.rise)
-    .slice(0, 8)
+    // forecast high-risk = risk climbs by 2028, OR already projected high and not flooding yet
+    .filter((w) => !flooding.has(w.name) && (w.rise >= 2 || w.fut >= 72))
+    .sort((a, b) => b.fut + b.rise * 2 - (a.fut + a.rise * 2))
+    .slice(0, 9)
 
   return { river, floodWards, future, futureYear, duration: 120 }
 }

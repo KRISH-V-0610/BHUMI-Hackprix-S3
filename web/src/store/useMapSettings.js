@@ -76,8 +76,16 @@ export const useMapSettings = create((set) => ({
   satelliteIndex: 'truecolor', // 'truecolor' | 'ndvi' | 'lst'
   satelliteOpacity: 0.85,
 
+  // Live Google Earth Engine layer overlay — the REAL Sentinel-2 / MODIS tiles computed for the
+  // active layer + year (NDVI / NDWI / NDBI / LST), proving the data is satellite-derived.
+  geeLayer: false,
+  geeOpacity: 0.7,
+
   // Real OSM water bodies (lakes + Musi river) bordered on the map.
   waterBodies: true,
+
+  // "Island" mode — mask everything outside the Hyderabad ward boundary (concept-art look).
+  cropCity: false,
 
   toggleOpen: () => set((s) => ({ open: !s.open })),
   set: (patch) => set(patch),
@@ -98,7 +106,10 @@ export const useMapSettings = create((set) => ({
       satellite: false,
       satelliteIndex: 'truecolor',
       satelliteOpacity: 0.85,
+      geeLayer: false,
+      geeOpacity: 0.7,
       waterBodies: true,
+      cropCity: false,
     }),
 }))
 

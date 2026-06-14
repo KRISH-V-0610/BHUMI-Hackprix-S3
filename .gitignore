@@ -3,7 +3,10 @@
 *.key
 private_key.json
 nrsc-*.json
+bhumi-ee*.json
 *-service-account*.json
+# Belt-and-suspenders: any GCP service-account key in the repo root
+*.iam.gserviceaccount.com.json
 # Allow the example
 !.env.example
 

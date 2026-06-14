@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import Map, { useControl } from 'react-map-gl/maplibre'
 import { MapboxOverlay } from '@deck.gl/mapbox'
-import { GeoJsonLayer, TextLayer, PathLayer } from '@deck.gl/layers'
+import { GeoJsonLayer, TextLayer, PathLayer, ScatterplotLayer, SolidPolygonLayer } from '@deck.gl/layers'
 import { SimpleMeshLayer } from '@deck.gl/mesh-layers'
 import { ConeGeometry } from '@luma.gl/engine'
 import { useDashboard } from '../../store/useDashboard.js'
@@ -9,10 +9,8 @@ import { useWorkspace } from '../../store/useWorkspace.js'
 import { useFloodScenario } from '../../store/useFloodScenario.js'
 import { useMapSettings, styleValue, gibsTileUrl } from '../../store/useMapSettings.js'
 import { heatRGB, divergingRGB, getElevation, wardScore } from '../../lib/risk.js'
+import { cityMaskPolygon, cityHull } from '../../lib/cityMask.js'
 import Legend from './Legend.jsx'
-import ViewToggle from './ViewToggle.jsx'
-import MapSettings from './MapSettings.jsx'
-import { FloodScenarioButton, FloodScenarioHud } from './FloodScenario.jsx'
 
 // Token-free terrain DEM (AWS terrarium tiles) used by the temporary 3D-terrain toggle.
 const TERRAIN_TILES = 'https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png'
@@ -55,6 +53,7 @@ export default function ClimateMap() {
   const setSelectedWard = useDashboard((s) => s.setSelectedWard)
   const setData = useDashboard((s) => s.setData)
   const legend = useDashboard((s) => s.activeLegend())
+  const layersData = useDashboard((s) => s.layers)
 
   // Temporary "map lab" settings.
   const styleId = useMapSettings((s) => s.styleId)
@@ -73,6 +72,9 @@ export default function ClimateMap() {
   const satellite = useMapSettings((s) => s.satellite)
   const satelliteIndex = useMapSettings((s) => s.satelliteIndex)
   const satelliteOpacity = useMapSettings((s) => s.satelliteOpacity)
+  const geeLayer = useMapSettings((s) => s.geeLayer)
+  const geeOpacity = useMapSettings((s) => s.geeOpacity)
+  const cropCity = useMapSettings((s) => s.cropCity)
 
   // Workspace mode — Change mode recolors wards by their delta (improved↔worsened).
   const mode = useWorkspace((s) => s.mode)
@@ -93,6 +95,7 @@ export default function ClimateMap() {
       const map = e.target
       mapRef.current = map
       setData({
+        map,
         flyTo: (focus) => {
           if (!focus?.center) return
           map.easeTo({
@@ -133,7 +136,11 @@ export default function ClimateMap() {
             return [r, h, r]
           },
           getOrientation: () => [0, 0, 90], // stand the cone upright (apex up)
-          getColor: (d) => [...heatRGB(d.score), highlightSet.has(d.name) ? 255 : 225],
+          getColor: (d) => {
+            const c = heatRGB(d.score)
+            if (highlightSet.size === 0) return [...c, 225]
+            return highlightSet.has(d.name) ? [...c, 255] : [...c, 70]
+          },
           pickable: true,
           material: { ambient: 0.55, diffuse: 0.7, shininess: 24, specularColor: [255, 255, 255] },
           updateTriggers: {
@@ -144,39 +151,60 @@ export default function ClimateMap() {
       ]
     }
 
-    // 2D choropleth / 2.5D extrusion.
+    // 2.5D extruded ward zones (irregular GHMC polygons). When an AOI is highlighted, everything
+    // else dims and recedes so the focus wards read like the glowing area-of-interest.
+    const hasFocus = highlightSet.size > 0
+    const dim = (rgb) => [
+      Math.round(rgb[0] * 0.34 + 150 * 0.66),
+      Math.round(rgb[1] * 0.34 + 150 * 0.66),
+      Math.round(rgb[2] * 0.34 + 140 * 0.66),
+    ]
     return [
       new GeoJsonLayer({
         id: 'wards-25d',
         data: wards,
         extruded: view === '2.5d',
         wireframe,
-        getElevation: (f) => getElevation(wardScore(f.properties, year, activeLayer), elevMul),
+        getElevation: (f) => {
+          const e = getElevation(wardScore(f.properties, year, activeLayer), elevMul)
+          if (!hasFocus) return e
+          return highlightSet.has(f.properties.name) ? e * 1.6 : e * 0.85
+        },
         getFillColor: (f) => {
+          let rgb
           if (changeMode) {
-            const d =
+            rgb = divergingRGB(
               wardScore(f.properties, year, activeLayer) -
-              wardScore(f.properties, compareYear, activeLayer)
-            return [...divergingRGB(d), fillAlpha]
+                wardScore(f.properties, compareYear, activeLayer)
+            )
+          } else {
+            rgb = heatRGB(wardScore(f.properties, year, activeLayer))
           }
-          return [...heatRGB(wardScore(f.properties, year, activeLayer)), fillAlpha]
+          if (!hasFocus) return [...rgb, fillAlpha]
+          return highlightSet.has(f.properties.name)
+            ? [...rgb, 255] // focus wards: full, vivid
+            : [...dim(rgb), Math.round(fillAlpha * 0.4)] // others: muted + translucent
         },
         getLineColor: (f) =>
-          highlightSet.has(f.properties.name) ? [22, 150, 65, 255] : [90, 110, 130, 90],
+          highlightSet.has(f.properties.name)
+            ? [20, 67, 46, 255] // deep-green focus border
+            : hasFocus
+              ? [90, 110, 100, 40]
+              : [90, 110, 100, 90],
         getLineWidth: (f) =>
-          !borders ? 0 : highlightSet.has(f.properties.name) ? Math.max(2, lineWidth + 2) : lineWidth,
+          highlightSet.has(f.properties.name) ? Math.max(2.5, lineWidth + 2.5) : borders ? lineWidth : 0,
         lineWidthUnits: 'pixels',
-        stroked: borders,
+        stroked: true,
         pickable: true,
         autoHighlight: true,
-        highlightColor: [22, 163, 74, 90],
+        highlightColor: [20, 94, 63, 90],
         updateTriggers: {
-          getElevation: [year, activeLayer, view, elevationMul],
-          getFillColor: [year, activeLayer, legend, fillAlpha, changeMode, compareYear],
+          getElevation: [year, activeLayer, view, elevationMul, highlightWards],
+          getFillColor: [year, activeLayer, legend, fillAlpha, changeMode, compareYear, highlightWards],
           getLineColor: [highlightWards],
           getLineWidth: [highlightWards, borders, lineWidth],
         },
-        transitions: { getElevation: 600, getFillColor: 600 },
+        transitions: { getElevation: 600, getFillColor: 400 },
       }),
     ]
   }, [
@@ -196,6 +224,49 @@ export default function ClimateMap() {
     compareYear,
   ])
 
+  // "Island" mask — a dark curtain over everything outside the Hyderabad ward boundary, so the
+  // city reads as a floating landmass (concept-art look). Drawn first, under the wards + water.
+  const maskLayer = useMemo(() => {
+    if (!cropCity || !wards) return null
+    const polygon = cityMaskPolygon(wards)
+    if (!polygon) return null
+    return new SolidPolygonLayer({
+      id: 'city-mask',
+      data: [{ polygon }],
+      getPolygon: (d) => d.polygon,
+      getFillColor: [9, 16, 20, 255],
+      filled: true,
+      stroked: false,
+      extruded: false,
+      pickable: false,
+      parameters: { depthTest: false },
+    })
+  }, [cropCity, wards])
+
+  // Glowing island border — a soft wide underglow + a crisp neon edge tracing the city outline,
+  // so the cropped landmass reads as a deliberate, lit "island" (concept-art look).
+  const islandEdge = useMemo(() => {
+    if (!cropCity || !wards) return []
+    const ring = cityHull(wards, 0.13)
+    if (!ring.length) return []
+    return [
+      new GeoJsonLayer({
+        id: 'island-underglow',
+        data: { type: 'Feature', geometry: { type: 'LineString', coordinates: ring } },
+        stroked: true, filled: false, getLineColor: [57, 255, 136, 70],
+        getLineWidth: 16, lineWidthUnits: 'pixels', lineWidthMinPixels: 8,
+        parameters: { depthTest: false },
+      }),
+      new GeoJsonLayer({
+        id: 'island-edge',
+        data: { type: 'Feature', geometry: { type: 'LineString', coordinates: ring } },
+        stroked: true, filled: false, getLineColor: [120, 255, 180, 230],
+        getLineWidth: 2.5, lineWidthUnits: 'pixels', lineWidthMinPixels: 1.5,
+        parameters: { depthTest: false },
+      }),
+    ]
+  }, [cropCity, wards])
+
   // Real OSM water bodies (lakes + Musi river) — static border layer, drawn over the choropleth.
   const waterLayer = useMemo(
     () =>
@@ -213,6 +284,27 @@ export default function ClimateMap() {
       }),
     []
   )
+
+  // Soft neon glow ring around the focus wards — the "area of interest" halo from the concept art.
+  const glowLayer = useMemo(() => {
+    if (!wards || !highlightWards.length) return null
+    const focusFC = {
+      type: 'FeatureCollection',
+      features: (wards.features || []).filter((f) => highlightSet.has(f.properties.name)),
+    }
+    return new GeoJsonLayer({
+      id: 'aoi-glow',
+      data: focusFC,
+      stroked: true,
+      filled: false,
+      getLineColor: [57, 255, 136, 120],
+      getLineWidth: 9,
+      lineWidthUnits: 'pixels',
+      lineWidthMinPixels: 5,
+      parameters: { depthTest: false },
+      updateTriggers: { getLineColor: [highlightWards] },
+    })
+  }, [wards, highlightWards, highlightSet])
 
   // Value badges for highlighted wards — labels the wards an answer / plan refers to, so the
   // chat→map projection is unmistakable. Clicking a badge opens that ward's drill-down.
@@ -258,29 +350,77 @@ export default function ClimateMap() {
     }
   }, [scnActive, scnData, scnFloodedCount, wards])
 
-  // Flood scenario layers: dim river + a glowing pulse flowing downstream + flooded banks + future outlines.
+  // Flood scenario layers: river trace + glowing pulse + DEPTH-coloured flooded wards (severe
+  // ones edged red) + PULSING forecast high-risk zones (filled, ringed, labelled "2028").
   const scenarioLayers = useMemo(() => {
     if (!scnActive || !scnData) return []
     const river = scnData.river
     const n = river.length
-    const head = Math.min(n - 1, Math.floor((scnTime / scnData.duration) * (n - 1)))
+    const prog = scnTime / scnData.duration // 0..1
+    const head = Math.min(n - 1, Math.floor(prog * (n - 1)))
     const pulse = river.slice(Math.max(0, head - 16), head + 1)
+    const pulse01 = 0.5 + 0.5 * Math.sin(scnTime * 0.5) // 0..1 breathing
+    const showFuture = prog >= 0.5 // forecast zones surface once the live flood is mapped
+    // Flood "depth" ramp: shallow light-blue -> deep navy by flood score.
+    const depthBlue = (s) => {
+      const t = Math.max(0, Math.min(1, s / 100))
+      return [Math.round(150 - 138 * t), Math.round(202 - 128 * t), Math.round(236 - 66 * t)]
+    }
+    const futScore = (name) => scnData.future.find((w) => w.name === name)?.fut ?? 65
     return [
-      new PathLayer({ id: 'musi-dim', data: [{ path: river }], getPath: (d) => d.path, getColor: [56, 150, 200, 120], getWidth: 3, widthUnits: 'pixels', widthMinPixels: 2, capRounded: true, jointRounded: true }),
-      new GeoJsonLayer({ id: 'flood-banks', data: scnFeatures.flooded, filled: true, stroked: true, getFillColor: [40, 130, 200, 120], getLineColor: [12, 74, 170, 220], lineWidthUnits: 'pixels', lineWidthMinPixels: 1 }),
-      new GeoJsonLayer({ id: 'flood-future', data: scnFeatures.future, filled: false, stroked: true, getLineColor: [244, 160, 40, 235], getLineWidth: 2.5, lineWidthUnits: 'pixels', lineWidthMinPixels: 2 }),
+      new PathLayer({ id: 'musi-dim', data: [{ path: river }], getPath: (d) => d.path, getColor: [70, 150, 215, 150], getWidth: 3, widthUnits: 'pixels', widthMinPixels: 2, capRounded: true, jointRounded: true }),
+      // flooded bank wards — water-depth fill, severe ones edged red
+      new GeoJsonLayer({
+        id: 'flood-banks', data: scnFeatures.flooded, filled: true, stroked: true,
+        getFillColor: (f) => [...depthBlue(wardScore(f.properties, year, 'flood')), 175],
+        getLineColor: (f) => (wardScore(f.properties, year, 'flood') >= 80 ? [224, 56, 59, 235] : [12, 74, 170, 210]),
+        getLineWidth: (f) => (wardScore(f.properties, year, 'flood') >= 80 ? 2.5 : 1.2),
+        lineWidthUnits: 'pixels', lineWidthMinPixels: 1,
+        updateTriggers: { getFillColor: [year], getLineColor: [year], getLineWidth: [year] },
+      }),
+      // advancing flood FRONT — a wide glow + a bright violet core so the trace is unmistakable
       pulse.length > 1 &&
-        new PathLayer({ id: 'musi-pulse', data: [{ path: pulse }], getPath: (d) => d.path, getColor: [140, 225, 255, 255], getWidth: 7, widthUnits: 'pixels', widthMinPixels: 4, capRounded: true, jointRounded: true }),
+        new PathLayer({ id: 'musi-pulse-glow', data: [{ path: pulse }], getPath: (d) => d.path, getColor: [168, 60, 255, 130], getWidth: 22, widthUnits: 'pixels', widthMinPixels: 11, capRounded: true, jointRounded: true, parameters: { depthTest: false } }),
+      pulse.length > 1 &&
+        new PathLayer({ id: 'musi-pulse', data: [{ path: pulse }], getPath: (d) => d.path, getColor: [221, 150, 255, 255], getWidth: 9, widthUnits: 'pixels', widthMinPixels: 5, capRounded: true, jointRounded: true, parameters: { depthTest: false } }),
+      // FORECAST high-risk zones — pulsing amber→red fill graded by the 2028 flood score
+      showFuture &&
+        new GeoJsonLayer({
+          id: 'flood-future-fill', data: scnFeatures.future, filled: true, stroked: true,
+          getFillColor: (f) => [...heatRGB(Math.max(60, futScore(f.properties.name))), Math.round(35 + 80 * pulse01)],
+          getLineColor: [244, 160, 40, 235], getLineWidth: 2, lineWidthUnits: 'pixels', lineWidthMinPixels: 1.5,
+          updateTriggers: { getFillColor: [scnTime] },
+        }),
+      // pulsing forecast ring markers at each future ward
+      showFuture &&
+        new ScatterplotLayer({
+          id: 'flood-future-rings', data: scnData.future, getPosition: (d) => d.centroid,
+          getRadius: 320 + 520 * pulse01, radiusUnits: 'meters', radiusMinPixels: 7, radiusMaxPixels: 46,
+          filled: false, stroked: true, getLineColor: [244, 160, 40, Math.round(110 + 130 * pulse01)], lineWidthMinPixels: 2,
+          updateTriggers: { getRadius: [scnTime], getLineColor: [scnTime] },
+        }),
+      // forecast labels
+      showFuture &&
+        new TextLayer({
+          id: 'flood-future-labels', data: scnData.future, getPosition: (d) => d.centroid,
+          getText: (d) => `⚠ ${d.name} · 2028`, getSize: 11, getColor: [150, 70, 12, 255], getPixelOffset: [0, 15],
+          background: true, getBackgroundColor: [255, 244, 214, 235], backgroundPadding: [5, 2], fontWeight: 700,
+          billboard: true, characterSet: 'auto',
+        }),
     ].filter(Boolean)
-  }, [scnActive, scnData, scnTime, scnFeatures])
+  }, [scnActive, scnData, scnTime, scnFeatures, year])
 
   const allLayers = useMemo(() => {
-    const arr = [...layers]
+    const arr = []
+    if (maskLayer) arr.push(maskLayer) // dark curtain first, so wards/water draw on top
+    arr.push(...layers)
     if (waterBodies) arr.push(waterLayer)
     arr.push(...scenarioLayers)
+    arr.push(...islandEdge) // glowing city border, over the basemap edge
+    if (glowLayer) arr.push(glowLayer)
     if (badgeLayer) arr.push(badgeLayer)
     return arr
-  }, [layers, waterBodies, waterLayer, scenarioLayers, badgeLayer])
+  }, [maskLayer, layers, waterBodies, waterLayer, scenarioLayers, islandEdge, glowLayer, badgeLayer])
 
   const getTooltip = useCallback(
     ({ object }) => {
@@ -462,6 +602,46 @@ export default function ClimateMap() {
     return () => map.off('styledata', apply)
   }, [satellite, satelliteIndex, satelliteOpacity, year, styleId])
 
+  // LIVE Google Earth Engine overlay — the REAL Sentinel-2/MODIS tiles computed for the active
+  // layer + year (getMapId). Years snap to the two observed years (2016/2026) that have tiles.
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map) return
+    const SRC = 'gee-src'
+    const LYR = 'bhumi-gee'
+    const apply = () => {
+      try {
+        const snapY = Number(year) < 2021 ? 2016 : 2026
+        const entry = (layersData || []).find(
+          (l) => l.id === activeLayer && Number(l.year) === snapY
+        )
+        const url = entry?.tileUrl
+        if (!geeLayer || !url) {
+          if (map.getLayer(LYR)) map.removeLayer(LYR)
+          if (map.getSource(SRC)) map.removeSource(SRC)
+          return
+        }
+        if (!map.getSource(SRC)) {
+          map.addSource(SRC, { type: 'raster', tiles: [url], tileSize: 256, attribution: '© Google Earth Engine' })
+        } else {
+          map.getSource(SRC).setTiles([url])
+        }
+        if (!map.getLayer(LYR)) {
+          const beforeId = (map.getStyle().layers || []).find((l) => l.type === 'symbol')?.id
+          map.addLayer({ id: LYR, type: 'raster', source: SRC, paint: { 'raster-opacity': geeOpacity } }, beforeId)
+        } else {
+          map.setPaintProperty(LYR, 'raster-opacity', geeOpacity)
+        }
+      } catch {
+        /* style mid-reload; the styledata listener retries */
+      }
+    }
+    if (map.isStyleLoaded()) apply()
+    else map.once('idle', apply)
+    map.on('styledata', apply)
+    return () => map.off('styledata', apply)
+  }, [geeLayer, geeOpacity, activeLayer, year, layersData, styleId])
+
   return (
     <div className="relative h-full w-full overflow-hidden rounded-2xl">
       <Map
@@ -474,23 +654,6 @@ export default function ClimateMap() {
         <DeckOverlay layers={allLayers} getTooltip={getTooltip} onClick={onClick} />
       </Map>
 
-      {/* "Bhumi is showing …" banner — makes the chat/plan → map projection explicit. */}
-      {highlightWards.length > 0 && (
-        <div className="glass absolute bottom-16 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-full px-3 py-1.5 text-[11px] shadow-sm">
-          <span className="font-semibold text-neon-deep">Bhumi is showing</span>
-          <span className="capitalize text-ink">{LAYER_LABELS[activeLayer] || activeLayer}</span>
-          <span className="text-ink-dim">· {year} ·</span>
-          <span className="font-semibold text-ink">{highlightWards.length} wards</span>
-        </div>
-      )}
-
-      {/* bottom-centre control dock: view modes + flood scenario + map lab (clears the side panels) */}
-      <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-end gap-2">
-        <ViewToggle />
-        <FloodScenarioButton />
-        <MapSettings />
-      </div>
-      <FloodScenarioHud />
       <Legend />
     </div>
   )

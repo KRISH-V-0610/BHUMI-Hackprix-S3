@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Settings2, X, RotateCcw, Satellite } from 'lucide-react'
+import { Settings, X, RotateCcw, Satellite, Crop } from 'lucide-react'
 import { useMapSettings, MAP_STYLES, GIBS_LAYERS } from '../../store/useMapSettings.js'
 
 // TEMPORARY map "lab" panel — explore basemaps + render knobs, then we lock in the winner.
@@ -53,23 +53,23 @@ export default function MapSettings() {
       {/* gear button — sits in the map's bottom-centre dock */}
       <button
         onClick={s.toggleOpen}
-        className="glass flex h-9 w-9 items-center justify-center text-ink-dim transition hover:text-ink"
-        title="Map lab (temporary)"
+        className="flex h-7 w-7 items-center justify-center rounded-lg text-ink-dim transition hover:bg-hover hover:text-ink"
+        title="Map lab"
       >
-        <Settings2 size={16} />
+        <Settings size={16} />
       </button>
 
       <AnimatePresence>
         {s.open && (
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 12 }}
-            className="glass absolute bottom-full right-0 z-20 mb-2 max-h-[70vh] w-72 overflow-y-auto p-3"
+            exit={{ opacity: 0, y: -12 }}
+            className="glass absolute right-0 top-full z-50 mt-2 max-h-[75vh] w-72 overflow-y-auto p-3"
           >
             <div className="mb-2 flex items-center justify-between">
               <span className="flex items-center gap-1.5 text-xs font-bold text-ink">
-                <Settings2 size={14} /> Map Lab
+                <Settings size={14} /> Map Lab
               </span>
               <div className="flex gap-1">
                 <button onClick={s.reset} className="text-ink-dim hover:text-ink" title="Reset">
@@ -102,6 +102,15 @@ export default function MapSettings() {
                 ))}
               </div>
             </div>
+
+            {/* island / crop-to-city */}
+            <Row label={
+              <span className="flex items-center gap-1">
+                <Crop size={12} /> Crop to Hyderabad (island)
+              </span>
+            }>
+              <Toggle value={s.cropCity} onChange={(v) => s.set({ cropCity: v })} />
+            </Row>
 
             <div className="my-2 h-px bg-mist" />
 
@@ -159,6 +168,34 @@ export default function MapSettings() {
             <Row label="Water bodies (lakes & Musi)">
               <Toggle value={s.waterBodies} onChange={(v) => s.set({ waterBodies: v })} />
             </Row>
+
+            <div className="my-2 h-px bg-mist" />
+
+            {/* LIVE Google Earth Engine layer overlay */}
+            <Row label={
+              <span className="flex items-center gap-1">
+                <Satellite size={12} /> Live satellite layer (GEE)
+              </span>
+            }>
+              <Toggle value={s.geeLayer} onChange={(v) => s.set({ geeLayer: v })} />
+            </Row>
+            {s.geeLayer && (
+              <>
+                <Row label="GEE opacity">
+                  <Slider
+                    value={Math.round(s.geeOpacity * 100)}
+                    min={20}
+                    max={100}
+                    onChange={(v) => s.set({ geeOpacity: v / 100 })}
+                    suffix="%"
+                  />
+                </Row>
+                <p className="mt-1 text-[10px] leading-snug text-ink-dim">
+                  Real <span className="font-semibold text-cyan">Sentinel-2 / MODIS</span> tiles for the
+                  active layer — switch layers/year to see the live satellite index over Hyderabad.
+                </p>
+              </>
+            )}
 
             <div className="my-2 h-px bg-mist" />
 

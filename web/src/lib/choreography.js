@@ -47,6 +47,9 @@ export async function runChoreography(res, { flyTo, messageId } = {}) {
   }
   await sleep(300)
 
+  // 6b. evidence — cited causal factors from deep_search (rendered as a Sources card).
+  if (res.evidence) upd({ evidence: res.evidence })
+
   // 7. answer text — the bubble types it on, then renders it as markdown.
   // The answer's language is stored so the speaker button can read it back correctly.
   upd({ text: res.answer_text ?? '', status: 'done', lang: res.lang || store.lang })

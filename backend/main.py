@@ -46,6 +46,7 @@ class AskBody(BaseModel):
     text: str
     lang: str | None = None
     session_id: str | None = None
+    model: str | None = None
 
 
 class TTSBody(BaseModel):
@@ -95,6 +96,12 @@ def health():
 @app.get("/languages")
 def languages():
     return {"languages": [{"code": k, "label": v} for k, v in config.SUPPORTED_LANGUAGES.items()]}
+
+
+@app.get("/models")
+def models():
+    """Selectable Sarvam chat models (for the UI model picker)."""
+    return {"models": config.SARVAM_MODELS, "default": config.SARVAM_CHAT_MODEL}
 
 
 @app.get("/layers")
@@ -152,7 +159,7 @@ def ask(body: AskBody):
     """The agent: reason over climate data and return the contract action object."""
     try:
         lang = body.lang or config.DEFAULT_LANGUAGE
-        result = agent.run(body.text, lang=lang, session_id=body.session_id)
+        result = agent.run(body.text, lang=lang, session_id=body.session_id, model=body.model)
         store.save_conversation({
             "session_id": body.session_id,
             "question": body.text,

@@ -251,13 +251,25 @@ Response:
     "tool get_ward_stats(heat, 2026)",
     "tool top_risk_wards(heat, 5)",
     "tool recommend_actions(heat, [Kukatpally, Charminar])"
-  ]
+  ],
+  "evidence": {                         // present ONLY for "why/cause" answers (deep_search) — nullable
+    "summary": "Malakpet's flood risk (85/100) is driven mainly by low-lying Musi flood-plain terrain; encroached under-capacity drains. City-wide flood risk has risen 6 points since 2016.",
+    "confidence": "high",               // "high" | "medium"
+    "factors": [                        // ranked, CITED causal factors → render as an "Evidence" card
+      { "factor": "Low-lying Musi flood-plain terrain", "detail": "…", "source": "Telangana Irrigation Dept — 2020 Hyderabad flood inundation maps", "weight": 0.9 },
+      { "factor": "Encroached, under-capacity storm-water drains (nalas)", "detail": "…", "source": "GHMC Strategic Nala Development Plan (SNDP), 2021", "weight": 0.8 }
+    ],
+    "sources": ["Telangana Irrigation Dept — 2020 …", "GHMC SNDP 2021"]
+  }
 }
 ```
 Notes for frontend:
 - `charts[].type` ∈ `bar` | `line` | `radar`. Single-series `bar`/`line` use `x`/`y`; a
   **grouped** bar (e.g. what-if before/after) uses `x` + `series:[{name,data},…]`; `radar`
   uses `axes`/`values`.
+- `evidence` is present **only** for genuine "why/what-causes/reason" questions (the agent calls
+  `deep_search`). Render `evidence.factors[]` as a small **Evidence card** under the answer —
+  each `factor` + its `source`, plus the `confidence` badge. Omit the card when `evidence` is null.
 - Any field except `answer_text`/`lang` may be omitted/null — render defensively.
 - **Casual/greeting turns** ("hi", "thanks", off-topic) return `answer_text` only; `set_layer`,
   `set_view`, `year`, `focus` are `null` and `highlight_wards`/`charts`/`actions` are empty —

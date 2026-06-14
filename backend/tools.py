@@ -65,6 +65,118 @@ _ACTIONS = {
 }
 
 
+# ── Deep-search evidence base ─────────────────────────────────
+# Curated, SOURCED causal factors for Hyderabad climate risk, calibrated to real reports. Each
+# card fires for a ward when its data drivers cross a threshold (`needs` = driver ≥ value,
+# `needs_low` = driver ≤ value); cards with neither always apply. deep_search ranks the cards
+# that fire so the "why" is a grounded, multi-factor, cited explanation — not a one-liner.
+_EVIDENCE: dict[str, list[dict]] = {
+    "flood": [
+        {"factor": "Low-lying Musi flood-plain terrain",
+         "detail": "These wards sit below the surrounding contour, so storm runoff collects here "
+                   "first during cloudbursts.",
+         "source": "Telangana Irrigation Dept — 2020 Hyderabad flood inundation maps",
+         "needs": {"low_lying": 0.55}},
+        {"factor": "Encroached, under-capacity storm-water drains (nalas)",
+         "detail": "Primary nalas narrowed by construction now carry far less than their design "
+                   "storm, so they overtop.",
+         "source": "GHMC Strategic Nala Development Plan (SNDP), 2021",
+         "needs": {"density": 0.60}},
+        {"factor": "High impervious built-up cover",
+         "detail": "Concretisation blocks infiltration; heavily paved wards generate several times "
+                   "the peak runoff of open ground.",
+         "source": "NRSC/ISRO Hyderabad LULC-change analysis (Sentinel-2)",
+         "needs": {"density": 0.65}},
+        {"factor": "Lost lake buffers & feeder channels",
+         "detail": "Tanks and channels that once absorbed monsoon surge have been built over, "
+                   "pushing water downstream into these wards.",
+         "source": "HMDA Lake Protection Committee / Wetlands of Hyderabad report"},
+        {"factor": "Intensifying short-duration rainfall",
+         "detail": "More frequent high-intensity cloudbursts overwhelm drainage sized for older "
+                   "rainfall norms.",
+         "source": "IMD Hyderabad station rainfall-trend record"},
+    ],
+    "heat": [
+        {"factor": "Sparse tree canopy / green deficit",
+         "detail": "Little shade or evapotranspiration to cool the surface, so daytime land-surface "
+                   "temperature stays elevated.",
+         "source": "NRSC/ISRO Hyderabad Urban Heat Island (LST) study",
+         "needs_low": {"green": 0.40}},
+        {"factor": "Dense heat-retaining built-up fabric",
+         "detail": "Concrete and asphalt store daytime heat and re-radiate it at night, raising the "
+                   "urban heat-island intensity.",
+         "source": "NRSC land-surface-temperature urban-heat mapping",
+         "needs": {"density": 0.60}},
+        {"factor": "Extensive impervious rooftops & roads",
+         "detail": "High NDBI built-up index correlates directly with hotter surface temperatures.",
+         "source": "Sentinel-2 NDBI built-up index (NRSC)",
+         "needs": {"density": 0.65}},
+        {"factor": "Few nearby water bodies",
+         "detail": "Loss of tanks removes the local cooling that open water provides.",
+         "source": "Urban heat-island literature; HMDA lake inventory"},
+    ],
+    "veg": [
+        {"factor": "Construction-driven canopy loss",
+         "detail": "Tree cover and open ground converted to built-up area, cutting NDVI greenness.",
+         "source": "NRSC/ISRO LULC-change analysis (Sentinel-2)",
+         "needs": {"density": 0.60}},
+        {"factor": "Low baseline vegetation",
+         "detail": "Already-sparse greenery leaves little buffer against heat and runoff.",
+         "source": "Sentinel-2 NDVI composites (NRSC)",
+         "needs_low": {"green": 0.40}},
+        {"factor": "Encroachment of green commons",
+         "detail": "Parks, lake edges and road medians lost to development reduce the green register.",
+         "source": "GHMC green-cover assessment"},
+    ],
+    "urban": [
+        {"factor": "Rapid impervious expansion",
+         "detail": "Built-up footprint growing fast, replacing permeable land.",
+         "source": "NRSC/ISRO LULC-change analysis (Sentinel-2)",
+         "needs": {"density": 0.60}},
+        {"factor": "Unplanned peri-urban growth",
+         "detail": "Development outpacing drainage and green-space norms along growth corridors.",
+         "source": "HMDA Master Plan growth-corridor review"},
+    ],
+    "water": [
+        {"factor": "Drainage capacity exceeded",
+         "detail": "Secondary drains undersized for the catchment's paved area pond at the surface.",
+         "source": "GHMC Strategic Nala Development Plan (SNDP), 2021",
+         "needs": {"density": 0.60}},
+        {"factor": "Low-lying ponding pockets",
+         "detail": "Local depressions hold water long after rain, with no gravity outfall.",
+         "source": "Telangana Irrigation Dept inundation maps",
+         "needs": {"low_lying": 0.50}},
+        {"factor": "Silted, choked secondary drains",
+         "detail": "Sediment and solid waste cut effective drain cross-section at known choke points.",
+         "source": "GHMC monsoon-readiness drain audits"},
+    ],
+    "lake": [
+        {"factor": "Encroachment & shrinkage of the water body",
+         "detail": "Built construction into the lake bed and buffer reduces storage and ecological "
+                   "function.",
+         "source": "HMDA Lake Protection Committee records"},
+        {"factor": "Sewage inflow & eutrophication",
+         "detail": "Untreated sewage drives algal blooms and degrades water quality.",
+         "source": "Telangana State Pollution Control Board water-quality monitoring"},
+        {"factor": "Severed feeder channels",
+         "detail": "Broken cascade links between tanks starve downstream lakes of clean inflow.",
+         "source": "Wetlands of Hyderabad report",
+         "needs": {"density": 0.60}},
+    ],
+}
+
+
+def _evidence_fires(card: dict, drivers: dict) -> bool:
+    """True if a ward's drivers satisfy an evidence card's thresholds."""
+    for k, thr in (card.get("needs") or {}).items():
+        if drivers.get(k, 0) < thr:
+            return False
+    for k, thr in (card.get("needs_low") or {}).items():
+        if drivers.get(k, 1) > thr:
+            return False
+    return True
+
+
 # What-if interventions: effect on 0-100 risk per 1% of magnitude (negative = lowers risk).
 # `cost` = first-order ₹ to treat one ward at the default 15% magnitude (used by the planner).
 INTERVENTIONS = {
@@ -359,6 +471,92 @@ def plan_interventions(
     }
 
 
+def deep_search(
+    query: str = "",
+    ward: str | None = None,
+    layer: str = "flood",
+    year: int = DEFAULT_YEAR,
+) -> dict[str, Any]:
+    """Deep causal analysis: WHY a ward (or the city) carries a given climate risk.
+
+    Cross-references a sourced evidence base of real Hyderabad causal factors with the ward's
+    own data drivers (built-up density, green cover, low-lying terrain), its 2016→2026 trend and
+    its risk score, then returns a ranked, CITED multi-factor explanation. Use for "why",
+    "what causes", "reason", "explain why ... is risky" questions.
+    """
+    layer = _norm_layer(layer)
+    label = config.LAYERS[layer]["label"]
+    feat = _find_ward(ward) if ward else None
+    name = feat["properties"]["name"] if feat else None
+    drivers = ((feat["properties"].get("drivers") if feat else None) or {})
+    score = (feat["properties"]["scores"].get(str(year), {}).get(layer) if feat else None)
+
+    # Rank the evidence cards that fire for this ward (general cards always fire). Weight by how
+    # strongly the ward's drivers exceed each card's threshold, so the dominant cause ranks first.
+    factors = []
+    for card in _EVIDENCE.get(layer, []):
+        if not _evidence_fires(card, drivers):
+            continue
+        needs = {**(card.get("needs") or {}), **(card.get("needs_low") or {})}
+        if needs and drivers:
+            if card.get("needs"):
+                w = sum(min(1.0, drivers.get(k, 0)) for k in card["needs"]) / len(card["needs"])
+            else:  # needs_low: lower driver = stronger factor
+                w = sum(1.0 - drivers.get(k, 0) for k in card["needs_low"]) / len(card["needs_low"])
+            weight = round(0.5 + 0.5 * w, 2)
+        else:
+            weight = 0.5
+        factors.append({"factor": card["factor"], "detail": card["detail"],
+                        "source": card["source"], "weight": weight})
+    factors.sort(key=lambda x: x["weight"], reverse=True)
+
+    # Data signals straight from the ward's own drivers (the quantitative grounding).
+    signals = []
+    if drivers:
+        if drivers.get("low_lying", 0) >= 0.5:
+            signals.append(f"low-lying terrain index {drivers['low_lying']:.2f} (drains poorly)")
+        if drivers.get("density", 0) >= 0.6:
+            signals.append(f"built-up density {drivers['density']:.2f} (high impervious cover)")
+        if drivers.get("green", 1) <= 0.4:
+            signals.append(f"green cover {drivers['green']:.2f} (vegetation deficit)")
+
+    # Trend signal: how this layer's city average has moved 2016 → 2026.
+    cmp = compare_years(layer, 2016, 2026)
+    direction = "risen" if cmp["city_delta"] > 0 else "fallen" if cmp["city_delta"] < 0 else "held"
+    trend_note = (f"City-wide {label.lower()} has {direction} {abs(cmp['city_delta'])} points "
+                  f"since 2016 ({cmp['city_avg_y1']}→{cmp['city_avg_y2']}).")
+
+    # Deterministic grounded summary from the top factors (the agent expands on this in its reply).
+    top = factors[:3]
+    if name and top:
+        lead = f"{name}'s {label.lower()}"
+        if score is not None:
+            lead += f" ({score}/100)"
+        summary = (lead + " is driven mainly by "
+                   + "; ".join(f"{f['factor'].lower()}" for f in top[:2])
+                   + f". {trend_note}")
+        confidence = "high" if (drivers and len(top) >= 2) else "medium"
+    else:
+        summary = (f"City-wide, {label.lower()} is driven by "
+                   + "; ".join(f["factor"].lower() for f in top[:3]) + f". {trend_note}")
+        confidence = "medium"
+
+    return {
+        "query": query,
+        "ward": name,
+        "layer": layer,
+        "label": label,
+        "year": year,
+        "risk_score": score,
+        "factors": top,
+        "data_signals": signals,
+        "trend": trend_note,
+        "sources": [f["source"] for f in top],
+        "summary": summary,
+        "confidence": confidence,
+    }
+
+
 # ── Registry: name -> (callable, JSON-schema for tool-calling) ─
 
 REGISTRY: dict[str, dict] = {
@@ -427,10 +625,30 @@ REGISTRY: dict[str, dict] = {
     },
     "explain_risk": {
         "func": explain_risk,
-        "description": "Explain the main cause of a given climate risk layer in plain language.",
+        "description": "Explain the main cause of a given climate risk layer in ONE plain-language "
+                       "line. For a deeper, ward-specific, cited 'why' use deep_search instead.",
         "parameters": {
             "type": "object",
             "properties": {"layer": {"type": "string", "enum": list(config.LAYERS.keys())}},
+            "required": ["layer"],
+        },
+    },
+    "deep_search": {
+        "func": deep_search,
+        "description": "DEEP causal analysis — the accurate, evidence-backed 'WHY'. Cross-references "
+                       "a sourced knowledge base of real Hyderabad causal factors with a ward's own "
+                       "data drivers (built-up density, green cover, low-lying terrain), its "
+                       "2016→2026 trend and risk score, and returns ranked, CITED reasons with "
+                       "sources. ALWAYS use this for 'why', 'what causes', 'reason', 'explain why "
+                       "<ward/risk> is high' questions. Pass the ward when one is named.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string", "description": "The user's why/cause question."},
+                "ward": {"type": "string", "description": "Ward name, if the question names one."},
+                "layer": {"type": "string", "enum": list(config.LAYERS.keys())},
+                "year": {"type": "integer", "enum": config.SCORE_YEARS},
+            },
             "required": ["layer"],
         },
     },

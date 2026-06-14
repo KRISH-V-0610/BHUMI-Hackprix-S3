@@ -49,6 +49,14 @@ SARVAM_API_KEY = _first("SARVAM_API_KEY", default="")
 SARVAM_BASE_URL = _first("SARVAM_BASE_URL", default="https://api.sarvam.ai")
 SARVAM_CHAT_MODEL = _first("SARVAM_CHAT_MODEL", default="sarvam-30b")
 
+# Selectable chat models (verified live on api.sarvam.ai). Both are reasoning models with
+# tool-calling; 105B is deeper/slower, 30B is faster — exposed in the UI as a model picker.
+SARVAM_MODELS = [
+    {"id": "sarvam-30b", "label": "Sarvam 30B", "desc": "Fast · 64K ctx · tool-calling"},
+    {"id": "sarvam-105b", "label": "Sarvam 105B", "desc": "Deeper reasoning · 128K ctx"},
+]
+SARVAM_MODEL_IDS = {m["id"] for m in SARVAM_MODELS}
+
 # ── Google Earth Engine ───────────────────────────────────────
 # Support both EE_* (documented) and E_* (already in this repo's .env).
 EE_SERVICE_ACCOUNT = _first("EE_SERVICE_ACCOUNT", "EE_ACCOUNT", "E_ACCOUNT")

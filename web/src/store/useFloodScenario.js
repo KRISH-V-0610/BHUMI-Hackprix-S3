@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { buildFloodScenario } from '../lib/floodScenario.js'
+import { useDashboard } from './useDashboard.js'
 
 // Drives the Musi-river monsoon flood scenario: `time` advances via rAF (frame timestamp, so no
 // Date.now needed); ClimateMap reads it to flow the river pulse + progressively flood bank wards,
@@ -20,13 +21,21 @@ export const useFloodScenario = create((set, get) => ({
     timers = []
     set({ active: true, time: 0, data })
 
-    // POV camera trace downstream along the real river, then pull back to show the whole spread.
-    const r = data.river
-    const at = (f) => r[Math.max(0, Math.min(r.length - 1, Math.floor(f * (r.length - 1))))]
-    flyTo?.({ center: at(0), zoom: 12.6, pitch: 58, bearing: 16 })
-    timers.push(setTimeout(() => get().active && flyTo?.({ center: at(0.35), zoom: 12.4, pitch: 56, bearing: 22 }), 2600))
-    timers.push(setTimeout(() => get().active && flyTo?.({ center: at(0.7), zoom: 12.2, pitch: 54, bearing: 18 }), 5200))
-    timers.push(setTimeout(() => get().active && flyTo?.({ center: at(0.5), zoom: 10.9, pitch: 46, bearing: 10 }), 7800))
+    // Highlight the affected wards (glow ring + popups + side-rail ranking).
+    useDashboard.getState().setHighlightWards(data.floodWards.map((w) => w.name))
+
+    // City-constrained camera: trace through the affected WARD centroids (always inside the city),
+    // then pull back to the whole city — so it never gets stuck on a river endpoint outside town.
+    const cen = data.floodWards.map((w) => w.centroid)
+    const pick = (f) => cen[Math.max(0, Math.min(cen.length - 1, Math.round(f * (cen.length - 1))))]
+    const feats = wards?.features || []
+    const cx = feats.reduce((s, f) => s + f.properties.centroid[0], 0) / (feats.length || 1)
+    const cy = feats.reduce((s, f) => s + f.properties.centroid[1], 0) / (feats.length || 1)
+
+    flyTo?.({ center: pick(0), zoom: 12.2, pitch: 56, bearing: 16 })
+    timers.push(setTimeout(() => get().active && flyTo?.({ center: pick(0.4), zoom: 12.0, pitch: 54, bearing: 20 }), 2600))
+    timers.push(setTimeout(() => get().active && flyTo?.({ center: pick(0.8), zoom: 11.8, pitch: 52, bearing: 14 }), 5200))
+    timers.push(setTimeout(() => get().active && flyTo?.({ center: [cx, cy], zoom: 10.7, pitch: 46, bearing: 10 }), 7800))
 
     let last = null
     const step = (ts) => {
@@ -48,6 +57,7 @@ export const useFloodScenario = create((set, get) => ({
     cancelAnimationFrame(raf)
     timers.forEach(clearTimeout)
     timers = []
+    useDashboard.getState().setHighlightWards([])
     set({ active: false, time: 0, data: null })
   },
 }))

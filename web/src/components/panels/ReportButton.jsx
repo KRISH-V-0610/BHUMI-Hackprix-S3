@@ -43,11 +43,11 @@ export default function ReportButton() {
     <button
       onClick={onClick}
       disabled={busy}
-      className="flex items-center gap-1 rounded-lg bg-amber/20 px-3 py-1 text-xs font-semibold text-amber shadow-glow-amber transition hover:bg-amber/30 disabled:opacity-50"
+      className="flex h-8 items-center gap-1.5 rounded-xl bg-neon-deep px-3 text-[13px] font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
       title={USE_MOCK ? 'Requires the live backend' : 'Download PDF action plan'}
     >
-      {busy ? <Loader2 size={13} className="animate-spin" /> : <Download size={13} />}
-      Report PDF
+      {busy ? <Loader2 size={13} className="animate-spin" /> : <Download size={14} />}
+      Council Report
     </button>
   )
 }

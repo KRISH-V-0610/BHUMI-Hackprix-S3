@@ -21,17 +21,22 @@ and proves it — following one arc:
 
 ## ✨ Key features
 
-- **Mode-driven workspace** — `Explore` (state today) · `Change` (what changed since 2016, diverging map) · `Plan` (the Action Planner). One question's worth of UI at a time — never cluttered.
+- **First-run onboarding** — a one-time Welcome that explains the See → Ask → Plan → Justify arc in 4 cards, then offers a guided tour, a seeded first question, or free exploration — so a first-time visitor is never lost.
+- **Guided tour (Story Mode)** — a one-click cinematic walkthrough of the whole arc (▶ in the navbar): switches layers, runs the flood scenario, asks a real question, opens the planner — the reliable 90-second pitch on rails.
+- **Agentic chat (Sarvam AI)** — multilingual voice + text; answers are grounded in real tools and **drive the map live**. Persistent across reloads. Context-aware sample prompts adapt to the active layer / selected ward.
+- **Deep-search "why" with citations** — ask *"why is Malakpet flood-prone?"* and the agent cross-references a **sourced** evidence base (GHMC SNDP, NRSC UHI studies, Telangana flood maps, HMDA lake reports…) against the ward's own data → an **Evidence card** with ranked, cited causes and a confidence level.
 - **Action Planner** — budget slider + intervention → ranked, costed, mapped plan with aggregate impact (avg risk drop, people moved out of "severe"). Backend `POST /plan` + the agent both use the same logic.
-- **Ward digital twin** — click or **search any ward** → an instant briefing in the chat + a drill-down card with a 6-dimension radar, trend, drivers, and an **interactive what-if** (pick *trees / cool roofs / drains / lakes* → the radar morphs to the projected state).
-- **Agentic chat (Sarvam AI)** — multilingual voice + text; answers are grounded in real tools and **drive the map live**. Contextual sample prompts refresh on every click.
-- **Real NASA satellite time-lapse** — cached MODIS True-Color / NDVI / Land-Surface-Temperature frames play across the years (the "gif"), fully offline-safe.
-- **Real data where it counts** — **vegetation is satellite-measured (Sentinel-2 NDVI via Google Earth Engine)**; other indices use a physically-grounded model calibrated to documented Hyderabad reality. Real **OSM water bodies** (Hussain Sagar, Musi river…) bordered on the map. Everything honestly labelled *measured* vs *modeled*.
-- **Story / Present mode** — a guided, cinematic walkthrough of the See → Ask → Plan → Justify arc for the pitch.
+- **Ward digital twin** — click or **search any ward** → a drill-down card with a 6-dimension radar, trend, drivers, and an **interactive what-if** (pick *trees / cool roofs / drains / lakes* → animated before→after bars + headline impact).
+- **Live Google Earth Engine overlay** — toggle the **real Sentinel-2 / MODIS tiles** (NDVI / NDWI / NDBI / LST) for the active layer right on the map (Map Lab → *Live satellite layer*) — see that the data is genuinely satellite-derived.
+- **Real NASA satellite time-lapse** — cached MODIS True-Color / NDVI / LST frames play across the years (the Spectral panel), fully offline-safe.
+- **Real data where it counts** — **vegetation is satellite-measured (Sentinel-2 NDVI via Google Earth Engine)**; other indices use a physically-grounded model calibrated to documented Hyderabad reality. Everything honestly labelled *measured* vs *modeled*.
 
 ---
 
 ## 🏗️ Architecture
+
+Detailed multi-agent, database, tool, XGBoost, diffusion, and caching diagrams are in
+[`docs/agentic-system-architecture.md`](docs/agentic-system-architecture.md).
 
 ```
 ┌─────────────────────────  web/  (Vite + React + Tailwind v4)  ─────────────────────────┐

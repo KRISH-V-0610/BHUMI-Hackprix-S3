@@ -49,19 +49,51 @@ export function worstLayer(feature, year = 2026) {
   return DIMS.map((d) => ({ d, v: sc[d] ?? 0 })).sort((a, b) => b.v - a.v)[0].d
 }
 
-// Contextual prompt chips. When a ward is selected → ward-specific; else → layer-specific.
-export function suggestPrompts({ ward, layer = 'heat' } = {}) {
+// Context-aware prompt chips. Each is { kind, text } so the UI can show a matching icon.
+// `kind` ∈ why | sim | trend | plan | rank | compare. When a ward is selected the chips become
+// ward-specific; otherwise they adapt to the active layer (real Hyderabad framing).
+const _PER_LAYER = {
+  flood: [
+    { kind: 'rank', text: 'Which wards have the worst flood risk?' },
+    { kind: 'why',  text: 'Why is the Musi belt so flood-prone?' },
+    { kind: 'plan', text: 'Where to spend ₹10 crore on drainage?' },
+  ],
+  heat: [
+    { kind: 'rank', text: 'Which wards face the worst heat stress?' },
+    { kind: 'why',  text: 'Why is the old city a heat island?' },
+    { kind: 'plan', text: 'Where to spend ₹10 crore on cool roofs?' },
+  ],
+  veg: [
+    { kind: 'rank', text: 'Which wards lost the most green cover?' },
+    { kind: 'why',  text: 'Why is vegetation shrinking?' },
+    { kind: 'plan', text: 'Where should we add tree cover first?' },
+  ],
+  lake: [
+    { kind: 'rank', text: 'Which lakes are most degraded?' },
+    { kind: 'why',  text: 'Why are Hyderabad’s lakes shrinking?' },
+    { kind: 'plan', text: 'Where to invest in lake restoration?' },
+  ],
+  urban: [
+    { kind: 'rank',    text: 'Where is built-up growth fastest?' },
+    { kind: 'why',     text: 'Why is urban sprawl a climate risk?' },
+    { kind: 'trend',   text: 'How much has the city built up since 2016?' },
+  ],
+  water: [
+    { kind: 'rank', text: 'Worst waterlogging hotspots?' },
+    { kind: 'why',  text: 'Why do these areas pond every monsoon?' },
+    { kind: 'plan', text: 'Where should we build recharge pits?' },
+  ],
+}
+
+export function suggestPrompts({ ward, layer = 'flood' } = {}) {
   if (ward) {
     return [
-      `Why is ${ward} at risk?`,
-      `What if we add 20% tree cover to ${ward}?`,
-      `How has ${ward} changed since 2016?`,
+      { kind: 'why',   text: `Why is ${ward} at risk?` },
+      { kind: 'sim',   text: `What if we add 20% tree cover to ${ward}?` },
+      { kind: 'trend', text: `How has ${ward} changed since 2016?` },
+      { kind: 'plan',  text: `Best first move for ${ward}?` },
     ]
   }
-  const L = LABELS[layer]?.toLowerCase() || 'heat'
-  return [
-    `Which wards have the worst ${layer}?`,
-    `Where should I spend ₹5 crore on tree cover?`,
-    `How has ${layer} changed since 2016?`,
-  ]
+  const base = _PER_LAYER[layer] || _PER_LAYER.flood
+  return [...base, { kind: 'compare', text: 'Compare 2016 vs 2026' }]
 }

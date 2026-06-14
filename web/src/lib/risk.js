@@ -37,11 +37,12 @@ export function riskToRGB(score, legend, alpha = 200) {
 // One ramp the whole UI shares so color == severity at a glance: cool teal -> green -> amber
 // -> orange -> hot red. Used by the risk pyramid, scorecards, gradient bars and the map fills.
 const HEAT_STOPS = [
-  { at: 0, color: '#0ea5b7' }, // cool teal — low risk
-  { at: 35, color: '#2bbf8f' }, // green
-  { at: 55, color: '#f4c430' }, // amber
-  { at: 75, color: '#f5803e' }, // orange
-  { at: 100, color: '#e0383b' }, // hot red — severe
+  { at: 0, color: '#7cb342' },  // green — low (0–40)
+  { at: 40, color: '#c0ca33' }, // lime
+  { at: 55, color: '#fdd835' }, // yellow — moderate (40–65)
+  { at: 72, color: '#fb8c00' }, // orange — high (65–80)
+  { at: 86, color: '#e53935' }, // red — severe (80–100)
+  { at: 100, color: '#c62828' },// deep red
 ]
 
 // Score (0-100) -> [r,g,b] on the heat ramp.
@@ -102,7 +103,7 @@ export function cityAverage(features, year, layer) {
 }
 
 // The shared CSS gradient string for legends/strips (same stops as HEAT_STOPS).
-export const HEAT_CSS = 'linear-gradient(90deg,#0ea5b7,#2bbf8f,#f4c430,#f5803e,#e0383b)'
+export const HEAT_CSS = 'linear-gradient(90deg,#7cb342,#c0ca33,#fdd835,#fb8c00,#e53935)'
 
 // Risk -> extruded height (meters) for the 2.5D hero. Matches contracts.md (~ score * 40).
 export function getElevation(score, multiplier = 40) {
@@ -111,11 +112,11 @@ export function getElevation(score, multiplier = 40) {
 
 // Score band -> { label, color } for scorecards/badges.
 export function levelOf(score) {
-  if (score >= 85) return { label: 'Very High', color: '#d7191c' }
-  if (score >= 70) return { label: 'High', color: '#ff7f0e' }
-  if (score >= 50) return { label: 'Moderate', color: '#ffb300' }
-  if (score >= 30) return { label: 'Low', color: '#74add1' }
-  return { label: 'Very Low', color: '#2b83ba' }
+  if (score >= 86) return { label: 'Severe', color: '#c62828' }
+  if (score >= 80) return { label: 'High', color: '#e53935' }
+  if (score >= 65) return { label: 'High', color: '#fb8c00' }
+  if (score >= 40) return { label: 'Moderate', color: '#f4b400' }
+  return { label: 'Low', color: '#7cb342' }
 }
 
 // Pull a ward's score for the active layer/year out of a GeoJSON feature's properties.

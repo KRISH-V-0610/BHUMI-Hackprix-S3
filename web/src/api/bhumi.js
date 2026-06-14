@@ -2,6 +2,31 @@
 // Each maps a live API call to the sample fixture that satisfies it in mock/fallback mode.
 import { getJSON, postJSON, postForm, postBlob, USE_MOCK } from './client.js'
 
+// Stable per-browser session id (persisted) so the backend recalls conversation context across
+// reloads — follow-up questions like "and flooding there?" keep working after a refresh.
+const SESSION_KEY = 'bhumi-session-id'
+const _newSession = () => 'sess-' + Math.random().toString(36).slice(2) + Date.now().toString(36)
+export function getSessionId() {
+  let id = null
+  try {
+    id = localStorage.getItem(SESSION_KEY)
+    if (!id) localStorage.setItem(SESSION_KEY, (id = _newSession()))
+  } catch {
+    id = id || _newSession()
+  }
+  return id
+}
+export function resetSessionId() {
+  const id = _newSession()
+  try { localStorage.setItem(SESSION_KEY, id) } catch { /* private mode */ }
+  return id
+}
+// POST /clear -> wipe the backend memory for the current session.
+export function clearSession() {
+  const session_id = getSessionId()
+  return postJSON('/clear', { session_id }).catch(() => {})
+}
+
 // GET /layers -> { layers: [...] }
 export function getLayers() {
   return getJSON('/layers', { mock: 'layers.sample.json' })
@@ -56,12 +81,29 @@ async function loadAskCache() {
 const _normQ = (s) =>
   (s || '').trim().toLowerCase().replace(/[?.!,]+$/, '').replace(/\s+/g, ' ').trim()
 
+// GET /models -> { models: [{id,label,desc}], default }
+export function getModels() {
+  return getJSON('/models', { mock: 'models.sample.json' }).catch(() => ({
+    models: [
+      { id: 'sarvam-30b', label: 'Sarvam 30B', desc: 'Fast · tool-calling' },
+      { id: 'sarvam-105b', label: 'Sarvam 105B', desc: 'Deeper reasoning' },
+    ],
+    default: 'sarvam-30b',
+  }))
+}
+
 // POST /ask -> the action object (the important one). Cache hit → instant; else live; else mock.
-export async function postAsk(text, lang) {
-  const cache = await loadAskCache()
-  const hit = cache[_normQ(text)]
-  if (hit) return hit
-  return postJSON('/ask', lang ? { text, lang } : { text }, { mock: 'ask.sample.json' })
+// `model` overrides the Sarvam chat model (skips the cache so the chosen model is actually used).
+export async function postAsk(text, lang, model) {
+  if (!model) {
+    const cache = await loadAskCache()
+    const hit = cache[_normQ(text)]
+    if (hit) return hit
+  }
+  const body = { text, session_id: getSessionId() }
+  if (lang) body.lang = lang
+  if (model) body.model = model
+  return postJSON('/ask', body, { mock: 'ask.sample.json' })
 }
 
 // POST /plan -> budget-aware action plan. No static mock fits (it's parameterized), so callers
