@@ -27,22 +27,34 @@ export default function PlannerPanel() {
 
   const [budgetCr, setBudgetCr] = useState(10) // ₹ crore
   const [result, setResult] = useState(null)
+  const [busy, setBusy] = useState(false)
   const [pdfBusy, setPdfBusy] = useState(false)
   const debounce = useRef(null)
 
-  // Recompute the plan (live) when the intervention or budget changes — API with local fallback.
+  // Recompute the plan (live) when the intervention or budget changes — API with a GUARANTEED
+  // local fallback. Bulletproof: a bad/empty API response OR any error falls to planLocally, and
+  // the panel never ends up blank as long as ward data exists.
   useEffect(() => {
-    if (!wards) return
+    if (!wards?.features?.length) return
     clearTimeout(debounce.current)
     debounce.current = setTimeout(async () => {
       const body = { budget: budgetCr * 1e7, intervention, year }
-      const res = await postPlan(body).catch(() => planLocally(wards, body))
+      setBusy(true)
+      let res = null
+      try {
+        res = await postPlan(body)
+        if (!res || !Array.isArray(res.picked)) throw new Error('invalid plan response')
+      } catch {
+        try { res = planLocally(wards, body) } catch { res = null }
+      }
+      setBusy(false)
+      if (!res || !Array.isArray(res.picked)) return
       setResult(res)
       // project the plan onto the map
-      setActiveLayer(res.layer)
-      setHighlightWards((res.picked || []).map((p) => p.ward))
+      setActiveLayer(res.layer || 'flood')
+      setHighlightWards(res.picked.map((p) => p.ward))
       setPlan?.(res)
-      const first = res.picked?.[0]
+      const first = res.picked[0]
       if (first?.centroid) useDashboard.getState().flyTo?.({ center: first.centroid, zoom: 11.2, pitch: 50, bearing: 12 })
     }, 250)
     return () => clearTimeout(debounce.current)
@@ -140,6 +152,11 @@ export default function PlannerPanel() {
 
       {/* ranked funded wards */}
       <div className="min-h-0 flex-1 overflow-y-auto pr-1">
+        {!result && (
+          <div className="flex items-center justify-center gap-2 py-4 text-[11px] text-ink-dim">
+            <Loader2 size={13} className="animate-spin" /> Calculating the best plan…
+          </div>
+        )}
         {picked.map((p, i) => (
           <div key={p.ward} className="flex items-center gap-2 border-b border-mist/60 py-1 text-xs">
             <span className="w-4 text-[10px] font-bold text-ink-dim">{i + 1}</span>
