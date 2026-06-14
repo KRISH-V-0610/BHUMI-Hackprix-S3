@@ -89,11 +89,12 @@ DEFAULT_LANGUAGE = "en-IN"
 
 # ── Backend / CORS ────────────────────────────────────────────
 APP_HOST = _first("APP_HOST", default="0.0.0.0")
-APP_PORT = int(_first("APP_PORT", default="8000"))
+# Render (and most hosts) inject the port to bind via $PORT — honour it first.
+APP_PORT = int(_first("PORT", "APP_PORT", default="8000"))
 APP_RELOAD = (_first("APP_RELOAD", default="0") or "0").lower() in ("1", "true", "yes")
-CORS_ORIGINS = (
-    _first("CORS_ORIGINS", default="http://localhost:5173,http://localhost:3000") or ""
-).split(",")
+# Comma-separated allowed origins, or "*" to allow any (the deploy default). Dev uses the Vite
+# proxy so CORS never bites locally regardless.
+CORS_ORIGINS = (_first("CORS_ORIGINS", default="*") or "").split(",")
 
 # Hyderabad bounding box [minLon, minLat, maxLon, maxLat] (GHMC + buffer)
 HYDERABAD_BBOX = [78.20, 17.20, 78.70, 17.60]

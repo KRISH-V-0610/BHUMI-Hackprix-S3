@@ -1,0 +1,10 @@
+# Slim RUNTIME deps for the deployed API (Render). The served endpoints don't import
+# torch/xgboost/sklearn/pandas/numpy/matplotlib/earthengine — those are offline-only
+# (data_prep / model training) and live in the full backend/requirements.txt.
+# The API serves pre-built data/*.json (with a graceful MongoDB upgrade), so GEE isn't needed at runtime.
+fastapi>=0.110
+uvicorn[standard]>=0.27
+httpx>=0.26
+python-multipart>=0.0.9
+pymongo>=4.6
+reportlab>=4.0

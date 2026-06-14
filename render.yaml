@@ -1,0 +1,23 @@
+# Render Blueprint for the Bhumi FastAPI backend.
+# Deploy: push to GitHub → Render → New + → "Blueprint" → pick this repo.
+# The API serves pre-built data/*.json (committed), so it needs NO MongoDB or GEE at runtime —
+# only a Sarvam API key for the voice/chat/tts endpoints.
+services:
+  - type: web
+    name: bhumi-api
+    runtime: python
+    region: singapore           # closest Render region to India; change if you like
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements-render.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.6"
+      - key: CORS_ORIGINS
+        value: "*"              # allow any frontend origin (no cookies → safe)
+      - key: SARVAM_API_KEY
+        sync: false             # paste your sk_... key in the Render dashboard (secret)
+      - key: MONGODB_URI
+        sync: false             # OPTIONAL — leave unset to use JSON data + in-memory chat memory

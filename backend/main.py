@@ -32,10 +32,14 @@ from db import store
 
 app = FastAPI(title="Bhumi — Agentic Climate Digital Twin", version="1.0")
 
+# CORS — set CORS_ORIGINS="*" (the deploy default) to allow any frontend origin. With a wildcard
+# we must disable credentials (browsers reject "*" + credentials); we use no cookies, so that's fine.
+_origins = [o.strip() for o in config.CORS_ORIGINS if o.strip()]
+_allow_all = "*" in _origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[o.strip() for o in config.CORS_ORIGINS if o.strip()],
-    allow_credentials=True,
+    allow_origins=["*"] if _allow_all else _origins,
+    allow_credentials=not _allow_all,
     allow_methods=["*"],
     allow_headers=["*"],
 )
