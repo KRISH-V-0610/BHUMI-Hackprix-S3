@@ -34,7 +34,7 @@ export default function MetricStrip() {
   return (
     <div
       className="glass relative flex items-stretch gap-2 overflow-hidden p-2 pt-3.5 text-center"
-      style={{ background: `linear-gradient(180deg, rgba(${r},${g},${b},0.12), rgba(255,255,255,0.85))` }}
+      style={{ backgroundColor: '#ffffff', backgroundImage: `linear-gradient(180deg, rgba(${r},${g},${b},0.14), rgba(255,255,255,0))` }}
     >
       <span className="absolute left-2 top-1 text-[8px] font-bold uppercase tracking-wider text-ink-dim">
         City pulse

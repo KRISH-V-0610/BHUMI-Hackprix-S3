@@ -29,11 +29,12 @@ export default function Scorecards() {
             transition={{ delay: i * 0.04 }}
             whileHover={{ y: -2 }}
             style={{
-              background: `linear-gradient(155deg, rgba(${r},${g},${b},0.18) 0%, rgba(${r},${g},${b},0.04) 55%, rgba(255,255,255,0.9) 100%)`,
+              backgroundColor: '#ffffff',
+              backgroundImage: `linear-gradient(155deg, rgba(${r},${g},${b},0.18) 0%, rgba(${r},${g},${b},0.05) 55%, rgba(255,255,255,0) 100%)`,
               borderColor: active ? dColor : 'transparent',
               boxShadow: active ? `0 4px 16px rgba(${r},${g},${b},0.35)` : undefined,
             }}
-            className="relative flex flex-col items-start overflow-hidden rounded-xl border-2 p-2.5 text-left backdrop-blur transition"
+            className="relative flex flex-col items-start overflow-hidden rounded-xl border-2 p-2.5 text-left transition"
           >
             <span className="text-[10px] font-semibold uppercase tracking-wide text-ink-dim">{c.label}</span>
 
